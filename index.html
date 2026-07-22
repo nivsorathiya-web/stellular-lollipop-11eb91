@@ -1,0 +1,2726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Timetable</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- iOS Web App & PWA Meta Tags for iPhone & Android -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Timetable">
+    <meta name="application-name" content="Timetable">
+    <meta name="theme-color" content="#ffffff">
+    
+    <!-- SVG App Icon Data URI (Compatible with iOS & Android) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%234f46e5'/%3E%3Cstop offset='100%25' stop-color='%237c3aed'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='40' fill='url(%23bg)'/%3E%3Crect x='35' y='45' width='110' height='100' rx='16' fill='%23ffffff' fill-opacity='0.15' stroke='%23ffffff' stroke-width='4'/%3E%3Cpath d='M60 32v24M120 32v24M35 75h110' stroke='%23ffffff' stroke-width='6' stroke-linecap='round'/%3E%3Ccircle cx='70' cy='105' r='8' fill='%2338bdf8'/%3E%3Ccircle cx='110' cy='105' r='8' fill='%234ade80'/%3E%3Ccircle cx='70' cy='125' r='8' fill='%23fb923c'/%3E%3Ccircle cx='110' cy='125' r='8' fill='%23c084fc'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%234f46e5'/%3E%3Cstop offset='100%25' stop-color='%237c3aed'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='40' fill='url(%23bg)'/%3E%3Crect x='35' y='45' width='110' height='100' rx='16' fill='%23ffffff' fill-opacity='0.15' stroke='%23ffffff' stroke-width='4'/%3E%3Cpath d='M60 32v24M120 32v24M35 75h110' stroke='%23ffffff' stroke-width='6' stroke-linecap='round'/%3E%3Ccircle cx='70' cy='105' r='8' fill='%2338bdf8'/%3E%3Ccircle cx='110' cy='105' r='8' fill='%234ade80'/%3E%3Ccircle cx='70' cy='125' r='8' fill='%23fb923c'/%3E%3Ccircle cx='110' cy='125' r='8' fill='%23c084fc'/%3E%3C/svg%3E">
+
+    <!-- Embedded Web App Manifest for Android PWA Install -->
+    <link rel="manifest" href="data:application/json;charset=utf-8,%7B%22name%22%3A%22Timetable%22%2C%22short_name%22%3A%22Timetable%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f8fafc%22%2C%22theme_color%22%3A%22%234f46e5%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27180%27%20height%3D%27180%27%20viewBox%3D%270%200%20180%20180%27%253E%253Cdefs%253E%253ClinearGradient%20id%3D%27bg%27%20x1%3D%270%25%27%20y1%3D%270%25%27%20x2%3D%27100%25%27%20y2%3D%27100%25%27%253E%253Cstop%20offset%3D%270%25%27%20stop-color%3D%27%25234f46e5%27%2F%253E%253Cstop%20offset%3D%27100%25%27%20stop-color%3D%27%25237c3aed%27%2F%253E%253C%2FlinearGradient%253E%253C%2Fdefs%253E%253Crect%20width%3D%27180%27%20height%3D%27180%27%20rx%3D%2740%27%20fill%3D%27url(%2523bg)%27%2F%253E%253Crect%20x%3D%2735%27%20y%3D%2745%27%20width%3D%27110%27%20height%3D%27100%27%20rx%3D%2716%27%20fill%3D%27%2523ffffff%27%20fill-opacity%3D%270.15%27%20stroke%3D%27%2523ffffff%27%20stroke-width%3D%274%27%2F%253E%253Cpath%20d%3D%27M60%2032v24M120%2032v24M35%2075h110%27%20stroke%3D%27%2523ffffff%27%20stroke-width%3D%276%27%20stroke-linecap%3D%27round%27%2F%253E%253Ccircle%20cx%3D%2770%27%20cy%3D%27105%27%20r%3D%278%27%20fill%3D%27%252338bdf8%27%2F%253E%253Ccircle%20cx%3D%27110%27%20cy%3D%27105%27%20r%3D%278%27%20fill%3D%27%25234ade80%27%2F%253E%253Ccircle%20cx%3D%2770%27%20cy%3D%27125%27%20r%3D%278%27%20fill%3D%27%2523fb923c%27%2F%253E%253Ccircle%20cx%3D%27110%27%20cy%3D%27125%27%20r%3D%278%27%20fill%3D%27%2523c084fc%27%2F%253E%253C%2Fsvg%3E%22%2C%22sizes%22%3A%22180x180%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
+    
+    <!-- html2pdf.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        /* Modern Premium Light Theme Design System */
+        :root {
+            --font-primary: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-secondary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            
+            /* Crisp Light Theme Colors */
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f1f5f9;
+            --border-color: #e2e8f0;
+            --border-highlight: rgba(79, 70, 229, 0.3);
+            
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-tertiary: #64748b;
+            
+            --accent-primary: #4f46e5;
+            --accent-glow: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            --accent-gradient: linear-gradient(90deg, #2563eb, #4f46e5, #7c3aed);
+            
+            /* Subject Theme Badges & Left Accent Borders (Pastel Light Palette) */
+            --color-minor-bg: #fff1f2;
+            --color-minor-text: #be123c;
+            --color-minor-border: #f43f5e;
+            
+            --color-dt-bg: #fff7ed;
+            --color-dt-text: #c2410c;
+            --color-dt-border: #ea580c;
+            
+            --color-se-bg: #f0fdf4;
+            --color-se-text: #15803d;
+            --color-se-border: #16a34a;
+            
+            --color-cn-bg: #eff6ff;
+            --color-cn-text: #1d4ed8;
+            --color-cn-border: #2563eb;
+            
+            --color-cloud-bg: #faf5ff;
+            --color-cloud-text: #7e22ce;
+            --color-cloud-border: #9333ea;
+            
+            --color-elective-bg: #fefce8;
+            --color-elective-text: #a16207;
+            --color-elective-border: #ca8a04;
+            
+            --color-cdcell-bg: #f8fafc;
+            --color-cdcell-text: #334155;
+            --color-cdcell-border: #64748b;
+            
+            /* PDF Print Maroon Theme */
+            --cell-maroon: #800000;
+            --title-blue: #1e3a8a;
+            
+            /* Mobile Safe Area Padding */
+            --safe-top: env(safe-area-inset-top, 0px);
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        /* Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            padding-top: var(--safe-top);
+            padding-bottom: calc(var(--safe-bottom) + 85px);
+        }
+
+        /* Fullscreen Animated App Launch Intro / Splash Screen */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.25rem;
+            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s;
+        }
+
+        #splash-screen.fade-out {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .splash-logo {
+            width: 90px;
+            height: 90px;
+            border-radius: 24px;
+            background: var(--accent-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 35px rgba(79, 70, 229, 0.35);
+            animation: splashScale 1.2s cubic-bezier(0.16, 1, 0.3, 1) infinite alternate;
+        }
+
+        @keyframes splashScale {
+            0% { transform: scale(0.95); box-shadow: 0 10px 25px rgba(79, 70, 229, 0.25); }
+            100% { transform: scale(1.05); box-shadow: 0 20px 45px rgba(79, 70, 229, 0.45); }
+        }
+
+        .splash-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .splash-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-family: var(--font-secondary);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .splash-loader {
+            width: 40px;
+            height: 4px;
+            background: #e2e8f0;
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+            margin-top: 0.5rem;
+        }
+
+        .splash-loader-bar {
+            width: 100%;
+            height: 100%;
+            background: var(--accent-glow);
+            position: absolute;
+            left: -100%;
+            animation: splashLoading 1.2s ease-in-out infinite;
+        }
+
+        @keyframes splashLoading {
+            0% { left: -100%; }
+            50% { left: 0%; }
+            100% { left: 100%; }
+        }
+
+        /* Student Login Modal Overlay */
+        #login-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 8000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        #login-modal.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .login-card {
+            background: #ffffff;
+            border-radius: 26px;
+            width: 100%;
+            max-width: 480px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            animation: modalPop 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes modalPop {
+            0% { transform: scale(0.9) translateY(20px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        .login-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0.4rem;
+        }
+
+        .login-badge-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            background: var(--accent-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+            margin-bottom: 0.3rem;
+        }
+
+        .login-title {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #0f172a;
+            line-height: 1.25;
+        }
+
+        .login-sub {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-family: var(--font-secondary);
+        }
+
+        .login-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            position: relative;
+        }
+
+        .login-input-label {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .login-select-input {
+            width: 100%;
+            background: #f8fafc;
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 0.85rem 1rem;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: var(--font-primary);
+            color: var(--text-primary);
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .login-select-input:focus {
+            border-color: var(--accent-primary);
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
+        }
+
+        /* Live Preview Card in Login */
+        .student-preview-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 1.5px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 1rem 1.15rem;
+            display: none;
+            flex-direction: column;
+            gap: 0.4rem;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .preview-name {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        .preview-details-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            font-size: 0.78rem;
+            font-family: var(--font-secondary);
+            font-weight: 700;
+        }
+
+        .preview-tag {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            padding: 0.25rem 0.6rem;
+            border-radius: 8px;
+            color: #334155;
+        }
+
+        .login-confirm-btn {
+            background: var(--accent-glow);
+            color: #ffffff;
+            border: none;
+            border-radius: 16px;
+            padding: 1rem;
+            font-size: 1.05rem;
+            font-weight: 800;
+            font-family: var(--font-primary);
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .login-confirm-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .login-confirm-btn:not(:disabled):active {
+            transform: scale(0.97);
+        }
+
+        /* Welcome Celebration Animation Overlay */
+        #welcome-anim-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 9000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.25rem;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        #welcome-anim-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .welcome-card-anim {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 28px;
+            padding: 2.2rem 1.8rem;
+            max-width: 440px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            animation: welcomeBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes welcomeBounce {
+            0% { transform: scale(0.7); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .welcome-avatar-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--accent-glow);
+            color: #ffffff;
+            font-size: 2.2rem;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 30px rgba(79, 70, 229, 0.4);
+        }
+
+        .welcome-text-name {
+            font-size: 2.1rem;
+            font-weight: 900;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .welcome-text-sub {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-family: var(--font-secondary);
+            font-weight: 600;
+        }
+
+        .welcome-pill-row {
+            display: flex;
+            gap: 0.6rem;
+            margin-top: 0.4rem;
+        }
+
+        .welcome-pill {
+            background: #e0e7ff;
+            color: #3730a3;
+            font-size: 0.8rem;
+            font-weight: 800;
+            padding: 0.35rem 0.85rem;
+            border-radius: 12px;
+        }
+
+        /* iOS / WhatsApp WebView Notice */
+        #whatsapp-notice {
+            display: none;
+            width: 100%;
+            max-width: 600px;
+            background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ffffff;
+            border-radius: 14px;
+            padding: 1rem 1.25rem;
+            margin: 0.75rem 1rem 0 1rem;
+            box-shadow: 0 10px 25px rgba(185, 28, 28, 0.2);
+            font-size: 0.9rem;
+            line-height: 1.4;
+            font-family: var(--font-secondary);
+            align-items: center;
+            gap: 0.85rem;
+            z-index: 100;
+        }
+
+        #whatsapp-notice svg { flex-shrink: 0; color: #fecaca; }
+        #whatsapp-notice strong { font-weight: 700; color: #ffffff; }
+
+        /* Main Mobile Container */
+        .mobile-app {
+            width: 100%;
+            max-width: 600px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.15rem;
+        }
+
+        /* Live Device Clock & Today's Status Banner Card */
+        .live-status-card {
+            background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #7c3aed 100%);
+            color: #ffffff;
+            border-radius: 20px;
+            padding: 1.2rem 1.35rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            box-shadow: 0 12px 30px rgba(79, 70, 229, 0.35);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .live-status-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
+            pointer-events: none;
+        }
+
+        .live-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .live-date-text {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: var(--font-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .live-clock-badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.03em;
+        }
+
+        .live-current-headline {
+            font-size: 1.15rem;
+            font-weight: 800;
+            line-height: 1.3;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .live-current-sub {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-family: var(--font-secondary);
+            font-weight: 500;
+        }
+
+        /* App Top Bar Header (Light Glassmorphic) */
+        .app-header {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 22px;
+            padding: 1.25rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            background: var(--accent-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.35);
+        }
+
+        .brand-icon svg { color: white; width: 26px; height: 26px; }
+
+        .brand-text h1 {
+            font-size: 1.45rem;
+            font-weight: 900;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .brand-text p {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            font-family: var(--font-secondary);
+            font-weight: 600;
+        }
+
+        /* Profile Header Button */
+        .profile-header-chip {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            padding: 0.45rem 0.85rem;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .profile-header-chip:active {
+            transform: scale(0.96);
+            background: #e2e8f0;
+        }
+
+        .profile-chip-avatar {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--accent-glow);
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-chip-name {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        .profile-chip-roll {
+            font-size: 0.72rem;
+            color: var(--text-tertiary);
+            font-weight: 600;
+        }
+
+        /* Clean Auto-Assigned Profile Badge Bar (Replaces Manual Dropdowns) */
+        .user-profile-badge-bar {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1.3fr;
+            gap: 0.5rem;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 0.6rem 0.75rem;
+        }
+
+        .profile-badge-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .profile-badge-item .badge-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .profile-badge-item strong {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: #0f172a;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .android-install-btn {
+            background: #e0e7ff;
+            border: 1px solid #c7d2fe;
+            color: #3730a3;
+            padding: 0.45rem 0.85rem;
+            border-radius: 12px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            display: none; /* Shown dynamically on Android PWA prompt */
+            align-items: center;
+            gap: 0.35rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .android-install-btn:active { transform: scale(0.95); }
+
+        /* View Mode Switcher Segmented Control */
+        .mode-segmented-bar {
+            display: flex;
+            background: #e2e8f0;
+            border-radius: 14px;
+            padding: 4px;
+            gap: 4px;
+        }
+
+        .mode-btn {
+            flex: 1;
+            padding: 0.65rem 0.5rem;
+            border-radius: 10px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            font-family: var(--font-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mode-btn svg { width: 16px; height: 16px; }
+
+        .mode-btn.active {
+            background: #ffffff;
+            color: var(--accent-primary);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Horizontal Day Selector Bar with Extra Viewport Padding to Prevent ANY Clipping */
+        .day-nav-bar {
+            display: flex;
+            gap: 0.6rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 14px 4px 6px 4px;
+        }
+
+        .day-nav-bar::-webkit-scrollbar { display: none; }
+
+        .day-chip {
+            flex: 1;
+            min-width: 72px;
+            padding: 0.75rem 0.4rem 0.65rem 0.4rem;
+            border-radius: 18px;
+            background: var(--bg-surface);
+            border: 1.5px solid var(--border-color);
+            color: var(--text-secondary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.15rem;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            position: relative;
+        }
+
+        /* Explicit TODAY Badge Pill Element - Built Cleanly to Avoid Cutoffs */
+        .today-badge-pill {
+            display: none;
+            background: #16a34a;
+            color: #ffffff;
+            font-size: 0.58rem;
+            font-weight: 900;
+            font-family: var(--font-secondary);
+            letter-spacing: 0.04em;
+            padding: 2px 7px;
+            border-radius: 10px;
+            position: absolute;
+            top: -10px;
+            box-shadow: 0 3px 8px rgba(22, 163, 74, 0.35);
+            white-space: nowrap;
+        }
+
+        .day-chip.is-today .today-badge-pill {
+            display: inline-block;
+        }
+
+        .day-chip.active {
+            background: var(--accent-glow);
+            border-color: transparent;
+            color: #ffffff;
+            box-shadow: 0 8px 22px rgba(79, 70, 229, 0.35);
+            transform: translateY(-1px);
+        }
+
+        .day-chip.active .day-sub {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .day-chip .day-abbr {
+            font-size: 0.88rem;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            line-height: 1.2;
+        }
+
+        .day-chip .day-sub {
+            font-size: 0.65rem;
+            color: var(--text-tertiary);
+            font-weight: 600;
+        }
+
+        /* Mobile Timeline Schedule View */
+        .timeline-view {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        /* Mobile Timeline Card Item */
+        .mobile-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 1.1rem 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+        }
+
+        .mobile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: var(--card-border-color, var(--accent-primary));
+            border-radius: 5px 0 0 5px;
+        }
+
+        /* Currently Active Class Glow */
+        .mobile-card.is-currently-active {
+            border: 2px solid #22c55e;
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.25);
+            background: #f0fdf4;
+        }
+
+        .mobile-card.is-currently-active::after {
+            content: 'LIVE NOW';
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            background: #22c55e;
+            color: #ffffff;
+            font-size: 0.65rem;
+            font-weight: 900;
+            padding: 2px 8px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        .mobile-card:active {
+            transform: scale(0.985);
+            background-color: var(--bg-card-hover);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-time {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            font-family: var(--font-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .card-time svg { width: 15px; height: 15px; color: var(--accent-primary); }
+
+        .card-badge {
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 0.3rem 0.65rem;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .card-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.85rem;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            font-family: var(--font-secondary);
+            padding-top: 0.15rem;
+        }
+
+        .meta-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            padding: 0.35rem 0.7rem;
+            border-radius: 10px;
+        }
+
+        .meta-pill svg { width: 15px; height: 15px; color: var(--text-tertiary); }
+        .meta-pill strong { color: var(--text-primary); font-weight: 700; }
+
+        /* Break and Lunch Card Styles */
+        .mobile-card.is-break, .mobile-card.is-lunch {
+            background: #f8fafc;
+            border-style: dashed;
+        }
+
+        .mobile-card.is-break::before { background-color: var(--text-tertiary); }
+        .mobile-card.is-lunch::before { background-color: #ea580c; }
+
+        /* Lab Banner Pill inside Mobile Card */
+        .lab-span-badge {
+            background: #e0e7ff;
+            border: 1px dashed #6366f1;
+            color: #4338ca;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 0.3rem 0.7rem;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            width: fit-content;
+        }
+
+        /* Landscape Blueprint Preview Container */
+        .blueprint-container {
+            display: none;
+            background: #ffffff;
+            color: #000000;
+            border-radius: 18px;
+            padding: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border-color);
+            width: 100%;
+            position: relative;
+        }
+
+        /* --- PDF Print / Blueprint Layout (1122px x 794px ratio) --- */
+        #timetable-pdf-sheet {
+            background-color: #ffffff;
+            width: 1122px;
+            height: 794px;
+            padding: 30px 30px;
+            font-family: var(--font-primary);
+            position: relative;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .bp-header { text-align: center; margin-bottom: 0.4rem; }
+        .bp-title { font-size: 1.7rem; font-weight: 700; color: var(--title-blue); margin-bottom: 0.2rem; }
+        .bp-subtitle { font-size: 1.2rem; font-weight: 700; color: #475569; margin-bottom: 0.3rem; }
+        .bp-subtitle span.divider { color: #cbd5e1; font-weight: 300; margin: 0 0.75rem; }
+        .bp-description { font-size: 0.88rem; color: #64748b; font-family: var(--font-secondary); font-weight: 500; }
+
+        .bp-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--font-primary);
+            font-size: 0.76rem;
+            table-layout: fixed;
+            margin-top: 0.4rem;
+            margin-bottom: 0.4rem;
+            flex-grow: 1;
+        }
+
+        .bp-table th:nth-child(1)  { width: 8.0%; }
+        .bp-table th:nth-child(2)  { width: 8.5%; }
+        .bp-table th:nth-child(3)  { width: 8.0%; }
+        .bp-table th:nth-child(4)  { width: 8.5%; }
+        .bp-table th:nth-child(5)  { width: 3.0%; }
+        .bp-table th:nth-child(6)  { width: 9.0%; }
+        .bp-table th:nth-child(7)  { width: 8.0%; }
+        .bp-table th:nth-child(8)  { width: 9.0%; }
+        .bp-table th:nth-child(9)  { width: 8.5%; }
+        .bp-table th:nth-child(10) { width: 8.5%; }
+        .bp-table th:nth-child(11) { width: 3.0%; }
+        .bp-table th:nth-child(12) { width: 8.5%; }
+        .bp-table th:nth-child(13) { width: 9.5%; }
+
+        .bp-table th, .bp-table td {
+            border: 1.5px solid var(--cell-maroon);
+            text-align: center;
+            vertical-align: middle;
+            padding: 6px 3px;
+            position: relative;
+        }
+
+        .bp-table th { background-color: #f8fafc; color: #334155; font-weight: 600; padding: 10px 3px; }
+        .bp-table th .time-range { font-size: 0.74rem; font-weight: 700; }
+        .bp-table th .time-sub { font-size: 0.6rem; color: #64748b; font-weight: 500; display: block; }
+
+        .day-cell { background-color: #f1f5f9; font-weight: 700; color: var(--title-blue); font-size: 0.82rem; padding: 12px 3px; }
+        .break-cell-text { color: #94a3b8; font-size: 0.74rem; font-weight: 500; background-color: #ffffff; }
+        .lunch-cell-text { color: #64748b; font-size: 0.78rem; font-style: italic; font-weight: 600; background-color: #f8fafc; }
+        .saturday-row td.no-classes { background-color: #f8fafc; color: #64748b; font-size: 0.8rem; font-style: italic; padding: 12px; }
+
+        .cell-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 56px;
+            border-radius: 4px;
+            padding: 4px 2px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .cell-title { font-size: 0.78rem; font-weight: 700; margin-bottom: 2px; text-align: center; line-height: 1.1; }
+        .cell-code { font-size: 0.62rem; font-weight: 500; opacity: 0.85; margin-bottom: 2px; }
+        .cell-info { font-size: 0.62rem; font-weight: 500; opacity: 0.9; }
+
+        /* Blueprint Cell Backgrounds */
+        .cell-minor { background-color: #ffe4e6; color: #9f1239; }
+        .cell-dt { background-color: #ffedd5; color: #c2410c; }
+        .cell-dt-lab { background-color: #ffedd5; color: #c2410c; border: 1.5px dashed #c2410c; }
+        .cell-se { background-color: #dcfce7; color: #15803d; }
+        .cell-se-lab { background-color: #dcfce7; color: #15803d; border: 1.5px dashed #15803d; }
+        .cell-cn { background-color: #dbeafe; color: #1d4ed8; }
+        .cell-cn-lab { background-color: #dbeafe; color: #1d4ed8; border: 1.5px dashed #1d4ed8; }
+        .cell-cloud { background-color: #f3e8ff; color: #6b21a8; }
+        .cell-elective { background-color: #fef9c3; color: #854d0e; }
+        .cell-cdcell { background-color: #f1f5f9; color: #334155; }
+
+        .bp-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-top: 0.5rem; font-size: 0.72rem; font-weight: 600; color: #475569; }
+        .legend-item { display: flex; align-items: center; gap: 0.45rem; }
+        .legend-color { width: 13px; height: 13px; border-radius: 3px; border: 1px solid rgba(0, 0, 0, 0.15); }
+
+        .bp-footer { display: flex; justify-content: center; font-size: 0.64rem; color: #64748b; font-weight: 600; margin-top: 0.5rem; padding-top: 8px; border-top: 1.5px solid var(--cell-maroon); }
+
+        /* Floating Action Download Bar for Mobile */
+        .bottom-action-bar {
+            position: fixed;
+            bottom: max(1rem, var(--safe-bottom));
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 2rem);
+            max-width: 560px;
+            z-index: 90;
+        }
+
+        .download-fab-btn {
+            width: 100%;
+            background: var(--accent-glow);
+            color: #ffffff;
+            border: none;
+            border-radius: 18px;
+            padding: 1.1rem 1.5rem;
+            font-size: 1.05rem;
+            font-weight: 800;
+            font-family: var(--font-primary);
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .download-fab-btn:active {
+            transform: scale(0.97);
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.25);
+        }
+
+        .download-fab-btn svg { width: 22px; height: 22px; }
+
+        /* Light Inspection Modal Sheet for Subject Details & Account Profile */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(6px);
+            z-index: 200;
+            display: none;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .modal-overlay.active { display: flex; }
+
+        .modal-sheet {
+            background: #ffffff;
+            border-radius: 28px 28px 0 0;
+            width: 100%;
+            max-width: 600px;
+            padding: 1.6rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+            animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            padding-bottom: calc(1.6rem + var(--safe-bottom));
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        .sheet-drag-handle {
+            width: 44px;
+            height: 5px;
+            background: #cbd5e1;
+            border-radius: 3px;
+            align-self: center;
+            margin-bottom: 0.4rem;
+        }
+
+        .sheet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .sheet-title { font-size: 1.35rem; font-weight: 800; color: #0f172a; line-height: 1.2; }
+        .sheet-code { font-size: 0.88rem; color: var(--accent-primary); font-weight: 700; margin-top: 0.2rem; }
+        
+        .sheet-close-btn {
+            background: #f1f5f9;
+            border: none;
+            color: var(--text-secondary);
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .sheet-details-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.85rem;
+        }
+
+        .detail-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 0.95rem 1.1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .detail-label { font-size: 0.72rem; color: var(--text-tertiary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+        .detail-value { font-size: 1rem; color: #0f172a; font-weight: 800; }
+
+        .switch-account-btn {
+            background: #fff1f2;
+            border: 1px solid #fecdd3;
+            color: #e11d48;
+            padding: 0.85rem;
+            border-radius: 16px;
+            font-size: 0.95rem;
+            font-weight: 800;
+            font-family: var(--font-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .switch-account-btn:active {
+            transform: scale(0.97);
+            background: #ffe4e6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fullscreen Animated App Launch Intro / Splash Screen -->
+    <div id="splash-screen">
+        <div class="splash-logo">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/></svg>
+        </div>
+        <div style="text-align: center;">
+            <div class="splash-title">Timetable</div>
+            <div class="splash-subtitle">PDEU B.Tech CSBS · Sem 5</div>
+        </div>
+        <div class="splash-loader">
+            <div class="splash-loader-bar"></div>
+        </div>
+    </div>
+
+    <!-- Student Roll Number Login Modal Sheet (112 Students) -->
+    <div id="login-modal" class="hidden">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-badge-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <div class="login-title">Student Profile Console</div>
+                <div class="login-sub">Select your Roll Number to auto-sync your personal timetable</div>
+            </div>
+
+            <div class="login-input-group">
+                <label class="login-input-label" for="login-roll-input">Select Roll Number</label>
+                <input type="text" id="login-roll-input" class="login-select-input" placeholder="Select your roll number" list="students-list" oninput="onRollInputChange()">
+                <datalist id="students-list">
+                    <!-- Populated dynamically via JS -->
+                </datalist>
+            </div>
+
+            <!-- Instant Student Preview Card -->
+            <div id="student-preview" class="student-preview-card">
+                <div class="preview-name" id="prev-name">NIVKUMAR JAYANTILAL SORATHIYA</div>
+                <div class="preview-details-row">
+                    <span class="preview-tag" id="prev-div">Division 1</span>
+                    <span class="preview-tag" id="prev-group">Group J2</span>
+                    <span class="preview-tag" id="prev-elective">Business Strategy</span>
+                </div>
+                <div style="font-size: 0.75rem; color: #64748b; font-family: var(--font-secondary);" id="prev-email">
+                    24BCB037@pdpu.ac.in
+                </div>
+            </div>
+
+            <button id="login-submit-btn" class="login-confirm-btn" disabled onclick="confirmStudentLogin()">
+                Access My Timetable ➔
+            </button>
+        </div>
+    </div>
+
+    <!-- First-Time Welcome Celebration Overlay Animation -->
+    <div id="welcome-anim-overlay" class="hidden">
+        <div class="welcome-card-anim">
+            <div class="welcome-avatar-circle" id="welcome-avatar">N</div>
+            <div style="text-align: center;">
+                <div class="welcome-text-sub">CSBS Semester 5</div>
+                <div class="welcome-text-name" id="welcome-first-name">Welcome, Nivkumar!</div>
+            </div>
+            <div class="welcome-pill-row">
+                <span class="welcome-pill" id="welcome-roll-tag">Roll No: 24BCB037</span>
+                <span class="welcome-pill" id="welcome-div-tag">Div 1 · J2</span>
+            </div>
+            <div style="font-size: 0.8rem; color: #475569; font-weight: 600;" id="welcome-elective-tag">
+                Elective: Business Strategy
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp iOS WebView Alert Notice -->
+    <div id="whatsapp-notice">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12" y1="17" y2="17"/></svg>
+        <div>
+            <strong>iPhone / WhatsApp User:</strong> To save the PDF blueprint, tap the <strong>Browser Share icon</strong> and select <strong>"Open in Safari"</strong>.
+        </div>
+    </div>
+
+    <!-- Main Mobile Application UI -->
+    <div class="mobile-app">
+        
+        <!-- iPhone Install Prompt Banner -->
+        <div id="ios-install-banner" style="display:none; background: #e0e7ff; border: 1px solid #c7d2fe; color: #3730a3; border-radius: 16px; padding: 0.85rem 1.1rem; font-size: 0.85rem; line-height: 1.35; align-items: center; justify-content: space-between; gap: 0.75rem;">
+            <div style="display: flex; align-items: center; gap: 0.65rem;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v13M5 10l7 7 7-7"/><path d="M20 21H4"/></svg>
+                <div>
+                    <strong>Install Timetable on iPhone:</strong> Tap <span style="background:#ffffff; border:1px solid #cbd5e1; padding:2px 6px; border-radius:6px; font-weight:700;">Share ⎋</span> & select <strong>"Add to Home Screen"</strong>
+                </div>
+            </div>
+            <button onclick="document.getElementById('ios-install-banner').style.display='none'" style="background:transparent; border:none; color:#3730a3; font-weight:800; cursor:pointer; font-size:1.1rem;">✕</button>
+        </div>
+
+        <!-- Android Install Prompt Banner -->
+        <div id="android-install-banner" style="display:none; background: #e0e7ff; border: 1px solid #c7d2fe; color: #3730a3; border-radius: 16px; padding: 0.85rem 1.1rem; font-size: 0.85rem; line-height: 1.35; align-items: center; justify-content: space-between; gap: 0.75rem;">
+            <div style="display: flex; align-items: center; gap: 0.65rem;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                <div>
+                    <strong>Install Timetable on Android:</strong> Tap <button onclick="triggerAndroidPWAInstall()" style="background:#3730a3; color:#ffffff; border:none; padding:3px 8px; border-radius:8px; font-weight:700; cursor:pointer;">Install App</button> to add to Home Screen
+                </div>
+            </div>
+            <button onclick="document.getElementById('android-install-banner').style.display='none'" style="background:transparent; border:none; color:#3730a3; font-weight:800; cursor:pointer; font-size:1.1rem;">✕</button>
+        </div>
+
+        <!-- Live Device Clock & Today's Status Banner Card -->
+        <div class="live-status-card">
+            <div class="live-card-top">
+                <span class="live-date-text" id="live-date-str">Wednesday, Jul 22</span>
+                <span class="live-clock-badge" id="live-clock-str">06:40 PM</span>
+            </div>
+            <div class="live-current-headline" id="live-headline">
+                🟢 Today's Schedule Active
+            </div>
+            <div class="live-current-sub" id="live-subtext">
+                Checking current timetable for your division & group...
+            </div>
+        </div>
+
+        <!-- App Top Header -->
+        <header class="app-header">
+            <div class="header-top">
+                <div class="brand-info">
+                    <div class="brand-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="3"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                    </div>
+                    <div class="brand-text">
+                        <h1>Timetable</h1>
+                        <p>PDEU B.Tech CSBS · Sem 5</p>
+                    </div>
+                </div>
+
+                <!-- Logged-in Profile Chip (Tapping opens Profile Drawer) -->
+                <div class="profile-header-chip" id="profile-chip" onclick="openProfileSheet()">
+                    <div class="profile-chip-avatar" id="header-avatar">N</div>
+                    <div>
+                        <div class="profile-chip-name" id="header-name">Nivkumar</div>
+                        <div class="profile-chip-roll" id="header-roll">24BCB037</div>
+                    </div>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+
+                <button class="android-install-btn" id="btn-android-install" onclick="triggerAndroidPWAInstall()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                    Install App
+                </button>
+            </div>
+
+            <!-- Clean Auto-Assigned Profile Badge Bar (Replaces Redundant Manual Dropdowns) -->
+            <div class="user-profile-badge-bar" id="user-profile-badge-bar">
+                <div class="profile-badge-item">
+                    <span class="badge-label">Division</span>
+                    <strong id="badge-div">Div 1</strong>
+                </div>
+                <div class="profile-badge-item">
+                    <span class="badge-label">Group</span>
+                    <strong id="badge-group">Group J2</strong>
+                </div>
+                <div class="profile-badge-item">
+                    <span class="badge-label">Elective</span>
+                    <strong id="badge-elective">Business Strategy</strong>
+                </div>
+            </div>
+
+            <!-- Hidden Control Inputs (Maintained for Internal Timetable Engine Compatibility) -->
+            <div style="display:none;">
+                <select id="div-select" onchange="onDivisionChange()"><option value="1">1</option><option value="2">2</option></select>
+                <select id="group-select" onchange="updateAppUI()"></select>
+                <select id="elective-select" onchange="updateAppUI()"><option value="bs">bs</option><option value="cs">cs</option><option value="cd">cd</option></select>
+            </div>
+
+            <!-- View Mode Switcher -->
+            <div class="mode-segmented-bar">
+                <button id="btn-mode-cards" class="mode-btn active" onclick="switchViewMode('cards')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+                    Mobile Cards
+                </button>
+                <button id="btn-mode-pdf" class="mode-btn" onclick="switchViewMode('blueprint')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    A4 Blueprint View
+                </button>
+            </div>
+        </header>
+
+        <!-- Horizontal Day Selector Bar with Explicit Inline TODAY Badge -->
+        <nav class="day-nav-bar" id="day-nav-bar">
+            <button class="day-chip active" id="chip-Monday" onclick="selectDay('Monday')">
+                <span class="today-badge-pill">TODAY</span>
+                <span class="day-abbr">MON</span>
+                <span class="day-sub">Monday</span>
+            </button>
+            <button class="day-chip" id="chip-Tuesday" onclick="selectDay('Tuesday')">
+                <span class="today-badge-pill">TODAY</span>
+                <span class="day-abbr">TUE</span>
+                <span class="day-sub">Tuesday</span>
+            </button>
+            <button class="day-chip" id="chip-Wednesday" onclick="selectDay('Wednesday')">
+                <span class="today-badge-pill">TODAY</span>
+                <span class="day-abbr">WED</span>
+                <span class="day-sub">Wed</span>
+            </button>
+            <button class="day-chip" id="chip-Thursday" onclick="selectDay('Thursday')">
+                <span class="today-badge-pill">TODAY</span>
+                <span class="day-abbr">THU</span>
+                <span class="day-sub">Thursday</span>
+            </button>
+            <button class="day-chip" id="chip-Friday" onclick="selectDay('Friday')">
+                <span class="today-badge-pill">TODAY</span>
+                <span class="day-abbr">FRI</span>
+                <span class="day-sub">Friday</span>
+            </button>
+            <button class="day-chip" id="chip-Saturday" onclick="selectDay('Saturday')">
+                <span class="today-badge-pill">TODAY</span>
+                <span class="day-abbr">SAT</span>
+                <span class="day-sub">Saturday</span>
+            </button>
+        </nav>
+
+        <!-- Mobile Timeline Card Schedule Container -->
+        <main class="timeline-view" id="mobile-cards-view">
+            <!-- Populated Dynamically by App JS -->
+        </main>
+
+        <!-- Landscape Blueprint View Container -->
+        <div class="blueprint-container" id="blueprint-view-container">
+            <div id="timetable-pdf-sheet">
+                
+                <!-- Blueprint Header Info -->
+                <div class="bp-header">
+                    <div class="bp-title">Pandit Deendayal Energy University — School of Technology</div>
+                    <div class="bp-subtitle">
+                        Division <span id="label-div">1</span> 
+                        <span class="divider">|</span> 
+                        Group <span id="label-group">J1</span>
+                    </div>
+                    <div class="bp-description">
+                        B.Tech Computer Science & Business Systems · Semester 5 · Odd Semester 2026 · w.e.f. July 20, 2026 · Elective: <span id="label-elective">Business Strategy</span>
+                    </div>
+                </div>
+
+                <!-- Timetable Grid -->
+                <table class="bp-table">
+                    <thead>
+                        <tr>
+                            <th>DAY</th>
+                            <th>
+                                <div class="time-range">08:00 to 08:55</div>
+                                <div class="time-sub">Minor</div>
+                            </th>
+                            <th>
+                                <div class="time-range">9.00 to 9. 55</div>
+                                <div class="time-sub"></div>
+                            </th>
+                            <th>
+                                <div class="time-range">10.00 to 10.55</div>
+                                <div class="time-sub"></div>
+                            </th>
+                            <th>
+                                <div class="time-range">10:55 to 11:10</div>
+                                <div class="time-sub">Break</div>
+                            </th>
+                            <th>
+                                <div class="time-range">11.10 to 12.05</div>
+                                <div class="time-sub"></div>
+                            </th>
+                            <th>
+                                <div class="time-range">12.10 to 1.05</div>
+                                <div class="time-sub"></div>
+                            </th>
+                            <th>
+                                <div class="time-range">1:10 to 2:05</div>
+                                <div class="time-sub">(Lunch on Wed/Fri)</div>
+                            </th>
+                            <th>
+                                <div class="time-range">2.10 to 3.05</div>
+                                <div class="time-sub"></div>
+                            </th>
+                            <th>
+                                <div class="time-range">3.10 to 4.05</div>
+                                <div class="time-sub"></div>
+                            </th>
+                            <th>
+                                <div class="time-range">4:05 to 4:15</div>
+                                <div class="time-sub">Break</div>
+                            </th>
+                            <th>
+                                <div class="time-range">4.15 to 5.10</div>
+                                <div class="time-sub"></div>
+                            </th>
+                            <th>
+                                <div class="time-range">5.15 to 6.10</div>
+                                <div class="time-sub"></div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="timetable-body">
+                        <!-- Rendered Dynamically by App JS -->
+                    </tbody>
+                </table>
+
+                <!-- Color Legend -->
+                <div class="bp-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #dbeafe;"></div>
+                        Computer Networks
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #dcfce7;"></div>
+                        Software Engineering
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #f3e8ff;"></div>
+                        Cloud & Microservices
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #ffedd5;"></div>
+                        Design Thinking
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #fef9c3;"></div>
+                        <span id="legend-elective-name">Business Strategy</span> (Elective)
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #f1f5f9;"></div>
+                        CD Cell
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #ffe4e6;"></div>
+                        Minor
+                    </div>
+                    <div class="legend-item" style="margin-left: 0.5rem; color: #475569; font-weight: 500;">
+                        ★ = Laboratory session (<span id="legend-group-name">J1</span> group specific)
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="bp-footer">
+                    Pandit Deendayal Energy University · B.Tech CSBS · Sem 5 · Div <span id="foot-div">1</span> · Group <span id="foot-group">J1</span>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Floating Action Download Bar for Mobile -->
+    <div class="bottom-action-bar">
+        <button class="download-fab-btn" onclick="downloadTimetablePDF()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+            Download High-Res PDF Blueprint
+        </button>
+    </div>
+
+    <!-- Subject Inspection & Profile Detail Modal Sheet -->
+    <div class="modal-overlay" id="detail-modal" onclick="closeModal(event)">
+        <div class="modal-sheet" onclick="event.stopPropagation()">
+            <div class="sheet-drag-handle"></div>
+            <div class="sheet-header">
+                <div>
+                    <div class="sheet-title" id="modal-title">Subject Title</div>
+                    <div class="sheet-code" id="modal-code">24CSB302T</div>
+                </div>
+                <button class="sheet-close-btn" onclick="closeModal()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            
+            <div class="sheet-details-grid" id="modal-details-grid">
+                <!-- Dynamically populated for subject inspection or profile sheet -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Official Database of all 112 CSBS Students (Regular + Diploma)
+        const studentDatabase = [
+            { roll: "24BCB001", name: "Patel laksh", div: "1", group: "J1", elective: "cs", email: "24BCB001@sot.pdpu.ac.in" },
+            { roll: "24BCB002", name: "Deep Jani", div: "1", group: "J1", elective: "cs", email: "24BCB002@sot.pdpu.ac.in" },
+            { roll: "24BCB003", name: "Vyom lakkad", div: "1", group: "J1", elective: "bs", email: "24BCB003@sot.pdpu.ac.in" },
+            { roll: "24BCB004", name: "Bhavya Mundra", div: "1", group: "J1", elective: "cs", email: "24BCB004@sot.pdpu.ac.in" },
+            { roll: "24BCB005", name: "Shikhar Dubey", div: "1", group: "J1", elective: "cs", email: "24BCB005@sot.pdpu.ac.in" },
+            { roll: "24BCB006", name: "Aditya Thakur", div: "1", group: "J1", elective: "cs", email: "24BCB006@sot.pdpu.ac.in" },
+            { roll: "24BCB007", name: "Ishika Toshniwal", div: "1", group: "J1", elective: "bs", email: "24BCB007@sot.pdpu.ac.in" },
+            { roll: "24BCB008", name: "Dhairya Koyani", div: "1", group: "J1", elective: "cs", email: "24BCB008@sot.pdpu.ac.in" },
+            { roll: "24BCB009", name: "Bhagya Trivedi", div: "1", group: "J1", elective: "cs", email: "24BCB009@sot.pdpu.ac.in" },
+            { roll: "24BCB011", name: "Jal vimalkumar patel", div: "1", group: "J1", elective: "bs", email: "24BCB011@sot.pdpu.ac.in" },
+            { roll: "24BCB012", name: "Shlok Varu", div: "1", group: "J1", elective: "cs", email: "24BCB012@sot.pdpu.ac.in" },
+            { roll: "24BCB013", name: "Dudhatra jenish Jayeshbhai", div: "1", group: "J1", elective: "cs", email: "24BCB013@sot.pdpu.ac.in" },
+            { roll: "24BCB014", name: "Het raval", div: "1", group: "J1", elective: "cs", email: "24BCB014@sot.pdpu.ac.in" },
+            { roll: "24BCB015", name: "Vishv Talaviya", div: "1", group: "J1", elective: "cs", email: "24BCB015@sot.pdpu.ac.in" },
+            { roll: "24BCB016", name: "MIHIR VADI", div: "1", group: "J1", elective: "cs", email: "24BCB016@sot.pdpu.ac.in" },
+            { roll: "24BCB017", name: "Pranjal Chandarana", div: "1", group: "J1", elective: "cs", email: "24BCB017@sot.pdpu.ac.in" },
+            { roll: "24BCB018", name: "Bhakti Gohel", div: "1", group: "J1", elective: "cs", email: "24BCB018@sot.pdpu.ac.in" },
+            { roll: "24BCB019", name: "Vedant limbasiya", div: "1", group: "J1", elective: "cs", email: "24BCB019@sot.pdpu.ac.in" },
+            { roll: "24BCB020", name: "Himanshu Tewari", div: "1", group: "J1", elective: "bs", email: "24BCB020@sot.pdpu.ac.in" },
+            { roll: "24BCB021", name: "Daksh Modi", div: "1", group: "J1", elective: "cs", email: "24BCB021@sot.pdpu.ac.in" },
+            { roll: "24BCB022", name: "Deep Mahesh Kalbhor", div: "1", group: "J1", elective: "cs", email: "24BCB022@sot.pdpu.ac.in" },
+            { roll: "24BCB023", name: "Ridham Rajeshbhai Patel", div: "1", group: "J1", elective: "bs", email: "24BCB023@sot.pdpu.ac.in" },
+            { roll: "24BCB024", name: "Meet Kotadia", div: "1", group: "J1", elective: "bs", email: "24BCB024@sot.pdpu.ac.in" },
+            { roll: "24BCB025", name: "Somya Hiren Samani", div: "1", group: "J1", elective: "bs", email: "24BCB025@sot.pdpu.ac.in" },
+            { roll: "24BCB026", name: "Meet Mehul Koshiya", div: "1", group: "J1", elective: "bs", email: "24BCB026@sot.pdpu.ac.in" },
+            { roll: "24BCB027", name: "Shlok Shah", div: "1", group: "J1", elective: "bs", email: "24BCB027@sot.pdpu.ac.in" },
+            { roll: "24BCB029", name: "Bhumik Shah", div: "1", group: "J2", elective: "cs", email: "24BCB029@sot.pdpu.ac.in" },
+            { roll: "24BCB030", name: "Bhrugu Chaudhari", div: "1", group: "J2", elective: "cs", email: "24BCB030@sot.pdpu.ac.in" },
+            { roll: "24BCB031", name: "Kalsariya parthbhai gijubhai", div: "1", group: "J1", elective: "cs", email: "24BCB031@sot.pdpu.ac.in" },
+            { roll: "24BCB032", name: "Amit Kumar", div: "2", group: "J2", elective: "cd", email: "24BCB032@sot.pdpu.ac.in" },
+            { roll: "24BCB033", name: "Deep Umang Oza", div: "1", group: "J2", elective: "cs", email: "24BCB033@sot.pdpu.ac.in" },
+            { roll: "24BCB034", name: "Meet Patel", div: "1", group: "J2", elective: "bs", email: "24BCB034@sot.pdpu.ac.in" },
+            { roll: "24BCB035", name: "Khush Shah", div: "1", group: "J2", elective: "cs", email: "24BCB035@sot.pdpu.ac.in" },
+            { roll: "24BCB036", name: "Patel urvish", div: "1", group: "J2", elective: "bs", email: "24BCB036@sot.pdpu.ac.in" },
+            { roll: "24BCB037", name: "NIVKUMAR JAYANTILAL SORATHIYA", div: "1", group: "J2", elective: "bs", email: "24BCB037@sot.pdpu.ac.in" },
+            { roll: "24BCB039", name: "Aashvi Padhiyar", div: "1", group: "J2", elective: "cs", email: "24BCB039@sot.pdpu.ac.in" },
+            { roll: "24BCB040", name: "Naishal Panchal", div: "1", group: "J2", elective: "cs", email: "24BCB040@sot.pdpu.ac.in" },
+            { roll: "24BCB041", name: "Parmar Harsh Amrutbhai", div: "1", group: "J2", elective: "cs", email: "24BCB041@sot.pdpu.ac.in" },
+            { roll: "24BCB042", name: "Vandana Vijaybhai Baraiya", div: "1", group: "J2", elective: "bs", email: "24BCB042@sot.pdpu.ac.in" },
+            { roll: "24BCB043", name: "Harsh Rajesh Mukhi", div: "1", group: "J2", elective: "cs", email: "24BCB043@sot.pdpu.ac.in" },
+            { roll: "24BCB044", name: "Yash Bhaveshbhai Vaghani", div: "1", group: "J2", elective: "cs", email: "24BCB044@sot.pdpu.ac.in" },
+            { roll: "24BCB045", name: "Aayushi Pathak", div: "1", group: "J2", elective: "cs", email: "24BCB045@sot.pdpu.ac.in" },
+            { roll: "24BCB046", name: "Ayush", div: "1", group: "J2", elective: "cs", email: "24BCB046@sot.pdpu.ac.in" },
+            { roll: "24BCB047", name: "Malay Patel", div: "1", group: "J2", elective: "cd", email: "24BCB047@sot.pdpu.ac.in" },
+            { roll: "24BCB048", name: "Raj Shah", div: "1", group: "J2", elective: "bs", email: "24BCB048@sot.pdpu.ac.in" },
+            { roll: "24BCB049", name: "Tirth Agarwal", div: "1", group: "J2", elective: "cs", email: "24BCB049@sot.pdpu.ac.in" },
+            { roll: "24BCB050", name: "Supreeti Pal", div: "1", group: "J2", elective: "cs", email: "24BCB050@sot.pdpu.ac.in" },
+            { roll: "24BCB051", name: "Vaghani shubham jigneshbhai", div: "1", group: "J2", elective: "cs", email: "24BCB051@sot.pdpu.ac.in" },
+            { roll: "24BCB052", name: "Pravada Narayan Raval", div: "1", group: "J2", elective: "bs", email: "24BCB052@sot.pdpu.ac.in" },
+            { roll: "24BCB053", name: "Daksh Kotadia", div: "1", group: "J1", elective: "cs", email: "24BCB053@sot.pdpu.ac.in" },
+            { roll: "24BCB054", name: "Bhagya Shah", div: "1", group: "J2", elective: "cs", email: "24BCB054@sot.pdpu.ac.in" },
+            { roll: "24BCB055", name: "Kavya Shree", div: "1", group: "J2", elective: "cs", email: "24BCB055@sot.pdpu.ac.in" },
+            { roll: "24BCB056", name: "Vekariya Rudra Sanjaybhai", div: "1", group: "J2", elective: "cs", email: "24BCB056@sot.pdpu.ac.in" },
+            { roll: "24BCB057", name: "Mishruti vasava", div: "2", group: "J3", elective: "bs", email: "24BCB057@sot.pdpu.ac.in" },
+            { roll: "24BCB058", name: "BALDANIYA HARSHAD VIJAYBHAI", div: "2", group: "J3", elective: "cs", email: "24BCB058@sot.pdpu.ac.in" },
+            { roll: "24BCB059", name: "SAVALIYA VRAJ PRAVINBHAI", div: "2", group: "J3", elective: "cs", email: "24BCB059@sot.pdpu.ac.in" },
+            { roll: "24BCB060", name: "Soumya Bhanushali", div: "2", group: "J3", elective: "bs", email: "24BCB060@sot.pdpu.ac.in" },
+            { roll: "24BCB061", name: "ABHISHEK DHARIYAL", div: "2", group: "J3", elective: "bs", email: "24BCB061@sot.pdpu.ac.in" },
+            { roll: "24BCB062", name: "Priyanshi Chirag Shah", div: "2", group: "J3", elective: "cs", email: "24BCB062@sot.pdpu.ac.in" },
+            { roll: "24BCB063", name: "Krish Modi", div: "2", group: "J3", elective: "bs", email: "24BCB063@sot.pdpu.ac.in" },
+            { roll: "24BCB064", name: "Ayushi patel", div: "2", group: "J3", elective: "cs", email: "24BCB064@sot.pdpu.ac.in" },
+            { roll: "24BCB065", name: "Rudra PranavKumar Patel", div: "2", group: "J3", elective: "bs", email: "24BCB065@sot.pdpu.ac.in" },
+            { roll: "24BCB066", name: "Daksh Patel", div: "2", group: "J3", elective: "bs", email: "24BCB066@sot.pdpu.ac.in" },
+            { roll: "24BCB067", name: "Animesh Kalpeshbhai Bhavsar", div: "2", group: "J3", elective: "cs", email: "24BCB067@sot.pdpu.ac.in" },
+            { roll: "24BCB068", name: "Anant Kalra", div: "2", group: "J3", elective: "cs", email: "24BCB068@sot.pdpu.ac.in" },
+            { roll: "24BCB070", name: "Raju Kadachha", div: "2", group: "J3", elective: "cs", email: "24BCB070@sot.pdpu.ac.in" },
+            { roll: "24BCB071", name: "VAISHNANI TIRTH HITESHKUMAR", div: "2", group: "J3", elective: "cs", email: "24BCB071@sot.pdpu.ac.in" },
+            { roll: "24BCB072", name: "PATEL TIRTH HASMUKHBHAI", div: "2", group: "J3", elective: "cs", email: "24BCB072@sot.pdpu.ac.in" },
+            { roll: "24BCB073", name: "Meet Chaudhary", div: "2", group: "J3", elective: "bs", email: "24BCB073@sot.pdpu.ac.in" },
+            { roll: "24BCB074", name: "Mihir Kakasaniya", div: "2", group: "J3", elective: "bs", email: "24BCB074@sot.pdpu.ac.in" },
+            { roll: "24BCB075", name: "Maitrey Kanani", div: "2", group: "J3", elective: "bs", email: "24BCB075@sot.pdpu.ac.in" },
+            { roll: "24BCB076", name: "Dhruvi DenishKumar Tilva", div: "2", group: "J3", elective: "cs", email: "24BCB076@sot.pdpu.ac.in" },
+            { roll: "24BCB077", name: "Jimil Shastri", div: "2", group: "J3", elective: "cs", email: "24BCB077@sot.pdpu.ac.in" },
+            { roll: "24BCB078", name: "YUG PATEL", div: "2", group: "J3", elective: "bs", email: "24BCB078@sot.pdpu.ac.in" },
+            { roll: "24BCB079", name: "Kapadiya ravi mansukhbhai", div: "2", group: "J3", elective: "cs", email: "24BCB079@sot.pdpu.ac.in" },
+            { roll: "24BCB080", name: "Rajveer Raol", div: "2", group: "J3", elective: "bs", email: "24BCB080@sot.pdpu.ac.in" },
+            { roll: "24BCB082", name: "Panth Mori", div: "2", group: "J3", elective: "cs", email: "24BCB082@sot.pdpu.ac.in" },
+            { roll: "24BCB083", name: "Jeni Kukadiya", div: "2", group: "J3", elective: "cs", email: "24BCB083@sot.pdpu.ac.in" },
+            { roll: "24BCB084", name: "Sruja Brahmbhatt", div: "2", group: "J3", elective: "cs", email: "24BCB084@sot.pdpu.ac.in" },
+            { roll: "24BCB085", name: "Manav Motiramani", div: "2", group: "J3", elective: "cs", email: "24BCB085@sot.pdpu.ac.in" },
+            { roll: "24BCB086", name: "Mann Joshi", div: "2", group: "J4", elective: "bs", email: "24BCB086@sot.pdpu.ac.in" },
+            { roll: "24BCB087", name: "Dhola Yug Mukeshbhai", div: "2", group: "J4", elective: "bs", email: "24BCB087@sot.pdpu.ac.in" },
+            { roll: "24BCB088", name: "Jeet vaghasia", div: "2", group: "J4", elective: "cs", email: "24BCB088@sot.pdpu.ac.in" },
+            { roll: "24BCB089", name: "Jain Asmi Abhishekkumar", div: "2", group: "J4", elective: "cs", email: "24BCB089@sot.pdpu.ac.in" },
+            { roll: "24BCB090", name: "Durva Tusharkumar Vyas", div: "2", group: "J4", elective: "cs", email: "24BCB090@sot.pdpu.ac.in" },
+            { roll: "24BCB091", name: "Jay Dhamelia", div: "2", group: "J4", elective: "bs", email: "24BCB091@sot.pdpu.ac.in" },
+            { roll: "24BCB093", name: "Pranav Pujara", div: "2", group: "J4", elective: "cs", email: "24BCB093@sot.pdpu.ac.in" },
+            { roll: "24BCB094", name: "Nikshay Solanki", div: "2", group: "J4", elective: "cs", email: "24BCB094@sot.pdpu.ac.in" },
+            { roll: "24BCB095", name: "Akarsh Gupta", div: "2", group: "J4", elective: "bs", email: "24BCB095@sot.pdpu.ac.in" },
+            { roll: "24BCB096", name: "Sarvesh Chhatani", div: "2", group: "J4", elective: "bs", email: "24BCB096@sot.pdpu.ac.in" },
+            { roll: "24BCB097", name: "Jeel Vaghasiya", div: "2", group: "J4", elective: "bs", email: "24BCB097@sot.pdpu.ac.in" },
+            { roll: "24BCB098", name: "Malav Shah", div: "2", group: "J4", elective: "bs", email: "24BCB098@sot.pdpu.ac.in" },
+            { roll: "24BCB099", name: "Aadi Desai", div: "2", group: "J4", elective: "bs", email: "24BCB099@sot.pdpu.ac.in" },
+            { roll: "24BCB100", name: "Nisarg Trivedi", div: "2", group: "J4", elective: "cs", email: "24BCB100@sot.pdpu.ac.in" },
+            { roll: "24BCB101", name: "Tirth Chetan Vyas", div: "2", group: "J4", elective: "cs", email: "24BCB101@sot.pdpu.ac.in" },
+            { roll: "24BCB102", name: "Vidhi Darji", div: "2", group: "J4", elective: "cs", email: "24BCB102@sot.pdpu.ac.in" },
+            { roll: "24BCB103", name: "Prajapati Krish Hasmukhbhai", div: "2", group: "J4", elective: "cs", email: "24BCB103@sot.pdpu.ac.in" },
+            { roll: "24BCB105", name: "Ghoghari Prince dineshbhai", div: "2", group: "J4", elective: "cs", email: "24BCB105@sot.pdpu.ac.in" },
+            { roll: "24BCB106", name: "Patel Nitya", div: "2", group: "J4", elective: "cs", email: "24BCB106@sot.pdpu.ac.in" },
+            { roll: "24BCB107", name: "Panth Patel", div: "2", group: "J4", elective: "cs", email: "24BCB107@sot.pdpu.ac.in" },
+            { roll: "24BCB111", name: "Yug Shrimali", div: "2", group: "J4", elective: "cs", email: "24BCB111@sot.pdpu.ac.in" },
+            { roll: "24BCB112", name: "Krishna Parimal Patel", div: "2", group: "J4", elective: "cs", email: "24BCB112@sot.pdpu.ac.in" },
+            { roll: "24BCB113", name: "Patel Dhruv Hasmukhkumar", div: "2", group: "J4", elective: "cs", email: "24BCB113@sot.pdpu.ac.in" },
+            { roll: "24BCB114", name: "Honey Lakhani", div: "2", group: "J4", elective: "cs", email: "24BCB114@sot.pdpu.ac.in" },
+            { roll: "24BCB115", name: "Oza Keval Rajeshkumar", div: "2", group: "J4", elective: "cs", email: "24BCB115@sot.pdpu.ac.in" },
+            { roll: "24BCB116D", name: "Yashvi Mehta", div: "2", group: "J3", elective: "bs", email: "24BCB116D@sot.pdpu.ac.in" },
+            { roll: "24BCB117D", name: "Darji Aayushi Mihirkumar", div: "2", group: "J3", elective: "cs", email: "24BCB117D@sot.pdpu.ac.in" },
+            { roll: "24BCB118D", name: "Hirva Kansara", div: "2", group: "J3", elective: "cs", email: "24BCB118D@sot.pdpu.ac.in" },
+            { roll: "24BCB119D", name: "Namraa Patel", div: "1", group: "J1", elective: "cd", email: "24BCB119D@sot.pdpu.ac.in" },
+            { roll: "24BCB120D", name: "Takshil Patel", div: "1", group: "J1", elective: "cd", email: "24BCB120D@sot.pdpu.ac.in" },
+            { roll: "24BCB122D", name: "Greeva Shah", div: "1", group: "J2", elective: "cs", email: "24BCB122D@sot.pdpu.ac.in" },
+            { roll: "24BCB123D", name: "Varmora Madhav babulal", div: "1", group: "J2", elective: "cs", email: "24BCB123D@sot.pdpu.ac.in" }
+        ];
+
+        // Core Database of Electives & Names
+        const electiveNames = {
+            "bs": "Business Strategy",
+            "cs": "Conversational Systems",
+            "cd": "Compiler Design + Lab"
+        };
+
+        const electiveInfo = {
+            "bs": { code: "24CSB332T", name: "Business Strategy" },
+            "cs": { code: "24CSB331T", name: "Conversational Systems" },
+            "cd": { code: "24CSB333T", name: "Compiler Design + Laboratory (LEX & YACC)" }
+        };
+
+        // Full Name Mappings for Mobile Application UI
+        const profFullNames = {
+            "AAR-L": "Prof. Aashka Raval",
+            "AAR-P": "Prof. Aashka Raval (Practical Lab)",
+            "PUGU-L": "Prof. Punit Gupta",
+            "PUGU-P": "Prof. Punit Gupta (Practical Lab)",
+            "SJD-L": "Prof. Sanjeev Dwivedi",
+            "SJD-P": "Prof. Sanjeev Dwivedi (Practical Lab)",
+            "RITH-L": "Prof. Riddhi Thakkar",
+            "POSA-L": "Prof. Pooja S",
+            "POSA-P": "Prof. Pooja S (Practical Lab)",
+            "KMS-L": "Prof. Komal Singh",
+            "KMS-P": "Prof. Komal Singh (Practical Lab)",
+            "CDCT-L": "CD Cell Trainer",
+            "DAS-L": "Prof. Darshit Shah",
+            "TABH-L": "Prof. Tanmay Bhowmik",
+            "MTH-L": "Prof. Meera Thapar Khanna"
+        };
+
+        const subjectFullNames = {
+            "MINOR": "Minor Course",
+            "Design Thinking": "Design Thinking",
+            "Design Thinking Lab★": "Design Thinking Laboratory",
+            "Software Engineering": "Software Engineering",
+            "Software Engineering Lab★": "Software Engineering Laboratory",
+            "Computer Networks": "Computer Networks",
+            "CN Lab★": "Computer Networks Laboratory",
+            "Cloud, Microservices": "Cloud Architecture & Microservices",
+            "CD Cell": "Career Development Cell (CDC)"
+        };
+
+        const electiveSchedules = {
+            "bs": {
+                "Monday_4.15 to 5.10": { room: "F1-302", prof: "DAS-L" },
+                "Tuesday_11.10 to 12.05": { room: "E308", prof: "DAS-L" },
+                "Thursday_2.10 to 3.05": { room: "E306", prof: "DAS-L" }
+            },
+            "cs": {
+                "Monday_4.15 to 5.10": { room: "F1-304", prof: "TABH-L" },
+                "Tuesday_11.10 to 12.05": { room: "E309", prof: "TABH-L" },
+                "Thursday_2.10 to 3.05": { room: "E310", prof: "TABH-L" }
+            },
+            "cd": {
+                "Monday_4.15 to 5.10": { room: "F1-303", prof: "MTH-L" },
+                "Tuesday_11.10 to 12.05": { room: "E203", prof: "MTH-L" },
+                "Thursday_2.10 to 3.05": { room: "E203", prof: "MTH-L" }
+            }
+        };
+
+        // Complete verified schedules for Division 1 (J1, J2) and Division 2 (J3, J4)
+        const schedules = {
+            "div1": {
+                "J1": {
+                    "Monday": {
+                        "08:00 to 08:55": { title: "MINOR", type: "minor" },
+                        "1:10 to 2:05": { title: "Design Thinking", code: "24CSB306T", room: "F1-204", prof: "AAR-L", type: "dt" },
+                        "2.10 to 3.05": { title: "Design Thinking Lab★", code: "24CSB306P", room: "E215", prof: "AAR-P", type: "dt-lab", isLab: true },
+                        "4.15 to 5.10": "ELECTIVE"
+                    },
+                    "Tuesday": {
+                        "08:00 to 08:55": { title: "MINOR", type: "minor" },
+                        "11.10 to 12.05": "ELECTIVE",
+                        "1:10 to 2:05": { title: "Software Engineering", code: "24CSB302T", room: "E308", prof: "PUGU-L", type: "se" },
+                        "2.10 to 3.05": { title: "Computer Networks", code: "24CS302T", room: "E204", prof: "SJD-L", type: "cn" },
+                        "3.10 to 4.05": { title: "Cloud, Microservices", code: "24CSB301T", room: "E204", prof: "RITH-L", type: "cloud" }
+                    },
+                    "Wednesday": {
+                        "08:00 to 08:55": { title: "MINOR", type: "minor" },
+                        "1:10 to 2:05": { title: "CD Cell", code: "CDC", room: "E308", prof: "CDCT-L", type: "cdcell" },
+                        "2.10 to 3.05": { title: "Software Engineering", code: "24CSB302T", room: "E204", prof: "PUGU-L", type: "se" },
+                        "3.10 to 4.05": { title: "Computer Networks", code: "24CS302T", room: "E204", prof: "SJD-L", type: "cn" },
+                        "4.15 to 5.10": { title: "CN Lab★", code: "24CS302P", room: "F-104", prof: "SJD-P", type: "cn-lab", isLab: true }
+                    },
+                    "Thursday": {
+                        "08:00 to 08:55": { title: "MINOR", type: "minor" },
+                        "1:10 to 2:05": { title: "Design Thinking", code: "24CSB306T", room: "E306", prof: "AAR-L", type: "dt" },
+                        "2.10 to 3.05": "ELECTIVE",
+                        "3.10 to 4.05": { title: "Computer Networks", code: "24CS302T", room: "E306", prof: "SJD-L", type: "cn" },
+                        "4.15 to 5.10": { title: "Cloud, Microservices", code: "24CSB301T", room: "F1-304", prof: "RITH-L", type: "cloud" }
+                    },
+                    "Friday": {
+                        "08:00 to 08:55": { title: "MINOR", type: "minor" },
+                        "10.00 to 10.55": { title: "Cloud, Microservices", code: "24CSB301T", room: "E306", prof: "RITH-L", type: "cloud" },
+                        "11.10 to 12.05": { title: "Software Engineering", code: "24CSB302T", room: "E309", prof: "PUGU-L", type: "se" },
+                        "12.10 to 1.05": { title: "CD Cell", code: "CDC", room: "E309", prof: "CDCT-L", type: "cdcell" },
+                        "2.10 to 3.05": { title: "Software Engineering Lab★", code: "24CSB302P", room: "F-202", prof: "PUGU-P", type: "se-lab", isLab: true }
+                    }
+                },
+                "J2": {
+                    "Monday": {
+                        "08:00 to 08:55": { title: "MINOR", type: "minor" },
+                        "1:10 to 2:05": { title: "Design Thinking", code: "24CSB306T", room: "F1-204", prof: "AAR-L", type: "dt" },
+                        "2.10 to 3.05": { title: "Software Engineering Lab★", code: "24CSB302P", room: "F-203", prof: "PUGU-P", type: "se-lab", isLab: true },
+                        "4.15 to 5.10": "ELECTIVE"
+                    },
+                    "Tuesday": {
+                        "08:00 to 08:55": { title: "MINOR", type: "minor" },
+                        "11.10 to 12.05": "ELECTIVE",
+                        "1:10 to 2:05": { title: "Software Engineering", code: "24CSB302T", room: "E308", prof: "PUGU-L", type: "se" },
+                        "2.10 to 3.05": { title: "Computer Networks", code: "24CS302T", room: "E204", prof: "SJD-L", type: "cn" },
+                        "3.10 to 4.05": { title: "Cloud, Microservices", code: "24CSB301T", room: "E204", prof: "RITH-L", type: "cloud" }
+                    },
+                    "Wednesday": {
+                        "08:00 to 08:55": { title: "MINOR", type: "minor" },
+                        "1:10 to 2:05": { title: "CD Cell", code: "CDC", room: "E308", prof: "CDCT-L", type: "cdcell" },
+                        "2.10 to 3.05": { title: "Software Engineering", code: "24CSB302T", room: "E204", prof: "PUGU-L", type: "se" },
+                        "3.10 to 4.05": { title: "Computer Networks", code: "24CS302T", room: "E204", prof: "SJD-L", type: "cn" },
+                        "4.15 to 5.10": { title: "Design Thinking Lab★", code: "24CSB306P", room: "F-103", prof: "AAR-P", type: "dt-lab", isLab: true }
+                    },
+                    "Thursday": {
+                        "08:00 to 08:55": { title: "MINOR", type: "minor" },
+                        "1:10 to 2:05": { title: "Design Thinking", code: "24CSB306T", room: "E306", prof: "AAR-L", type: "dt" },
+                        "2.10 to 3.05": "ELECTIVE",
+                        "3.10 to 4.05": { title: "Computer Networks", code: "24CS302T", room: "E306", prof: "SJD-L", type: "cn" },
+                        "4.15 to 5.10": { title: "Cloud, Microservices", code: "24CSB301T", room: "F1-304", prof: "RITH-L", type: "cloud" }
+                    },
+                    "Friday": {
+                        "08:00 to 08:55": { title: "MINOR", type: "minor" },
+                        "10.00 to 10.55": { title: "Cloud, Microservices", code: "24CSB301T", room: "E306", prof: "RITH-L", type: "cloud" },
+                        "11.10 to 12.05": { title: "Software Engineering", code: "24CSB302T", room: "E309", prof: "PUGU-L", type: "se" },
+                        "12.10 to 1.05": { title: "CD Cell", code: "CDC", room: "E309", prof: "CDCT-L", type: "cdcell" },
+                        "2.10 to 3.05": { title: "CN Lab★", code: "24CS302P", room: "F-104", prof: "SJD-P", type: "cn-lab", isLab: true }
+                    }
+                }
+            },
+            "div2": {
+                "J3": {
+                    "Monday": {
+                        "08:00 to 08:55": { title: "MINOR", type: "minor" },
+                        "1:10 to 2:05": { title: "CD Cell", code: "CDC", room: "E203", prof: "CDCT-L", type: "cdcell" },
+                        "2.10 to 3.05": { title: "Cloud, Microservices", code: "24CSB301T", room: "E203", prof: "RITH-L", type: "cloud" },
+                        "3.10 to 4.05": { title: "Design Thinking", code: "24CSB306T", room: "E203", prof: "POSA-L", type: "dt" },
+                        "4.15 to 5.10": "ELECTIVE"
+                    },
+                    "Tuesday": {
+                        "08:00 to 08:55": { title: "MINOR", type: "minor" },
+                        "9.00 to 9. 55": { title: "CN Lab★", code: "24CS302P", room: "E306", prof: "PUGU-P", type: "cn-lab", isLab: true },
+                        "11.10 to 12.05": "ELECTIVE",
+                        "1:10 to 2:05": { title: "Software Engineering", code: "24CSB302T", room: "E310", prof: "KMS-L", type: "se" }
+                    },
+                    "Wednesday": {
+                        "08:00 to 08:55": { title: "MINOR", type: "minor" },
+                        "9.00 to 9. 55": { title: "Software Engineering", code: "24CSB302T", room: "E203", prof: "KMS-L", type: "se" },
+                        "10.00 to 10.55": { title: "Cloud, Microservices", code: "24CSB301T", room: "E203", prof: "RITH-L", type: "cloud" },
+                        "11.10 to 12.05": { title: "Design Thinking Lab★", code: "24CSB306P", room: "F-103", prof: "POSA-P", type: "dt-lab", isLab: true }
+                    },
+                    "Thursday": {
+                        "08:00 to 08:55": { title: "MINOR", type: "minor" },
+                        "1:10 to 2:05": { title: "Software Engineering", code: "24CSB302T", room: "E310", prof: "KMS-L", type: "se" },
+                        "2.10 to 3.05": "ELECTIVE",
+                        "3.10 to 4.05": { title: "Computer Networks", code: "24CS302T", room: "E310", prof: "PUGU-L", type: "cn" },
+                        "4.15 to 5.10": { title: "Software Engineering Lab★", code: "24CSB302P", room: "E306", prof: "KMS-P", type: "se-lab", isLab: true }
+                    },
+                    "Friday": {
+                        "08:00 to 08:55": { title: "MINOR", type: "minor" },
+                        "9.00 to 9. 55": { title: "Cloud, Microservices", code: "24CSB301T", room: "E310", prof: "RITH-L", type: "cloud" },
+                        "10.00 to 10.55": { title: "Computer Networks", code: "24CS302T", room: "E310", prof: "PUGU-L", type: "cn" },
+                        "11.10 to 12.05": { title: "Design Thinking", code: "24CSB306T", room: "E307", prof: "POSA-L", type: "dt" },
+                        "12.10 to 1.05": { title: "CD Cell", code: "CDC", room: "F1-304", prof: "CDCT-L", type: "cdcell" }
+                    }
+                },
+                "J4": {
+                    "Monday": {
+                        "08:00 to 08:55": { title: "MINOR", type: "minor" },
+                        "1:10 to 2:05": { title: "CD Cell", code: "CDC", room: "E203", prof: "CDCT-L", type: "cdcell" },
+                        "2.10 to 3.05": { title: "Cloud, Microservices", code: "24CSB301T", room: "E203", prof: "RITH-L", type: "cloud" },
+                        "3.10 to 4.05": { title: "Design Thinking", code: "24CSB306T", room: "E203", prof: "POSA-L", type: "dt" },
+                        "4.15 to 5.10": "ELECTIVE"
+                    },
+                    "Tuesday": {
+                        "08:00 to 08:55": { title: "MINOR", type: "minor" },
+                        "11.10 to 12.05": "ELECTIVE",
+                        "1:10 to 2:05": { title: "Software Engineering", code: "24CSB302T", room: "E310", prof: "KMS-L", type: "se" }
+                    },
+                    "Wednesday": {
+                        "08:00 to 08:55": { title: "MINOR", type: "minor" },
+                        "9.00 to 9. 55": { title: "Software Engineering", code: "24CSB302T", room: "E203", prof: "KMS-L", type: "se" },
+                        "10.00 to 10.55": { title: "Cloud, Microservices", code: "24CSB301T", room: "E203", prof: "RITH-L", type: "cloud" },
+                        "11.10 to 12.05": { title: "Software Engineering Lab★", code: "24CSB302P", room: "E306", prof: "KMS-P", type: "se-lab", isLab: true }
+                    },
+                    "Thursday": {
+                        "08:00 to 08:55": { title: "MINOR", type: "minor" },
+                        "9.00 to 9. 55": { title: "Design Thinking Lab★", code: "24CSB306P", room: "E308", prof: "POSA-P", type: "dt-lab", isLab: true },
+                        "1:10 to 2:05": { title: "Software Engineering", code: "24CSB302T", room: "E310", prof: "KMS-L", type: "se" },
+                        "2.10 to 3.05": "ELECTIVE",
+                        "3.10 to 4.05": { title: "Computer Networks", code: "24CS302T", room: "E310", prof: "PUGU-L", type: "cn" },
+                        "4.15 to 5.10": { title: "CN Lab★", code: "24CS302P", room: "E310", prof: "AAR-P", type: "cn-lab", isLab: true }
+                    },
+                    "Friday": {
+                        "08:00 to 08:55": { title: "MINOR", type: "minor" },
+                        "9.00 to 9. 55": { title: "Cloud, Microservices", code: "24CSB301T", room: "E310", prof: "RITH-L", type: "cloud" },
+                        "10.00 to 10.55": { title: "Computer Networks", code: "24CS302T", room: "E310", prof: "PUGU-L", type: "cn" },
+                        "11.10 to 12.05": { title: "Design Thinking", code: "24CSB306T", room: "E307", prof: "POSA-L", type: "dt" },
+                        "12.10 to 1.05": { title: "CD Cell", code: "CDC", room: "F1-304", prof: "CDCT-L", type: "cdcell" }
+                    }
+                }
+            }
+        };
+
+        // Active State Variables
+        let currentDay = "Monday";
+        let currentMode = "cards";
+        let deferredAndroidPrompt = null;
+        let loggedInStudent = null;
+
+        // Extract student first name cleanly
+        function getFirstName(fullName) {
+            if (!fullName) return "Student";
+            let parts = fullName.trim().split(" ");
+            let first = parts[0];
+            return first.charAt(0).toUpperCase() + first.slice(1).toLowerCase();
+        }
+
+        // Initialize App on Load
+        window.onload = function() {
+            // Dismiss splash screen intro after 1.4s
+            setTimeout(() => {
+                const splash = document.getElementById("splash-screen");
+                if (splash) splash.classList.add("fade-out");
+            }, 1400);
+
+            populateDatalist();
+            checkWebView();
+            checkIOSInstall();
+            setDefaultDay();
+
+            // Check if student profile is already saved in localStorage
+            const savedRoll = localStorage.getItem("csbs_user_roll");
+            if (savedRoll) {
+                const found = studentDatabase.find(s => s.roll.toUpperCase() === savedRoll.toUpperCase());
+                if (found) {
+                    applyStudentProfile(found, false); // Don't show welcome animation on repeat launches
+                } else {
+                    showLoginModal();
+                }
+            } else {
+                showLoginModal();
+            }
+
+            adjustScale();
+            
+            // Start live clock & current class engine
+            updateLiveClockEngine();
+            setInterval(updateLiveClockEngine, 30000); // refresh every 30s
+
+            window.addEventListener('resize', adjustScale);
+
+            // Listen for Android PWA Install Event
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredAndroidPrompt = e;
+                const btn = document.getElementById("btn-android-install");
+                if (btn) btn.style.display = "inline-flex";
+                const banner = document.getElementById("android-install-banner");
+                if (banner) banner.style.display = "flex";
+            });
+        };
+
+        // Populate Roll Number Search Datalist
+        function populateDatalist() {
+            const list = document.getElementById("students-list");
+            list.innerHTML = "";
+            studentDatabase.forEach(s => {
+                const opt = document.createElement("option");
+                opt.value = `${s.roll} - ${s.name}`;
+                list.appendChild(opt);
+            });
+        }
+
+        function showLoginModal() {
+            document.getElementById("login-modal").classList.remove("hidden");
+            document.getElementById("login-roll-input").value = "";
+            document.getElementById("student-preview").style.display = "none";
+            document.getElementById("login-submit-btn").disabled = true;
+        }
+
+        function onRollInputChange() {
+            const val = document.getElementById("login-roll-input").value.trim().toUpperCase();
+            let matched = studentDatabase.find(s => s.roll.toUpperCase() === val);
+            
+            if (!matched && val.includes(" - ")) {
+                const rollPart = val.split(" - ")[0].trim();
+                matched = studentDatabase.find(s => s.roll.toUpperCase() === rollPart);
+            }
+
+            const previewCard = document.getElementById("student-preview");
+            const btn = document.getElementById("login-submit-btn");
+
+            if (matched) {
+                document.getElementById("prev-name").innerText = matched.name;
+                document.getElementById("prev-div").innerText = `Division ${matched.div}`;
+                document.getElementById("prev-group").innerText = `Group ${matched.group}`;
+                document.getElementById("prev-elective").innerText = electiveNames[matched.elective];
+                document.getElementById("prev-email").innerText = matched.email;
+
+                previewCard.style.display = "flex";
+                btn.disabled = false;
+                btn.dataset.roll = matched.roll;
+            } else {
+                previewCard.style.display = "none";
+                btn.disabled = true;
+            }
+        }
+
+        function confirmStudentLogin() {
+            const btn = document.getElementById("login-submit-btn");
+            const roll = btn.dataset.roll;
+            const student = studentDatabase.find(s => s.roll === roll);
+            if (student) {
+                localStorage.setItem("csbs_user_roll", student.roll);
+                document.getElementById("login-modal").classList.add("hidden");
+                applyStudentProfile(student, true); // Show first-time welcome animation!
+            }
+        }
+
+        // Apply Student Profile Data & Update Badge Bar
+        function applyStudentProfile(student, isFirstTimeLogin) {
+            loggedInStudent = student;
+
+            // Set hidden selects for internal timetable engine
+            document.getElementById("div-select").value = student.div;
+            populateGroups();
+            document.getElementById("group-select").value = student.group;
+            document.getElementById("elective-select").value = student.elective;
+
+            // Update Header Profile Badge Bar
+            document.getElementById("badge-div").innerText = `Div ${student.div}`;
+            document.getElementById("badge-group").innerText = `Group ${student.group}`;
+            document.getElementById("badge-elective").innerText = electiveNames[student.elective];
+
+            // Header profile chip updates
+            const firstName = getFirstName(student.name);
+            document.getElementById("header-name").innerText = firstName;
+            document.getElementById("header-roll").innerText = student.roll;
+            document.getElementById("header-avatar").innerText = firstName.charAt(0);
+
+            updateAppUI();
+
+            // First-time welcome celebration animation overlay
+            if (isFirstTimeLogin) {
+                const overlay = document.getElementById("welcome-anim-overlay");
+                document.getElementById("welcome-avatar").innerText = firstName.charAt(0);
+                document.getElementById("welcome-first-name").innerText = `Welcome, ${firstName}!`;
+                document.getElementById("welcome-roll-tag").innerText = `Roll No: ${student.roll}`;
+                document.getElementById("welcome-div-tag").innerText = `Div ${student.div} · Group ${student.group}`;
+                document.getElementById("welcome-elective-tag").innerText = `Elective: ${electiveNames[student.elective]}`;
+
+                overlay.classList.remove("hidden");
+                setTimeout(() => {
+                    overlay.classList.add("hidden");
+                }, 2400);
+            }
+        }
+
+        // Open Profile Sheet Modal
+        function openProfileSheet() {
+            if (!loggedInStudent) {
+                showLoginModal();
+                return;
+            }
+
+            const grid = document.getElementById("modal-details-grid");
+            document.getElementById("modal-title").innerText = loggedInStudent.name;
+            document.getElementById("modal-code").innerText = `Roll Number: ${loggedInStudent.roll}`;
+
+            grid.innerHTML = `
+                <div class="detail-card">
+                    <span class="detail-label">Student Email</span>
+                    <span class="detail-value">${loggedInStudent.email}</span>
+                </div>
+                <div class="detail-card">
+                    <span class="detail-label">Division & Group</span>
+                    <span class="detail-value">Division ${loggedInStudent.div} · Group ${loggedInStudent.group}</span>
+                </div>
+                <div class="detail-card">
+                    <span class="detail-label">Chosen Elective Subject</span>
+                    <span class="detail-value">${electiveNames[loggedInStudent.elective]}</span>
+                </div>
+                <button class="switch-account-btn" onclick="switchAccountAction()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>
+                    Switch Profile / Login Different Roll No
+                </button>
+            `;
+
+            document.getElementById("detail-modal").classList.add("active");
+        }
+
+        function switchAccountAction() {
+            closeModal();
+            localStorage.removeItem("csbs_user_roll");
+            showLoginModal();
+        }
+
+        // Android PWA Installation Trigger
+        function triggerAndroidPWAInstall() {
+            if (deferredAndroidPrompt) {
+                deferredAndroidPrompt.prompt();
+                deferredAndroidPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        document.getElementById("btn-android-install").style.display = "none";
+                        document.getElementById("android-install-banner").style.display = "none";
+                    }
+                    deferredAndroidPrompt = null;
+                });
+            }
+        }
+
+        // iPhone Safari Add to Home Screen Banner Detection
+        function checkIOSInstall() {
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            const isStandalone = window.navigator.standalone || (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+            if (isIOS && !isStandalone) {
+                document.getElementById("ios-install-banner").style.display = "flex";
+            }
+        }
+
+        // Set default active day based on user's current device clock
+        function setDefaultDay() {
+            const daysMap = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const today = daysMap[new Date().getDay()];
+            if (today !== "Sunday") {
+                currentDay = today;
+            }
+            highlightActiveDayChip(today);
+        }
+
+        function highlightActiveDayChip(todayName) {
+            const daysOrder = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            daysOrder.forEach((dName) => {
+                const chip = document.getElementById(`chip-${dName}`);
+                if (!chip) return;
+                
+                if (dName === currentDay) {
+                    chip.classList.add("active");
+                } else {
+                    chip.classList.remove("active");
+                }
+
+                if (dName === todayName) {
+                    chip.classList.add("is-today");
+                } else {
+                    chip.classList.remove("is-today");
+                }
+            });
+        }
+
+        // WhatsApp iOS Notice Check
+        function checkWebView() {
+            const ua = navigator.userAgent || navigator.vendor || window.opera;
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            const isWhatsApp = (ua.indexOf("WhatsApp") > -1) || (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
+            if (isWhatsApp && isIOS) {
+                document.getElementById("whatsapp-notice").style.display = "flex";
+            }
+        }
+
+        // Populate Groups Dropdown (Hidden helper)
+        function populateGroups() {
+            const divSelect = document.getElementById("div-select");
+            const groupSelect = document.getElementById("group-select");
+            const division = divSelect.value;
+            groupSelect.innerHTML = "";
+            if (division === "1") {
+                groupSelect.add(new Option("Group J1", "J1"));
+                groupSelect.add(new Option("Group J2", "J2"));
+            } else {
+                groupSelect.add(new Option("Group J3", "J3"));
+                groupSelect.add(new Option("Group J4", "J4"));
+            }
+        }
+
+        function onDivisionChange() {
+            populateGroups();
+            updateAppUI();
+        }
+
+        // View Mode Switcher ("cards" or "blueprint")
+        function switchViewMode(mode) {
+            currentMode = mode;
+            const btnCards = document.getElementById("btn-mode-cards");
+            const btnPdf = document.getElementById("btn-mode-pdf");
+            const dayNavBar = document.getElementById("day-nav-bar");
+            const cardsView = document.getElementById("mobile-cards-view");
+            const blueprintView = document.getElementById("blueprint-view-container");
+
+            if (mode === 'cards') {
+                btnCards.classList.add('active');
+                btnPdf.classList.remove('active');
+                dayNavBar.style.display = 'flex';
+                cardsView.style.display = 'flex';
+                blueprintView.style.display = 'none';
+            } else {
+                btnPdf.classList.add('active');
+                btnCards.classList.remove('active');
+                dayNavBar.style.display = 'none';
+                cardsView.style.display = 'none';
+                blueprintView.style.display = 'block';
+                adjustScale();
+            }
+        }
+
+        // Day Selector Action
+        function selectDay(dayName) {
+            currentDay = dayName;
+            const daysMap = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const today = daysMap[new Date().getDay()];
+            highlightActiveDayChip(today);
+            renderMobileCards();
+        }
+
+        // Return if slot is lunch based on division, day, and time slot
+        function isLunchSlot(division, day, slot) {
+            if (division === "1") {
+                if (day === "Friday") return slot === "1:10 to 2:05";
+                return slot === "12.10 to 1.05";
+            } else {
+                if (day === "Wednesday" || day === "Friday") return slot === "1:10 to 2:05";
+                return slot === "12.10 to 1.05";
+            }
+        }
+
+        // Main Refresh Function
+        function updateAppUI() {
+            renderMobileCards();
+            renderBlueprintGrid();
+            updateLiveClockEngine();
+        }
+
+        // Live Clock & Current Active Class Smart Engine
+        function updateLiveClockEngine() {
+            const now = new Date();
+            const daysMap = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const todayName = daysMap[now.getDay()];
+            
+            // Format Live Date & Time String
+            const options = { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' };
+            document.getElementById("live-date-str").innerText = now.toLocaleDateString('en-US', options);
+            document.getElementById("live-clock-str").innerText = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+            const headline = document.getElementById("live-headline");
+            const subtext = document.getElementById("live-subtext");
+
+            if (todayName === "Sunday" || todayName === "Saturday") {
+                headline.innerHTML = "☕ Weekend — No Classes Today";
+                subtext.innerText = "Enjoy your weekend break! Classes resume Monday 8:00 AM.";
+                return;
+            }
+
+            const division = document.getElementById("div-select").value;
+            const group = document.getElementById("group-select").value;
+            const electiveKey = document.getElementById("elective-select").value;
+            const divKey = "div" + division;
+            const activeSchedule = schedules[divKey][group];
+            const activeElectiveName = electiveNames[electiveKey];
+
+            // Define Time Slot Minute Boundaries
+            const timeRanges = [
+                { start: 480, end: 535, slot: "08:00 to 08:55", label: "8:00 AM – 8:55 AM" },
+                { start: 540, end: 595, slot: "9.00 to 9. 55", label: "9:00 AM – 9:55 AM" },
+                { start: 600, end: 655, slot: "10.00 to 10.55", label: "10:00 AM – 10:55 AM" },
+                { start: 655, end: 670, slot: "10:55 to 11:10", isBreak: true, label: "10:55 AM – 11:10 AM" },
+                { start: 670, end: 725, slot: "11.10 to 12.05", label: "11:10 AM – 12:05 PM" },
+                { start: 730, end: 785, slot: "12.10 to 1.05", label: "12:10 PM – 1:05 PM" },
+                { start: 790, end: 845, slot: "1:10 to 2:05", label: "1:10 PM – 2:05 PM" },
+                { start: 850, end: 905, slot: "2.10 to 3.05", label: "2:10 PM – 3:05 PM" },
+                { start: 910, end: 965, slot: "3.10 to 4.05", label: "3:10 PM – 4:05 PM" },
+                { start: 965, end: 975, slot: "4:05 to 4:15", isBreak: true, label: "4:05 PM – 4:15 PM" },
+                { start: 975, end: 1030, slot: "4.15 to 5.10", label: "4:15 PM – 5:10 PM" },
+                { start: 1035, end: 1090, slot: "5.15 to 6.10", label: "5:15 PM – 6:10 PM" }
+            ];
+
+            // 1. Check if before first class
+            if (currentMinutes < 480) {
+                headline.innerHTML = "🌅 Morning — Classes Start at 8:00 AM";
+                subtext.innerText = `First lecture for Div ${division} (${group}): Minor Course at 8:00 AM.`;
+                return;
+            }
+
+            // 2. Check if after last class
+            if (currentMinutes > 1090) {
+                headline.innerHTML = "🌙 Evening — All Classes Completed Today";
+                subtext.innerText = "No more lectures scheduled for today. Have a great evening!";
+                return;
+            }
+
+            // 3. Find active slot right now
+            let activeMatch = null;
+            for (let range of timeRanges) {
+                if (currentMinutes >= range.start && currentMinutes < range.end) {
+                    activeMatch = range;
+                    break;
+                }
+            }
+
+            if (activeMatch) {
+                if (activeMatch.isBreak) {
+                    headline.innerHTML = "☕ Short Break Right Now";
+                    subtext.innerText = `Classes resume shortly at ${activeMatch.end === 670 ? '11:10 AM' : '4:15 PM'}.`;
+                    return;
+                }
+
+                if (isLunchSlot(division, todayName, activeMatch.slot)) {
+                    headline.innerHTML = "🍱 Lunch Break Time Right Now";
+                    subtext.innerText = `Enjoy your lunch! Next class starts at ${activeMatch.slot === "12.10 to 1.05" ? '1:10 PM' : '2:10 PM'}.`;
+                    return;
+                }
+
+                let cellData = activeSchedule[todayName] ? activeSchedule[todayName][activeMatch.slot] : null;
+
+                if (cellData === "ELECTIVE") {
+                    const electiveSchedKey = `${todayName}_${activeMatch.slot}`;
+                    const electiveDetails = electiveSchedules[electiveKey][electiveSchedKey];
+                    cellData = {
+                        title: activeElectiveName,
+                        code: electiveInfo[electiveKey].code,
+                        room: electiveDetails ? electiveDetails.room : "—",
+                        prof: electiveDetails ? electiveDetails.prof : "—"
+                    };
+                }
+
+                if (cellData) {
+                    const fullSubject = subjectFullNames[cellData.title] || cellData.title;
+                    const fullProf = profFullNames[cellData.prof] || cellData.prof || "—";
+                    headline.innerHTML = `🟢 NOW: ${fullSubject}`;
+                    subtext.innerText = `Room ${cellData.room || '—'} · ${fullProf} (${activeMatch.label})`;
+                    return;
+                } else {
+                    headline.innerHTML = "📖 Free Study Slot";
+                    subtext.innerText = `No lecture scheduled for Group ${group} during this time slot (${activeMatch.label}).`;
+                    return;
+                }
+            }
+
+            headline.innerHTML = "⏱️ Passing Time / Between Slots";
+            subtext.innerText = `Next slot starting soon for Division ${division} Group ${group}.`;
+        }
+
+        // 1. Render Mobile Timeline Cards
+        function renderMobileCards() {
+            const container = document.getElementById("mobile-cards-view");
+            container.innerHTML = "";
+
+            const division = document.getElementById("div-select").value;
+            const group = document.getElementById("group-select").value;
+            const electiveKey = document.getElementById("elective-select").value;
+            const divKey = "div" + division;
+            const activeSchedule = schedules[divKey][group];
+            const activeElectiveName = electiveNames[electiveKey];
+
+            const now = new Date();
+            const daysMap = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const isToday = (daysMap[now.getDay()] === currentDay);
+            const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+            if (currentDay === "Saturday") {
+                container.innerHTML = `
+                    <div class="mobile-card is-break">
+                        <div class="card-title" style="text-align: center; width: 100%; font-style: italic; padding: 1.5rem 0; color: var(--text-secondary);">
+                            ☕ Saturday — No Classes Scheduled
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            const timeSlots = [
+                { slot: "08:00 to 08:55", start: 480, end: 535, label: "8:00 AM – 8:55 AM" },
+                { slot: "9.00 to 9. 55", start: 540, end: 595, label: "9:00 AM – 9:55 AM" },
+                { slot: "10.00 to 10.55", start: 600, end: 655, label: "10:00 AM – 10:55 AM" },
+                { slot: "10:55 to 11:10", start: 655, end: 670, label: "10:55 AM – 11:10 AM", type: "break" },
+                { slot: "11.10 to 12.05", start: 670, end: 725, label: "11:10 AM – 12:05 PM" },
+                { slot: "12.10 to 1.05", start: 730, end: 785, label: "12:10 PM – 1:05 PM" },
+                { slot: "1:10 to 2:05", start: 790, end: 845, label: "1:10 PM – 2:05 PM" },
+                { slot: "2.10 to 3.05", start: 850, end: 905, label: "2:10 PM – 3:05 PM" },
+                { slot: "3.10 to 4.05", start: 910, end: 965, label: "3:10 PM – 4:05 PM" },
+                { slot: "4:05 to 4:15", start: 965, end: 975, label: "4:05 PM – 4:15 PM", type: "break" },
+                { slot: "4.15 to 5.10", start: 975, end: 1030, label: "4:15 PM – 5:10 PM" },
+                { slot: "5.15 to 6.10", start: 1035, end: 1090, label: "5:15 PM – 6:10 PM" }
+            ];
+
+            for (let i = 0; i < timeSlots.length; i++) {
+                const item = timeSlots[i];
+                const slot = item.slot;
+
+                // Handle Breaks
+                if (item.type === "break") {
+                    const card = document.createElement("div");
+                    card.className = "mobile-card is-break";
+                    card.innerHTML = `
+                        <div class="card-top">
+                            <div class="card-time">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                ${item.label}
+                            </div>
+                            <span class="card-badge" style="background: #e2e8f0; color: var(--text-tertiary);">Short Break</span>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                    continue;
+                }
+
+                // Handle Lunch
+                if (isLunchSlot(division, currentDay, slot)) {
+                    const card = document.createElement("div");
+                    card.className = "mobile-card is-lunch";
+                    card.innerHTML = `
+                        <div class="card-top">
+                            <div class="card-time">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                ${item.label}
+                            </div>
+                            <span class="card-badge" style="background: #ffedd5; color: #c2410c;">🍱 Lunch Break</span>
+                        </div>
+                        <div class="card-title" style="font-size: 1rem; font-weight: 700; color: #475569;">
+                            Dining Hall / Lunch Break Time
+                        </div>
+                    `;
+                    container.appendChild(card);
+                    continue;
+                }
+
+                // Regular Slot Data
+                let cellData = activeSchedule[currentDay] ? activeSchedule[currentDay][slot] : null;
+
+                if (cellData === "ELECTIVE") {
+                    const electiveSchedKey = `${currentDay}_${slot}`;
+                    const electiveDetails = electiveSchedules[electiveKey][electiveSchedKey];
+                    cellData = {
+                        title: activeElectiveName,
+                        code: electiveInfo[electiveKey].code,
+                        room: electiveDetails ? electiveDetails.room : "—",
+                        prof: electiveDetails ? electiveDetails.prof : "—",
+                        type: "elective"
+                    };
+                }
+
+                if (cellData) {
+                    let endLabel = item.label;
+                    let endMinutes = item.end;
+                    if (cellData.isLab && i + 1 < timeSlots.length) {
+                        endLabel = `${item.label.split('–')[0].trim()} – ${timeSlots[i + 1].label.split('–')[1].trim()}`;
+                        endMinutes = timeSlots[i + 1].end;
+                    }
+
+                    // Check if this specific card is active right now on device clock
+                    const isCurrentlyActive = (isToday && currentMinutes >= item.start && currentMinutes < endMinutes);
+
+                    const fullSubjectTitle = subjectFullNames[cellData.title] || cellData.title;
+                    const fullProfName = profFullNames[cellData.prof] || cellData.prof || "—";
+
+                    const card = document.createElement("div");
+                    card.className = `mobile-card ${isCurrentlyActive ? 'is-currently-active' : ''}`;
+                    card.style.setProperty('--card-border-color', `var(--color-${cellData.type.replace('-lab','')}-border, var(--accent-primary))`);
+
+                    // Inspect details modal on tap
+                    card.onclick = function() {
+                        openSubjectModal(cellData, fullSubjectTitle, fullProfName, endLabel, division, group);
+                    };
+
+                    card.innerHTML = `
+                        <div class="card-top">
+                            <div class="card-time">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                ${endLabel}
+                            </div>
+                            <span class="card-badge" style="background: var(--color-${cellData.type.replace('-lab','')}-bg); color: var(--color-${cellData.type.replace('-lab','')}-text);">
+                                ${cellData.type.toUpperCase().replace('-LAB', ' LAB')}
+                            </span>
+                        </div>
+                        <div class="card-title">${fullSubjectTitle}</div>
+                        ${cellData.isLab ? `<div class="lab-span-badge">★ 2-Hour Practical Lab Session</div>` : ''}
+                        <div class="card-meta">
+                            <div class="meta-pill">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                                <span>Room: <strong>${cellData.room || '—'}</strong></span>
+                            </div>
+                            <div class="meta-pill">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                <span>Prof: <strong>${fullProfName}</strong></span>
+                            </div>
+                        </div>
+                    `;
+
+                    container.appendChild(card);
+
+                    if (cellData.isLab) {
+                        i++; // Skip second slot of lab!
+                    }
+                }
+            }
+        }
+
+        // 2. Render Full A4 Blueprint Grid
+        function renderBlueprintGrid() {
+            const division = document.getElementById("div-select").value;
+            const group = document.getElementById("group-select").value;
+            const electiveKey = document.getElementById("elective-select").value;
+            const divKey = "div" + division;
+            const activeSchedule = schedules[divKey][group];
+            const activeElectiveName = electiveNames[electiveKey];
+
+            document.getElementById("label-div").innerText = division;
+            document.getElementById("label-group").innerText = group;
+            document.getElementById("label-elective").innerText = activeElectiveName;
+            document.getElementById("legend-elective-name").innerText = activeElectiveName;
+            document.getElementById("legend-group-name").innerText = group;
+            document.getElementById("foot-div").innerText = division;
+            document.getElementById("foot-group").innerText = group;
+
+            const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const timeSlots = [
+                "08:00 to 08:55", "9.00 to 9. 55", "10.00 to 10.55", "10:55 to 11:10",
+                "11.10 to 12.05", "12.10 to 1.05", "1:10 to 2:05", "2.10 to 3.05",
+                "3.10 to 4.05", "4:05 to 4:15", "4.15 to 5.10", "5.15 to 6.10"
+            ];
+
+            const tbody = document.getElementById("timetable-body");
+            tbody.innerHTML = "";
+
+            days.forEach(day => {
+                const tr = document.createElement("tr");
+                if (day === "Saturday") tr.className = "saturday-row";
+
+                const dayTd = document.createElement("td");
+                dayTd.className = "day-cell";
+                dayTd.innerText = day.toUpperCase();
+                tr.appendChild(dayTd);
+
+                if (day === "Saturday") {
+                    const satTd = document.createElement("td");
+                    satTd.colSpan = 12;
+                    satTd.className = "no-classes";
+                    satTd.innerText = "No Classes Scheduled";
+                    tr.appendChild(satTd);
+                    tbody.appendChild(tr);
+                    return;
+                }
+
+                for (let i = 0; i < timeSlots.length; i++) {
+                    const slot = timeSlots[i];
+                    const td = document.createElement("td");
+
+                    if (slot === "10:55 to 11:10" || slot === "4:05 to 4:15") {
+                        td.className = "break-cell-text";
+                        td.innerText = "—";
+                        tr.appendChild(td);
+                        continue;
+                    }
+
+                    if (isLunchSlot(division, day, slot)) {
+                        td.className = "lunch-cell-text";
+                        td.innerText = "Lunch";
+                        tr.appendChild(td);
+                        continue;
+                    }
+
+                    let cellData = activeSchedule[day] ? activeSchedule[day][slot] : null;
+
+                    if (cellData === "ELECTIVE") {
+                        const electiveSchedKey = `${day}_${slot}`;
+                        const electiveDetails = electiveSchedules[electiveKey][electiveSchedKey];
+                        cellData = {
+                            title: activeElectiveName,
+                            code: electiveInfo[electiveKey].code,
+                            room: electiveDetails ? electiveDetails.room : "—",
+                            prof: electiveDetails ? electiveDetails.prof : "—",
+                            type: "elective"
+                        };
+                    }
+
+                    if (cellData) {
+                        if (cellData.isLab) {
+                            td.colSpan = 2;
+                            i++;
+                        }
+
+                        const cellDiv = document.createElement("div");
+                        cellDiv.className = `cell-content cell-${cellData.type}`;
+                        
+                        const titleDiv = document.createElement("div");
+                        titleDiv.className = "cell-title";
+                        titleDiv.innerText = cellData.title;
+                        cellDiv.appendChild(titleDiv);
+
+                        if (cellData.code) {
+                            const codeDiv = document.createElement("div");
+                            codeDiv.className = "cell-code";
+                            codeDiv.innerText = cellData.code;
+                            cellDiv.appendChild(codeDiv);
+                        }
+
+                        if (cellData.room || cellData.prof) {
+                            const infoDiv = document.createElement("div");
+                            infoDiv.className = "cell-info";
+                            infoDiv.innerText = `${cellData.room || '—'} · ${cellData.prof || '—'}`;
+                            cellDiv.appendChild(infoDiv);
+                        }
+
+                        td.appendChild(cellDiv);
+                    } else {
+                        td.innerText = "—";
+                        td.style.color = "#94a3b8";
+                    }
+
+                    tr.appendChild(td);
+                }
+
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Dynamically scale down the A4 landscape sheet when displayed on mobile screens
+        function adjustScale() {
+            const sheet = document.getElementById("timetable-pdf-sheet");
+            const container = document.querySelector(".blueprint-container");
+            if (!sheet || !container) return;
+
+            const containerWidth = container.offsetWidth - 24;
+            const targetWidth = 1122;
+            const targetHeight = 794;
+            
+            const scale = Math.min(1, containerWidth / targetWidth);
+            sheet.style.transform = `scale(${scale})`;
+            sheet.style.transformOrigin = "top left";
+            container.style.height = `${(targetHeight * scale) + 24}px`;
+        }
+
+        // Download High-Resolution A4 PDF (Works from both Mobile Cards & Blueprint views)
+        function downloadTimetablePDF() {
+            const container = document.getElementById("blueprint-view-container");
+            const element = document.getElementById("timetable-pdf-sheet");
+            
+            const isHidden = (window.getComputedStyle(container).display === "none");
+
+            if (isHidden) {
+                container.style.position = "absolute";
+                container.style.left = "-9999px";
+                container.style.top = "-9999px";
+                container.style.display = "block";
+            }
+
+            const originalTransform = element.style.transform;
+            element.style.transform = "none";
+
+            const division = document.getElementById("div-select").value;
+            const group = document.getElementById("group-select").value;
+            const electiveSelect = document.getElementById("elective-select");
+            const electiveName = electiveSelect.options[electiveSelect.selectedIndex].text.replace(/\s+/g, '');
+            const filename = `Timetable_Div${division}_${group}_${electiveName}.pdf`;
+
+            const opt = {
+                margin:       0,
+                filename:     filename,
+                image:        { type: 'jpeg', quality: 1.0 },
+                html2canvas:  { scale: 4, useCORS: true, logging: false, letterRendering: true, allowTaint: true },
+                jsPDF:        { unit: 'px', hotfixes: ["px_scaling"], format: [1122, 794], orientation: 'landscape' }
+            };
+
+            const cleanup = () => {
+                element.style.transform = originalTransform;
+                if (isHidden) {
+                    container.style.display = "none";
+                    container.style.position = "";
+                    container.style.left = "";
+                    container.style.top = "";
+                }
+            };
+
+            html2pdf().set(opt).from(element).save().then(cleanup).catch(cleanup);
+        }
+
+        // Subject Details Inspection Sheet
+        function openSubjectModal(data, fullTitle, fullProf, timeLabel, division, group) {
+            const grid = document.getElementById("modal-details-grid");
+            document.getElementById("modal-title").innerText = fullTitle;
+            document.getElementById("modal-code").innerText = data.code || "Core Subject";
+
+            grid.innerHTML = `
+                <div class="detail-card">
+                    <span class="detail-label">Time Slot</span>
+                    <span class="detail-value">${timeLabel}</span>
+                </div>
+                <div class="detail-card">
+                    <span class="detail-label">Classroom / Lab Location</span>
+                    <span class="detail-value">${data.room || '—'}</span>
+                </div>
+                <div class="detail-card">
+                    <span class="detail-label">Professor Full Name</span>
+                    <span class="detail-value">${fullProf}</span>
+                </div>
+                <div class="detail-card">
+                    <span class="detail-label">Division & Group Context</span>
+                    <span class="detail-value">Division ${division} · Group ${group}</span>
+                </div>
+            `;
+
+            document.getElementById("detail-modal").classList.add("active");
+        }
+
+        function closeModal(event) {
+            document.getElementById("detail-modal").classList.remove("active");
+        }
+    </script>
+</body>
+</html>
