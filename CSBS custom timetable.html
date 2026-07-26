@@ -650,6 +650,40 @@
             font-weight: 600;
         }
 
+        /* Clean Auto-Assigned Profile Badge Bar (Replaces Manual Dropdowns) */
+        .user-profile-badge-bar {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1.3fr;
+            gap: 0.5rem;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 0.6rem 0.75rem;
+        }
+
+        .profile-badge-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .profile-badge-item .badge-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .profile-badge-item strong {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: #0f172a;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
         .android-install-btn {
             background: #e0e7ff;
             border: 1px solid #c7d2fe;
@@ -666,54 +700,6 @@
         }
 
         .android-install-btn:active { transform: scale(0.95); }
-
-        /* Quick Filter Switcher Pills */
-        .filter-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 0.5rem;
-        }
-
-        .select-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
-        .select-label {
-            font-size: 0.68rem;
-            font-weight: 700;
-            color: var(--text-tertiary);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding-left: 0.25rem;
-        }
-
-        .custom-select {
-            background: #f1f5f9;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            color: var(--text-primary);
-            padding: 0.6rem 0.75rem;
-            font-size: 0.85rem;
-            font-weight: 700;
-            font-family: var(--font-primary);
-            outline: none;
-            cursor: pointer;
-            width: 100%;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 0.5rem center;
-            padding-right: 1.6rem;
-            transition: all 0.2s ease;
-        }
-
-        .custom-select:focus {
-            border-color: var(--accent-primary);
-            background-color: #ffffff;
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
-        }
 
         /* View Mode Switcher Segmented Control */
         .mode-segmented-bar {
@@ -1256,8 +1242,8 @@
             </div>
 
             <div class="login-input-group">
-                <label class="login-input-label" for="login-roll-input">Select Roll Number (112 Students)</label>
-                <input type="text" id="login-roll-input" class="login-select-input" placeholder="Type or select Roll No (e.g. 24BCB037, 24BCB119D)" list="students-list" oninput="onRollInputChange()">
+                <label class="login-input-label" for="login-roll-input">Select Roll Number</label>
+                <input type="text" id="login-roll-input" class="login-select-input" placeholder="Select your roll number" list="students-list" oninput="onRollInputChange()">
                 <datalist id="students-list">
                     <!-- Populated dynamically via JS -->
                 </datalist>
@@ -1272,7 +1258,7 @@
                     <span class="preview-tag" id="prev-elective">Business Strategy</span>
                 </div>
                 <div style="font-size: 0.75rem; color: #64748b; font-family: var(--font-secondary);" id="prev-email">
-                    24BCB037@pdpu.ac.in
+                    24BCB037@sot.pdpu.ac.in
                 </div>
             </div>
 
@@ -1376,31 +1362,27 @@
                 </button>
             </div>
 
-            <!-- Division / Group / Elective Switchers -->
-            <div class="filter-row">
-                <div class="select-wrapper">
-                    <span class="select-label">Division</span>
-                    <select id="div-select" class="custom-select" onchange="onDivisionChange()">
-                        <option value="1">Div 1</option>
-                        <option value="2">Div 2</option>
-                    </select>
+            <!-- Clean Auto-Assigned Profile Badge Bar (Replaces Redundant Manual Dropdowns) -->
+            <div class="user-profile-badge-bar" id="user-profile-badge-bar">
+                <div class="profile-badge-item">
+                    <span class="badge-label">Division</span>
+                    <strong id="badge-div">Div 1</strong>
                 </div>
+                <div class="profile-badge-item">
+                    <span class="badge-label">Group</span>
+                    <strong id="badge-group">Group J2</strong>
+                </div>
+                <div class="profile-badge-item">
+                    <span class="badge-label">Elective</span>
+                    <strong id="badge-elective">Business Strategy</strong>
+                </div>
+            </div>
 
-                <div class="select-wrapper">
-                    <span class="select-label">Group</span>
-                    <select id="group-select" class="custom-select" onchange="updateAppUI()">
-                        <!-- Populated via JS -->
-                    </select>
-                </div>
-
-                <div class="select-wrapper">
-                    <span class="select-label">Elective</span>
-                    <select id="elective-select" class="custom-select" onchange="updateAppUI()">
-                        <option value="bs">BS (Strategy)</option>
-                        <option value="cs">CS (Conversational)</option>
-                        <option value="cd">CD (Compiler)</option>
-                    </select>
-                </div>
+            <!-- Hidden Control Inputs (Maintained for Internal Timetable Engine Compatibility) -->
+            <div style="display:none;">
+                <select id="div-select" onchange="onDivisionChange()"><option value="1">1</option><option value="2">2</option></select>
+                <select id="group-select" onchange="updateAppUI()"></select>
+                <select id="elective-select" onchange="updateAppUI()"><option value="bs">bs</option><option value="cs">cs</option><option value="cd">cd</option></select>
             </div>
 
             <!-- View Mode Switcher -->
@@ -1608,118 +1590,118 @@
     <script>
         // Official Database of all 112 CSBS Students (Regular + Diploma)
         const studentDatabase = [
-            { roll: "24BCB001", name: "Patel laksh", div: "1", group: "J1", elective: "cs", email: "24BCB001@pdpu.ac.in" },
-            { roll: "24BCB002", name: "Deep Jani", div: "1", group: "J1", elective: "cs", email: "24BCB002@pdpu.ac.in" },
-            { roll: "24BCB003", name: "Vyom lakkad", div: "1", group: "J1", elective: "bs", email: "24BCB003@pdpu.ac.in" },
-            { roll: "24BCB004", name: "Bhavya Mundra", div: "1", group: "J1", elective: "cs", email: "24BCB004@pdpu.ac.in" },
-            { roll: "24BCB005", name: "Shikhar Dubey", div: "1", group: "J1", elective: "cs", email: "24BCB005@pdpu.ac.in" },
-            { roll: "24BCB006", name: "Aditya Thakur", div: "1", group: "J1", elective: "cs", email: "24BCB006@pdpu.ac.in" },
-            { roll: "24BCB007", name: "Ishika Toshniwal", div: "1", group: "J1", elective: "bs", email: "24BCB007@pdpu.ac.in" },
-            { roll: "24BCB008", name: "Dhairya Koyani", div: "1", group: "J1", elective: "cs", email: "24BCB008@pdpu.ac.in" },
-            { roll: "24BCB009", name: "Bhagya Trivedi", div: "1", group: "J1", elective: "cs", email: "24BCB009@pdpu.ac.in" },
-            { roll: "24BCB011", name: "Jal vimalkumar patel", div: "1", group: "J1", elective: "bs", email: "24BCB011@pdpu.ac.in" },
-            { roll: "24BCB012", name: "Shlok Varu", div: "1", group: "J1", elective: "cs", email: "24BCB012@pdpu.ac.in" },
-            { roll: "24BCB013", name: "Dudhatra jenish Jayeshbhai", div: "1", group: "J1", elective: "cs", email: "24BCB013@pdpu.ac.in" },
-            { roll: "24BCB014", name: "Het raval", div: "1", group: "J1", elective: "cs", email: "24BCB014@pdpu.ac.in" },
-            { roll: "24BCB015", name: "Vishv Talaviya", div: "1", group: "J1", elective: "cs", email: "24BCB015@pdpu.ac.in" },
-            { roll: "24BCB016", name: "MIHIR VADI", div: "1", group: "J1", elective: "cs", email: "24BCB016@pdpu.ac.in" },
-            { roll: "24BCB017", name: "Pranjal Chandarana", div: "1", group: "J1", elective: "cs", email: "24BCB017@pdpu.ac.in" },
-            { roll: "24BCB018", name: "Bhakti Gohel", div: "1", group: "J1", elective: "cs", email: "24BCB018@pdpu.ac.in" },
-            { roll: "24BCB019", name: "Vedant limbasiya", div: "1", group: "J1", elective: "cs", email: "24BCB019@pdpu.ac.in" },
-            { roll: "24BCB020", name: "Himanshu Tewari", div: "1", group: "J1", elective: "bs", email: "24BCB020@pdpu.ac.in" },
-            { roll: "24BCB021", name: "Daksh Modi", div: "1", group: "J1", elective: "cs", email: "24BCB021@pdpu.ac.in" },
-            { roll: "24BCB022", name: "Deep Mahesh Kalbhor", div: "1", group: "J1", elective: "cs", email: "24BCB022@pdpu.ac.in" },
-            { roll: "24BCB023", name: "Ridham Rajeshbhai Patel", div: "1", group: "J1", elective: "bs", email: "24BCB023@pdpu.ac.in" },
-            { roll: "24BCB024", name: "Meet Kotadia", div: "1", group: "J1", elective: "bs", email: "24BCB024@pdpu.ac.in" },
-            { roll: "24BCB025", name: "Somya Hiren Samani", div: "1", group: "J1", elective: "bs", email: "24BCB025@pdpu.ac.in" },
-            { roll: "24BCB026", name: "Meet Mehul Koshiya", div: "1", group: "J1", elective: "bs", email: "24BCB026@pdpu.ac.in" },
-            { roll: "24BCB027", name: "Shlok Shah", div: "1", group: "J1", elective: "bs", email: "24BCB027@pdpu.ac.in" },
-            { roll: "24BCB029", name: "Bhumik Shah", div: "1", group: "J2", elective: "cs", email: "24BCB029@pdpu.ac.in" },
-            { roll: "24BCB030", name: "Bhrugu Chaudhari", div: "1", group: "J2", elective: "cs", email: "24BCB030@pdpu.ac.in" },
-            { roll: "24BCB031", name: "Kalsariya parthbhai gijubhai", div: "1", group: "J1", elective: "cs", email: "24BCB031@pdpu.ac.in" },
-            { roll: "24BCB032", name: "Amit Kumar", div: "2", group: "J2", elective: "cd", email: "24BCB032@pdpu.ac.in" },
-            { roll: "24BCB033", name: "Deep Umang Oza", div: "1", group: "J2", elective: "cs", email: "24BCB033@pdpu.ac.in" },
-            { roll: "24BCB034", name: "Meet Patel", div: "1", group: "J2", elective: "bs", email: "24BCB034@pdpu.ac.in" },
-            { roll: "24BCB035", name: "Khush Shah", div: "1", group: "J2", elective: "cs", email: "24BCB035@pdpu.ac.in" },
-            { roll: "24BCB036", name: "Patel urvish", div: "1", group: "J2", elective: "bs", email: "24BCB036@pdpu.ac.in" },
-            { roll: "24BCB037", name: "NIVKUMAR JAYANTILAL SORATHIYA", div: "1", group: "J2", elective: "bs", email: "24BCB037@pdpu.ac.in" },
-            { roll: "24BCB039", name: "Aashvi Padhiyar", div: "1", group: "J2", elective: "cs", email: "24BCB039@pdpu.ac.in" },
-            { roll: "24BCB040", name: "Naishal Panchal", div: "1", group: "J2", elective: "cs", email: "24BCB040@pdpu.ac.in" },
-            { roll: "24BCB041", name: "Parmar Harsh Amrutbhai", div: "1", group: "J2", elective: "cs", email: "24BCB041@pdpu.ac.in" },
-            { roll: "24BCB042", name: "Vandana Vijaybhai Baraiya", div: "1", group: "J2", elective: "bs", email: "24BCB042@pdpu.ac.in" },
-            { roll: "24BCB043", name: "Harsh Rajesh Mukhi", div: "1", group: "J2", elective: "cs", email: "24BCB043@pdpu.ac.in" },
-            { roll: "24BCB044", name: "Yash Bhaveshbhai Vaghani", div: "1", group: "J2", elective: "cs", email: "24BCB044@pdpu.ac.in" },
-            { roll: "24BCB045", name: "Aayushi Pathak", div: "1", group: "J2", elective: "cs", email: "24BCB045@pdpu.ac.in" },
-            { roll: "24BCB046", name: "Ayush", div: "1", group: "J2", elective: "cs", email: "24BCB046@pdpu.ac.in" },
-            { roll: "24BCB047", name: "Malay Patel", div: "1", group: "J2", elective: "cd", email: "24BCB047@pdpu.ac.in" },
-            { roll: "24BCB048", name: "Raj Shah", div: "1", group: "J2", elective: "bs", email: "24BCB048@pdpu.ac.in" },
-            { roll: "24BCB049", name: "Tirth Agarwal", div: "1", group: "J2", elective: "cs", email: "24BCB049@pdpu.ac.in" },
-            { roll: "24BCB050", name: "Supreeti Pal", div: "1", group: "J2", elective: "cs", email: "24BCB050@pdpu.ac.in" },
-            { roll: "24BCB051", name: "Vaghani shubham jigneshbhai", div: "1", group: "J2", elective: "cs", email: "24BCB051@pdpu.ac.in" },
-            { roll: "24BCB052", name: "Pravada Narayan Raval", div: "1", group: "J2", elective: "bs", email: "24BCB052@pdpu.ac.in" },
-            { roll: "24BCB053", name: "Daksh Kotadia", div: "1", group: "J1", elective: "cs", email: "24BCB053@pdpu.ac.in" },
-            { roll: "24BCB054", name: "Bhagya Shah", div: "1", group: "J2", elective: "cs", email: "24BCB054@pdpu.ac.in" },
-            { roll: "24BCB055", name: "Kavya Shree", div: "1", group: "J2", elective: "cs", email: "24BCB055@pdpu.ac.in" },
-            { roll: "24BCB056", name: "Vekariya Rudra Sanjaybhai", div: "1", group: "J2", elective: "cs", email: "24BCB056@pdpu.ac.in" },
-            { roll: "24BCB057", name: "Mishruti vasava", div: "2", group: "J3", elective: "bs", email: "24BCB057@pdpu.ac.in" },
-            { roll: "24BCB058", name: "BALDANIYA HARSHAD VIJAYBHAI", div: "2", group: "J3", elective: "cs", email: "24BCB058@pdpu.ac.in" },
-            { roll: "24BCB059", name: "SAVALIYA VRAJ PRAVINBHAI", div: "2", group: "J3", elective: "cs", email: "24BCB059@pdpu.ac.in" },
-            { roll: "24BCB060", name: "Soumya Bhanushali", div: "2", group: "J3", elective: "bs", email: "24BCB060@pdpu.ac.in" },
-            { roll: "24BCB061", name: "ABHISHEK DHARIYAL", div: "2", group: "J3", elective: "bs", email: "24BCB061@pdpu.ac.in" },
-            { roll: "24BCB062", name: "Priyanshi Chirag Shah", div: "2", group: "J3", elective: "cs", email: "24BCB062@pdpu.ac.in" },
-            { roll: "24BCB063", name: "Krish Modi", div: "2", group: "J3", elective: "bs", email: "24BCB063@pdpu.ac.in" },
-            { roll: "24BCB064", name: "Ayushi patel", div: "2", group: "J3", elective: "cs", email: "24BCB064@pdpu.ac.in" },
-            { roll: "24BCB065", name: "Rudra PranavKumar Patel", div: "2", group: "J3", elective: "bs", email: "24BCB065@pdpu.ac.in" },
-            { roll: "24BCB066", name: "Daksh Patel", div: "2", group: "J3", elective: "bs", email: "24BCB066@pdpu.ac.in" },
-            { roll: "24BCB067", name: "Animesh Kalpeshbhai Bhavsar", div: "2", group: "J3", elective: "cs", email: "24BCB067@pdpu.ac.in" },
-            { roll: "24BCB068", name: "Anant Kalra", div: "2", group: "J3", elective: "cs", email: "24BCB068@pdpu.ac.in" },
-            { roll: "24BCB070", name: "Raju Kadachha", div: "2", group: "J3", elective: "cs", email: "24BCB070@pdpu.ac.in" },
-            { roll: "24BCB071", name: "VAISHNANI TIRTH HITESHKUMAR", div: "2", group: "J3", elective: "cs", email: "24BCB071@pdpu.ac.in" },
-            { roll: "24BCB072", name: "PATEL TIRTH HASMUKHBHAI", div: "2", group: "J3", elective: "cs", email: "24BCB072@pdpu.ac.in" },
-            { roll: "24BCB073", name: "Meet Chaudhary", div: "2", group: "J3", elective: "bs", email: "24BCB073@pdpu.ac.in" },
-            { roll: "24BCB074", name: "Mihir Kakasaniya", div: "2", group: "J3", elective: "bs", email: "24BCB074@pdpu.ac.in" },
-            { roll: "24BCB075", name: "Maitrey Kanani", div: "2", group: "J3", elective: "bs", email: "24BCB075@pdpu.ac.in" },
-            { roll: "24BCB076", name: "Dhruvi DenishKumar Tilva", div: "2", group: "J3", elective: "cs", email: "24BCB076@pdpu.ac.in" },
-            { roll: "24BCB077", name: "Jimil Shastri", div: "2", group: "J3", elective: "cs", email: "24BCB077@pdpu.ac.in" },
-            { roll: "24BCB078", name: "YUG PATEL", div: "2", group: "J3", elective: "bs", email: "24BCB078@pdpu.ac.in" },
-            { roll: "24BCB079", name: "Kapadiya ravi mansukhbhai", div: "2", group: "J3", elective: "cs", email: "24BCB079@pdpu.ac.in" },
-            { roll: "24BCB080", name: "Rajveer Raol", div: "2", group: "J3", elective: "bs", email: "24BCB080@pdpu.ac.in" },
-            { roll: "24BCB082", name: "Panth Mori", div: "2", group: "J3", elective: "cs", email: "24BCB082@pdpu.ac.in" },
-            { roll: "24BCB083", name: "Jeni Kukadiya", div: "2", group: "J3", elective: "cs", email: "24BCB083@pdpu.ac.in" },
-            { roll: "24BCB084", name: "Sruja Brahmbhatt", div: "2", group: "J3", elective: "cs", email: "24BCB084@pdpu.ac.in" },
-            { roll: "24BCB085", name: "Manav Motiramani", div: "2", group: "J3", elective: "cs", email: "24BCB085@pdpu.ac.in" },
-            { roll: "24BCB086", name: "Mann Joshi", div: "2", group: "J4", elective: "bs", email: "24BCB086@pdpu.ac.in" },
-            { roll: "24BCB087", name: "Dhola Yug Mukeshbhai", div: "2", group: "J4", elective: "bs", email: "24BCB087@pdpu.ac.in" },
-            { roll: "24BCB088", name: "Jeet vaghasia", div: "2", group: "J4", elective: "cs", email: "24BCB088@pdpu.ac.in" },
-            { roll: "24BCB089", name: "Jain Asmi Abhishekkumar", div: "2", group: "J4", elective: "cs", email: "24BCB089@pdpu.ac.in" },
-            { roll: "24BCB090", name: "Durva Tusharkumar Vyas", div: "2", group: "J4", elective: "cs", email: "24BCB090@pdpu.ac.in" },
-            { roll: "24BCB091", name: "Jay Dhamelia", div: "2", group: "J4", elective: "bs", email: "24BCB091@pdpu.ac.in" },
-            { roll: "24BCB093", name: "Pranav Pujara", div: "2", group: "J4", elective: "cs", email: "24BCB093@pdpu.ac.in" },
-            { roll: "24BCB094", name: "Nikshay Solanki", div: "2", group: "J4", elective: "cs", email: "24BCB094@pdpu.ac.in" },
-            { roll: "24BCB095", name: "Akarsh Gupta", div: "2", group: "J4", elective: "bs", email: "24BCB095@pdpu.ac.in" },
-            { roll: "24BCB096", name: "Sarvesh Chhatani", div: "2", group: "J4", elective: "bs", email: "24BCB096@pdpu.ac.in" },
-            { roll: "24BCB097", name: "Jeel Vaghasiya", div: "2", group: "J4", elective: "bs", email: "24BCB097@pdpu.ac.in" },
-            { roll: "24BCB098", name: "Malav Shah", div: "2", group: "J4", elective: "bs", email: "24BCB098@pdpu.ac.in" },
-            { roll: "24BCB099", name: "Aadi Desai", div: "2", group: "J4", elective: "bs", email: "24BCB099@pdpu.ac.in" },
-            { roll: "24BCB100", name: "Nisarg Trivedi", div: "2", group: "J4", elective: "cs", email: "24BCB100@pdpu.ac.in" },
-            { roll: "24BCB101", name: "Tirth Chetan Vyas", div: "2", group: "J4", elective: "cs", email: "24BCB101@pdpu.ac.in" },
-            { roll: "24BCB102", name: "Vidhi Darji", div: "2", group: "J4", elective: "cs", email: "24BCB102@pdpu.ac.in" },
-            { roll: "24BCB103", name: "Prajapati Krish Hasmukhbhai", div: "2", group: "J4", elective: "cs", email: "24BCB103@pdpu.ac.in" },
-            { roll: "24BCB105", name: "Ghoghari Prince dineshbhai", div: "2", group: "J4", elective: "cs", email: "24BCB105@pdpu.ac.in" },
-            { roll: "24BCB106", name: "Patel Nitya", div: "2", group: "J4", elective: "cs", email: "24BCB106@pdpu.ac.in" },
-            { roll: "24BCB107", name: "Panth Patel", div: "2", group: "J4", elective: "cs", email: "24BCB107@pdpu.ac.in" },
-            { roll: "24BCB111", name: "Yug Shrimali", div: "2", group: "J4", elective: "cs", email: "24BCB111@pdpu.ac.in" },
-            { roll: "24BCB112", name: "Krishna Parimal Patel", div: "2", group: "J4", elective: "cs", email: "24BCB112@pdpu.ac.in" },
-            { roll: "24BCB113", name: "Patel Dhruv Hasmukhkumar", div: "2", group: "J4", elective: "cs", email: "24BCB113@pdpu.ac.in" },
-            { roll: "24BCB114", name: "Honey Lakhani", div: "2", group: "J4", elective: "cs", email: "24BCB114@pdpu.ac.in" },
-            { roll: "24BCB115", name: "Oza Keval Rajeshkumar", div: "2", group: "J4", elective: "cs", email: "24BCB115@pdpu.ac.in" },
-            { roll: "24BCB116D", name: "Yashvi Mehta", div: "2", group: "J3", elective: "bs", email: "24BCB116D@pdpu.ac.in" },
-            { roll: "24BCB117D", name: "Darji Aayushi Mihirkumar", div: "2", group: "J3", elective: "cs", email: "24BCB117D@pdpu.ac.in" },
-            { roll: "24BCB118D", name: "Hirva Kansara", div: "2", group: "J3", elective: "cs", email: "24BCB118D@pdpu.ac.in" },
-            { roll: "24BCB119D", name: "Namraa Patel", div: "1", group: "J1", elective: "cd", email: "24BCB119D@pdpu.ac.in" },
-            { roll: "24BCB120D", name: "Takshil Patel", div: "1", group: "J1", elective: "cd", email: "24BCB120D@pdpu.ac.in" },
-            { roll: "24BCB122D", name: "Greeva Shah", div: "1", group: "J2", elective: "cs", email: "24BCB122D@pdpu.ac.in" },
-            { roll: "24BCB123D", name: "Varmora Madhav babulal", div: "1", group: "J2", elective: "cs", email: "24BCB123D@pdpu.ac.in" }
+            { roll: "24BCB001", name: "Patel laksh", div: "1", group: "J1", elective: "cs", email: "24BCB001@sot.pdpu.ac.in" },
+            { roll: "24BCB002", name: "Deep Jani", div: "1", group: "J1", elective: "cs", email: "24BCB002@sot.pdpu.ac.in" },
+            { roll: "24BCB003", name: "Vyom lakkad", div: "1", group: "J1", elective: "bs", email: "24BCB003@sot.pdpu.ac.in" },
+            { roll: "24BCB004", name: "Bhavya Mundra", div: "1", group: "J1", elective: "cs", email: "24BCB004@sot.pdpu.ac.in" },
+            { roll: "24BCB005", name: "Shikhar Dubey", div: "1", group: "J1", elective: "cs", email: "24BCB005@sot.pdpu.ac.in" },
+            { roll: "24BCB006", name: "Aditya Thakur", div: "1", group: "J1", elective: "cs", email: "24BCB006@sot.pdpu.ac.in" },
+            { roll: "24BCB007", name: "Ishika Toshniwal", div: "1", group: "J1", elective: "bs", email: "24BCB007@sot.pdpu.ac.in" },
+            { roll: "24BCB008", name: "Dhairya Koyani", div: "1", group: "J1", elective: "cs", email: "24BCB008@sot.pdpu.ac.in" },
+            { roll: "24BCB009", name: "Bhagya Trivedi", div: "1", group: "J1", elective: "cs", email: "24BCB009@sot.pdpu.ac.in" },
+            { roll: "24BCB011", name: "Jal vimalkumar patel", div: "1", group: "J1", elective: "bs", email: "24BCB011@sot.pdpu.ac.in" },
+            { roll: "24BCB012", name: "Shlok Varu", div: "1", group: "J1", elective: "cs", email: "24BCB012@sot.pdpu.ac.in" },
+            { roll: "24BCB013", name: "Dudhatra jenish Jayeshbhai", div: "1", group: "J1", elective: "cs", email: "24BCB013@sot.pdpu.ac.in" },
+            { roll: "24BCB014", name: "Het raval", div: "1", group: "J1", elective: "cs", email: "24BCB014@sot.pdpu.ac.in" },
+            { roll: "24BCB015", name: "Vishv Talaviya", div: "1", group: "J1", elective: "cs", email: "24BCB015@sot.pdpu.ac.in" },
+            { roll: "24BCB016", name: "MIHIR VADI", div: "1", group: "J1", elective: "cs", email: "24BCB016@sot.pdpu.ac.in" },
+            { roll: "24BCB017", name: "Pranjal Chandarana", div: "1", group: "J1", elective: "cs", email: "24BCB017@sot.pdpu.ac.in" },
+            { roll: "24BCB018", name: "Bhakti Gohel", div: "1", group: "J1", elective: "cs", email: "24BCB018@sot.pdpu.ac.in" },
+            { roll: "24BCB019", name: "Vedant limbasiya", div: "1", group: "J1", elective: "cs", email: "24BCB019@sot.pdpu.ac.in" },
+            { roll: "24BCB020", name: "Himanshu Tewari", div: "1", group: "J1", elective: "bs", email: "24BCB020@sot.pdpu.ac.in" },
+            { roll: "24BCB021", name: "Daksh Modi", div: "1", group: "J1", elective: "cs", email: "24BCB021@sot.pdpu.ac.in" },
+            { roll: "24BCB022", name: "Deep Mahesh Kalbhor", div: "1", group: "J1", elective: "cs", email: "24BCB022@sot.pdpu.ac.in" },
+            { roll: "24BCB023", name: "Ridham Rajeshbhai Patel", div: "1", group: "J1", elective: "bs", email: "24BCB023@sot.pdpu.ac.in" },
+            { roll: "24BCB024", name: "Meet Kotadia", div: "1", group: "J1", elective: "bs", email: "24BCB024@sot.pdpu.ac.in" },
+            { roll: "24BCB025", name: "Somya Hiren Samani", div: "1", group: "J1", elective: "bs", email: "24BCB025@sot.pdpu.ac.in" },
+            { roll: "24BCB026", name: "Meet Mehul Koshiya", div: "1", group: "J1", elective: "bs", email: "24BCB026@sot.pdpu.ac.in" },
+            { roll: "24BCB027", name: "Shlok Shah", div: "1", group: "J1", elective: "bs", email: "24BCB027@sot.pdpu.ac.in" },
+            { roll: "24BCB029", name: "Bhumik Shah", div: "1", group: "J2", elective: "cs", email: "24BCB029@sot.pdpu.ac.in" },
+            { roll: "24BCB030", name: "Bhrugu Chaudhari", div: "1", group: "J2", elective: "cs", email: "24BCB030@sot.pdpu.ac.in" },
+            { roll: "24BCB031", name: "Kalsariya parthbhai gijubhai", div: "1", group: "J1", elective: "cs", email: "24BCB031@sot.pdpu.ac.in" },
+            { roll: "24BCB032", name: "Amit Kumar", div: "2", group: "J2", elective: "cd", email: "24BCB032@sot.pdpu.ac.in" },
+            { roll: "24BCB033", name: "Deep Umang Oza", div: "1", group: "J2", elective: "cs", email: "24BCB033@sot.pdpu.ac.in" },
+            { roll: "24BCB034", name: "Meet Patel", div: "1", group: "J2", elective: "bs", email: "24BCB034@sot.pdpu.ac.in" },
+            { roll: "24BCB035", name: "Khush Shah", div: "1", group: "J2", elective: "cs", email: "24BCB035@sot.pdpu.ac.in" },
+            { roll: "24BCB036", name: "Patel urvish", div: "1", group: "J2", elective: "bs", email: "24BCB036@sot.pdpu.ac.in" },
+            { roll: "24BCB037", name: "NIVKUMAR JAYANTILAL SORATHIYA", div: "1", group: "J2", elective: "bs", email: "24BCB037@sot.pdpu.ac.in" },
+            { roll: "24BCB039", name: "Aashvi Padhiyar", div: "1", group: "J2", elective: "cs", email: "24BCB039@sot.pdpu.ac.in" },
+            { roll: "24BCB040", name: "Naishal Panchal", div: "1", group: "J2", elective: "cs", email: "24BCB040@sot.pdpu.ac.in" },
+            { roll: "24BCB041", name: "Parmar Harsh Amrutbhai", div: "1", group: "J2", elective: "cs", email: "24BCB041@sot.pdpu.ac.in" },
+            { roll: "24BCB042", name: "Vandana Vijaybhai Baraiya", div: "1", group: "J2", elective: "bs", email: "24BCB042@sot.pdpu.ac.in" },
+            { roll: "24BCB043", name: "Harsh Rajesh Mukhi", div: "1", group: "J2", elective: "cs", email: "24BCB043@sot.pdpu.ac.in" },
+            { roll: "24BCB044", name: "Yash Bhaveshbhai Vaghani", div: "1", group: "J2", elective: "cs", email: "24BCB044@sot.pdpu.ac.in" },
+            { roll: "24BCB045", name: "Aayushi Pathak", div: "1", group: "J2", elective: "cs", email: "24BCB045@sot.pdpu.ac.in" },
+            { roll: "24BCB046", name: "Ayush", div: "1", group: "J2", elective: "cs", email: "24BCB046@sot.pdpu.ac.in" },
+            { roll: "24BCB047", name: "Malay Patel", div: "1", group: "J2", elective: "cd", email: "24BCB047@sot.pdpu.ac.in" },
+            { roll: "24BCB048", name: "Raj Shah", div: "1", group: "J2", elective: "bs", email: "24BCB048@sot.pdpu.ac.in" },
+            { roll: "24BCB049", name: "Tirth Agarwal", div: "1", group: "J2", elective: "cs", email: "24BCB049@sot.pdpu.ac.in" },
+            { roll: "24BCB050", name: "Supreeti Pal", div: "1", group: "J2", elective: "cs", email: "24BCB050@sot.pdpu.ac.in" },
+            { roll: "24BCB051", name: "Vaghani shubham jigneshbhai", div: "1", group: "J2", elective: "cs", email: "24BCB051@sot.pdpu.ac.in" },
+            { roll: "24BCB052", name: "Pravada Narayan Raval", div: "1", group: "J2", elective: "bs", email: "24BCB052@sot.pdpu.ac.in" },
+            { roll: "24BCB053", name: "Daksh Kotadia", div: "1", group: "J1", elective: "cs", email: "24BCB053@sot.pdpu.ac.in" },
+            { roll: "24BCB054", name: "Bhagya Shah", div: "1", group: "J2", elective: "cs", email: "24BCB054@sot.pdpu.ac.in" },
+            { roll: "24BCB055", name: "Kavya Shree", div: "1", group: "J2", elective: "cs", email: "24BCB055@sot.pdpu.ac.in" },
+            { roll: "24BCB056", name: "Vekariya Rudra Sanjaybhai", div: "1", group: "J2", elective: "cs", email: "24BCB056@sot.pdpu.ac.in" },
+            { roll: "24BCB057", name: "Mishruti vasava", div: "2", group: "J3", elective: "bs", email: "24BCB057@sot.pdpu.ac.in" },
+            { roll: "24BCB058", name: "BALDANIYA HARSHAD VIJAYBHAI", div: "2", group: "J3", elective: "cs", email: "24BCB058@sot.pdpu.ac.in" },
+            { roll: "24BCB059", name: "SAVALIYA VRAJ PRAVINBHAI", div: "2", group: "J3", elective: "cs", email: "24BCB059@sot.pdpu.ac.in" },
+            { roll: "24BCB060", name: "Soumya Bhanushali", div: "2", group: "J3", elective: "bs", email: "24BCB060@sot.pdpu.ac.in" },
+            { roll: "24BCB061", name: "ABHISHEK DHARIYAL", div: "2", group: "J3", elective: "bs", email: "24BCB061@sot.pdpu.ac.in" },
+            { roll: "24BCB062", name: "Priyanshi Chirag Shah", div: "2", group: "J3", elective: "cs", email: "24BCB062@sot.pdpu.ac.in" },
+            { roll: "24BCB063", name: "Krish Modi", div: "2", group: "J3", elective: "bs", email: "24BCB063@sot.pdpu.ac.in" },
+            { roll: "24BCB064", name: "Ayushi patel", div: "2", group: "J3", elective: "cs", email: "24BCB064@sot.pdpu.ac.in" },
+            { roll: "24BCB065", name: "Rudra PranavKumar Patel", div: "2", group: "J3", elective: "bs", email: "24BCB065@sot.pdpu.ac.in" },
+            { roll: "24BCB066", name: "Daksh Patel", div: "2", group: "J3", elective: "bs", email: "24BCB066@sot.pdpu.ac.in" },
+            { roll: "24BCB067", name: "Animesh Kalpeshbhai Bhavsar", div: "2", group: "J3", elective: "cs", email: "24BCB067@sot.pdpu.ac.in" },
+            { roll: "24BCB068", name: "Anant Kalra", div: "2", group: "J3", elective: "cs", email: "24BCB068@sot.pdpu.ac.in" },
+            { roll: "24BCB070", name: "Raju Kadachha", div: "2", group: "J3", elective: "cs", email: "24BCB070@sot.pdpu.ac.in" },
+            { roll: "24BCB071", name: "VAISHNANI TIRTH HITESHKUMAR", div: "2", group: "J3", elective: "cs", email: "24BCB071@sot.pdpu.ac.in" },
+            { roll: "24BCB072", name: "PATEL TIRTH HASMUKHBHAI", div: "2", group: "J3", elective: "cs", email: "24BCB072@sot.pdpu.ac.in" },
+            { roll: "24BCB073", name: "Meet Chaudhary", div: "2", group: "J3", elective: "bs", email: "24BCB073@sot.pdpu.ac.in" },
+            { roll: "24BCB074", name: "Mihir Kakasaniya", div: "2", group: "J3", elective: "bs", email: "24BCB074@sot.pdpu.ac.in" },
+            { roll: "24BCB075", name: "Maitrey Kanani", div: "2", group: "J3", elective: "bs", email: "24BCB075@sot.pdpu.ac.in" },
+            { roll: "24BCB076", name: "Dhruvi DenishKumar Tilva", div: "2", group: "J3", elective: "cs", email: "24BCB076@sot.pdpu.ac.in" },
+            { roll: "24BCB077", name: "Jimil Shastri", div: "2", group: "J3", elective: "cs", email: "24BCB077@sot.pdpu.ac.in" },
+            { roll: "24BCB078", name: "YUG PATEL", div: "2", group: "J3", elective: "bs", email: "24BCB078@sot.pdpu.ac.in" },
+            { roll: "24BCB079", name: "Kapadiya ravi mansukhbhai", div: "2", group: "J3", elective: "cs", email: "24BCB079@sot.pdpu.ac.in" },
+            { roll: "24BCB080", name: "Rajveer Raol", div: "2", group: "J3", elective: "bs", email: "24BCB080@sot.pdpu.ac.in" },
+            { roll: "24BCB082", name: "Panth Mori", div: "2", group: "J3", elective: "cs", email: "24BCB082@sot.pdpu.ac.in" },
+            { roll: "24BCB083", name: "Jeni Kukadiya", div: "2", group: "J3", elective: "cs", email: "24BCB083@sot.pdpu.ac.in" },
+            { roll: "24BCB084", name: "Sruja Brahmbhatt", div: "2", group: "J3", elective: "cs", email: "24BCB084@sot.pdpu.ac.in" },
+            { roll: "24BCB085", name: "Manav Motiramani", div: "2", group: "J3", elective: "cs", email: "24BCB085@sot.pdpu.ac.in" },
+            { roll: "24BCB086", name: "Mann Joshi", div: "2", group: "J4", elective: "bs", email: "24BCB086@sot.pdpu.ac.in" },
+            { roll: "24BCB087", name: "Dhola Yug Mukeshbhai", div: "2", group: "J4", elective: "bs", email: "24BCB087@sot.pdpu.ac.in" },
+            { roll: "24BCB088", name: "Jeet vaghasia", div: "2", group: "J4", elective: "cs", email: "24BCB088@sot.pdpu.ac.in" },
+            { roll: "24BCB089", name: "Jain Asmi Abhishekkumar", div: "2", group: "J4", elective: "cs", email: "24BCB089@sot.pdpu.ac.in" },
+            { roll: "24BCB090", name: "Durva Tusharkumar Vyas", div: "2", group: "J4", elective: "cs", email: "24BCB090@sot.pdpu.ac.in" },
+            { roll: "24BCB091", name: "Jay Dhamelia", div: "2", group: "J4", elective: "bs", email: "24BCB091@sot.pdpu.ac.in" },
+            { roll: "24BCB093", name: "Pranav Pujara", div: "2", group: "J4", elective: "cs", email: "24BCB093@sot.pdpu.ac.in" },
+            { roll: "24BCB094", name: "Nikshay Solanki", div: "2", group: "J4", elective: "cs", email: "24BCB094@sot.pdpu.ac.in" },
+            { roll: "24BCB095", name: "Akarsh Gupta", div: "2", group: "J4", elective: "bs", email: "24BCB095@sot.pdpu.ac.in" },
+            { roll: "24BCB096", name: "Sarvesh Chhatani", div: "2", group: "J4", elective: "bs", email: "24BCB096@sot.pdpu.ac.in" },
+            { roll: "24BCB097", name: "Jeel Vaghasiya", div: "2", group: "J4", elective: "bs", email: "24BCB097@sot.pdpu.ac.in" },
+            { roll: "24BCB098", name: "Malav Shah", div: "2", group: "J4", elective: "bs", email: "24BCB098@sot.pdpu.ac.in" },
+            { roll: "24BCB099", name: "Aadi Desai", div: "2", group: "J4", elective: "bs", email: "24BCB099@sot.pdpu.ac.in" },
+            { roll: "24BCB100", name: "Nisarg Trivedi", div: "2", group: "J4", elective: "cs", email: "24BCB100@sot.pdpu.ac.in" },
+            { roll: "24BCB101", name: "Tirth Chetan Vyas", div: "2", group: "J4", elective: "cs", email: "24BCB101@sot.pdpu.ac.in" },
+            { roll: "24BCB102", name: "Vidhi Darji", div: "2", group: "J4", elective: "cs", email: "24BCB102@sot.pdpu.ac.in" },
+            { roll: "24BCB103", name: "Prajapati Krish Hasmukhbhai", div: "2", group: "J4", elective: "cs", email: "24BCB103@sot.pdpu.ac.in" },
+            { roll: "24BCB105", name: "Ghoghari Prince dineshbhai", div: "2", group: "J4", elective: "cs", email: "24BCB105@sot.pdpu.ac.in" },
+            { roll: "24BCB106", name: "Patel Nitya", div: "2", group: "J4", elective: "cs", email: "24BCB106@sot.pdpu.ac.in" },
+            { roll: "24BCB107", name: "Panth Patel", div: "2", group: "J4", elective: "cs", email: "24BCB107@sot.pdpu.ac.in" },
+            { roll: "24BCB111", name: "Yug Shrimali", div: "2", group: "J4", elective: "cs", email: "24BCB111@sot.pdpu.ac.in" },
+            { roll: "24BCB112", name: "Krishna Parimal Patel", div: "2", group: "J4", elective: "cs", email: "24BCB112@sot.pdpu.ac.in" },
+            { roll: "24BCB113", name: "Patel Dhruv Hasmukhkumar", div: "2", group: "J4", elective: "cs", email: "24BCB113@sot.pdpu.ac.in" },
+            { roll: "24BCB114", name: "Honey Lakhani", div: "2", group: "J4", elective: "cs", email: "24BCB114@sot.pdpu.ac.in" },
+            { roll: "24BCB115", name: "Oza Keval Rajeshkumar", div: "2", group: "J4", elective: "cs", email: "24BCB115@sot.pdpu.ac.in" },
+            { roll: "24BCB116D", name: "Yashvi Mehta", div: "2", group: "J3", elective: "bs", email: "24BCB116D@sot.pdpu.ac.in" },
+            { roll: "24BCB117D", name: "Darji Aayushi Mihirkumar", div: "2", group: "J3", elective: "cs", email: "24BCB117D@sot.pdpu.ac.in" },
+            { roll: "24BCB118D", name: "Hirva Kansara", div: "2", group: "J3", elective: "cs", email: "24BCB118D@sot.pdpu.ac.in" },
+            { roll: "24BCB119D", name: "Namraa Patel", div: "1", group: "J1", elective: "cd", email: "24BCB119D@sot.pdpu.ac.in" },
+            { roll: "24BCB120D", name: "Takshil Patel", div: "1", group: "J1", elective: "cd", email: "24BCB120D@sot.pdpu.ac.in" },
+            { roll: "24BCB122D", name: "Greeva Shah", div: "1", group: "J2", elective: "cs", email: "24BCB122D@sot.pdpu.ac.in" },
+            { roll: "24BCB123D", name: "Varmora Madhav babulal", div: "1", group: "J2", elective: "cs", email: "24BCB123D@sot.pdpu.ac.in" }
         ];
 
         // Core Database of Electives & Names
@@ -1737,21 +1719,21 @@
 
         // Full Name Mappings for Mobile Application UI
         const profFullNames = {
-            "AAR-L": "Prof. Ankur Raval",
-            "AAR-P": "Prof. Ankur Raval (Practical Lab)",
-            "PUGU-L": "Prof. Pankaj Gupta",
-            "PUGU-P": "Prof. Pankaj Gupta (Practical Lab)",
-            "SJD-L": "Prof. Samir Dwivedi",
-            "SJD-P": "Prof. Samir Dwivedi (Practical Lab)",
-            "RITH-L": "Prof. Rutvij Thakkar",
-            "POSA-L": "Prof. Pooja Shah",
-            "POSA-P": "Prof. Pooja Shah (Practical Lab)",
+            "AAR-L": "Prof. Aashka Raval",
+            "AAR-P": "Prof. Aashka Raval (Practical Lab)",
+            "PUGU-L": "Prof. Punit Gupta",
+            "PUGU-P": "Prof. Punit Gupta (Practical Lab)",
+            "SJD-L": "Prof. Sanjeev Dwivedi",
+            "SJD-P": "Prof. Sanjeev Dwivedi (Practical Lab)",
+            "RITH-L": "Prof. Riddhi Thakkar",
+            "POSA-L": "Prof. Pooja S",
+            "POSA-P": "Prof. Pooja S (Practical Lab)",
             "KMS-L": "Prof. Komal Singh",
             "KMS-P": "Prof. Komal Singh (Practical Lab)",
-            "CDCT-L": "CD Cell Corporate Trainer",
-            "DAS-L": "Prof. D. Shah",
-            "TABH-L": "Prof. T. Bhowmik",
-            "MTH-L": "Prof. M. Khanna"
+            "CDCT-L": "CD Cell Trainer",
+            "DAS-L": "Prof. Darshit Shah",
+            "TABH-L": "Prof. Tanmay Bhowmik",
+            "MTH-L": "Prof. Meera Thapar Khanna"
         };
 
         const subjectFullNames = {
@@ -2050,19 +2032,20 @@
             }
         }
 
-        // Apply Student Profile Data across controls & Header
+        // Apply Student Profile Data & Update Badge Bar
         function applyStudentProfile(student, isFirstTimeLogin) {
             loggedInStudent = student;
 
-            // Set division select
+            // Set hidden selects for internal timetable engine
             document.getElementById("div-select").value = student.div;
             populateGroups();
-
-            // Set group select
             document.getElementById("group-select").value = student.group;
-
-            // Set elective select
             document.getElementById("elective-select").value = student.elective;
+
+            // Update Header Profile Badge Bar
+            document.getElementById("badge-div").innerText = `Div ${student.div}`;
+            document.getElementById("badge-group").innerText = `Group ${student.group}`;
+            document.getElementById("badge-elective").innerText = electiveNames[student.elective];
 
             // Header profile chip updates
             const firstName = getFirstName(student.name);
@@ -2190,7 +2173,7 @@
             }
         }
 
-        // Populate Groups Dropdown
+        // Populate Groups Dropdown (Hidden helper)
         function populateGroups() {
             const divSelect = document.getElementById("div-select");
             const groupSelect = document.getElementById("group-select");
