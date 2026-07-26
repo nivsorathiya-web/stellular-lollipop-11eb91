@@ -2196,12 +2196,13 @@
             const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
             if (currentDay === "Saturday") {
+                const saturdayName = loggedInStudent ? getFirstName(loggedInStudent.name) : "Jordan";
                 container.innerHTML = `
                     <div class="saturday-card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-radius: 24px; padding: 1.75rem; border: 1px solid rgba(251, 191, 36, 0.15); box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 25px rgba(251, 191, 36, 0.05); text-align: center; color: #f8fafc; overflow: hidden; gap: 1.25rem; margin-top: 0.5rem;">
                         <img src="f7012d0f3bcfe9c1a190a9a1850edc72.jpg" style="width: 100%; max-width: 500px; border-radius: 16px; border: 2px solid rgba(251, 191, 36, 0.2); box-shadow: 0 8px 25px rgba(0,0,0,0.5);" alt="Market Closed">
                         <div style="display: flex; flex-direction: column; gap: 0.6rem; padding: 0.25rem 0.2rem;">
                             <div style="font-family: var(--font-primary); font-size: 1.25rem; font-weight: 800; color: #fbbf24; letter-spacing: 0.03em; text-transform: uppercase; text-shadow: 0 0 10px rgba(251, 191, 36, 0.15);">🐺 Stratton Oakmont — Market Closed</div>
-                            <div style="font-family: var(--font-secondary); font-size: 0.92rem; font-weight: 500; color: #94a3b8; line-height: 1.6; letter-spacing: 0.01em;">No classes are scheduled for Saturday and Sunday. The weekend protocol is active, and the trading floor is closed. Lectures will resume on Monday at 8:00 AM.</div>
+                            <div style="font-family: var(--font-secondary); font-size: 0.92rem; font-weight: 500; color: #94a3b8; line-height: 1.6; letter-spacing: 0.01em;">${saturdayName}, the trading floor is closed for the weekend. No classes are scheduled for Saturday and Sunday. Lectures will resume on Monday at 8:00 AM.</div>
                         </div>
                     </div>
                 `;
