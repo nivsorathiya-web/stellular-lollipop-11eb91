@@ -24,8 +24,7 @@
     <!-- Embedded Web App Manifest for Android PWA Install -->
     <link rel="manifest" href="data:application/json;charset=utf-8,%7B%22name%22%3A%22Timetable%22%2C%22short_name%22%3A%22Timetable%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f8fafc%22%2C%22theme_color%22%3A%22%234f46e5%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27180%27%20height%3D%27180%27%20viewBox%3D%270%200%20180%20180%27%253E%253Cdefs%253E%253ClinearGradient%20id%3D%27bg%27%20x1%3D%270%25%27%20y1%3D%270%25%27%20x2%3D%27100%25%27%20y2%3D%27100%25%27%253E%253Cstop%20offset%3D%270%25%27%20stop-color%3D%27%25234f46e5%27%2F%253E%253Cstop%20offset%3D%27100%25%27%20stop-color%3D%27%25237c3aed%27%2F%253E%253C%2FlinearGradient%253E%253C%2Fdefs%253E%253Crect%20width%3D%27180%27%20height%3D%27180%27%20rx%3D%2740%27%20fill%3D%27url(%2523bg)%27%2F%253E%253Crect%20x%3D%2735%27%20y%3D%2745%27%20width%3D%27110%27%20height%3D%27100%27%20rx%3D%2716%27%20fill%3D%27%2523ffffff%27%20fill-opacity%3D%270.15%27%20stroke%3D%27%2523ffffff%27%20stroke-width%3D%274%27%2F%253E%253Cpath%20d%3D%27M60%2032v24M120%2032v24M35%2075h110%27%20stroke%3D%27%2523ffffff%27%20stroke-width%3D%276%27%20stroke-linecap%3D%27round%27%2F%253E%253Ccircle%20cx%3D%2770%27%20cy%3D%27105%27%20r%3D%278%27%20fill%3D%27%252338bdf8%27%2F%253E%253Ccircle%20cx%3D%27110%27%20cy%3D%27105%27%20r%3D%278%27%20fill%3D%27%25234ade80%27%2F%253E%253Ccircle%20cx%3D%2770%27%20cy%3D%27125%27%20r%3D%278%27%20fill%3D%27%2523fb923c%27%2F%253E%253Ccircle%20cx%3D%27110%27%20cy%3D%27125%27%20r%3D%278%27%20fill%3D%27%2523c084fc%27%2F%253E%253C%2Fsvg%3E%22%2C%22sizes%22%3A%22180x180%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
     
-    <!-- html2pdf.js CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 
     <style>
         /* Modern Premium Light Theme Design System */
@@ -849,23 +848,57 @@
         /* Currently Active Class Glow */
         .mobile-card.is-currently-active {
             border: 2px solid #22c55e;
-            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.25);
-            background: #f0fdf4;
+            background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+            animation: pulse-border-glow 2.5s infinite ease-in-out;
+            padding-right: 5.5rem;
         }
 
-        .mobile-card.is-currently-active::after {
-            content: 'LIVE NOW';
+        @keyframes pulse-border-glow {
+            0% {
+                border-color: #22c55e;
+                box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03), 0 0 12px rgba(34, 197, 94, 0.2);
+            }
+            50% {
+                border-color: #10b981;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05), 0 0 20px rgba(16, 185, 129, 0.45);
+            }
+            100% {
+                border-color: #22c55e;
+                box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03), 0 0 12px rgba(34, 197, 94, 0.2);
+            }
+        }
+
+        /* Live Indicator Badge (Moved to bottom right of card) */
+        .live-indicator-badge {
             position: absolute;
-            top: 10px;
-            right: 12px;
+            bottom: 12px;
+            right: 14px;
             background: #22c55e;
             color: #ffffff;
-            font-size: 0.65rem;
-            font-weight: 900;
-            padding: 2px 8px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
-            animation: pulse 2s infinite;
+            font-size: 0.62rem;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 99px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
+            letter-spacing: 0.03em;
+        }
+
+        .live-pulse-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            display: inline-block;
+            animation: dot-pulse 1.5s infinite ease-in-out;
+        }
+
+        @keyframes dot-pulse {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.4); opacity: 1; }
+            100% { transform: scale(0.8); opacity: 0.5; }
         }
 
         .mobile-card:active {
@@ -955,154 +988,7 @@
             width: fit-content;
         }
 
-        /* Landscape Blueprint Preview Container */
-        .blueprint-container {
-            display: none;
-            background: #ffffff;
-            color: #000000;
-            border-radius: 18px;
-            padding: 12px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-            border: 1px solid var(--border-color);
-            width: 100%;
-            position: relative;
-        }
 
-        /* --- PDF Print / Blueprint Layout (1122px x 794px ratio) --- */
-        #timetable-pdf-sheet {
-            background-color: #ffffff;
-            width: 1122px;
-            height: 794px;
-            padding: 30px 30px;
-            font-family: var(--font-primary);
-            position: relative;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-
-        .bp-header { text-align: center; margin-bottom: 0.4rem; }
-        .bp-title { font-size: 1.7rem; font-weight: 700; color: var(--title-blue); margin-bottom: 0.2rem; }
-        .bp-subtitle { font-size: 1.2rem; font-weight: 700; color: #475569; margin-bottom: 0.3rem; }
-        .bp-subtitle span.divider { color: #cbd5e1; font-weight: 300; margin: 0 0.75rem; }
-        .bp-description { font-size: 0.88rem; color: #64748b; font-family: var(--font-secondary); font-weight: 500; }
-
-        .bp-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-family: var(--font-primary);
-            font-size: 0.76rem;
-            table-layout: fixed;
-            margin-top: 0.4rem;
-            margin-bottom: 0.4rem;
-            flex-grow: 1;
-        }
-
-        .bp-table th:nth-child(1)  { width: 8.0%; }
-        .bp-table th:nth-child(2)  { width: 8.5%; }
-        .bp-table th:nth-child(3)  { width: 8.0%; }
-        .bp-table th:nth-child(4)  { width: 8.5%; }
-        .bp-table th:nth-child(5)  { width: 3.0%; }
-        .bp-table th:nth-child(6)  { width: 9.0%; }
-        .bp-table th:nth-child(7)  { width: 8.0%; }
-        .bp-table th:nth-child(8)  { width: 9.0%; }
-        .bp-table th:nth-child(9)  { width: 8.5%; }
-        .bp-table th:nth-child(10) { width: 8.5%; }
-        .bp-table th:nth-child(11) { width: 3.0%; }
-        .bp-table th:nth-child(12) { width: 8.5%; }
-        .bp-table th:nth-child(13) { width: 9.5%; }
-
-        .bp-table th, .bp-table td {
-            border: 1.5px solid var(--cell-maroon);
-            text-align: center;
-            vertical-align: middle;
-            padding: 6px 3px;
-            position: relative;
-        }
-
-        .bp-table th { background-color: #f8fafc; color: #334155; font-weight: 600; padding: 10px 3px; }
-        .bp-table th .time-range { font-size: 0.74rem; font-weight: 700; }
-        .bp-table th .time-sub { font-size: 0.6rem; color: #64748b; font-weight: 500; display: block; }
-
-        .day-cell { background-color: #f1f5f9; font-weight: 700; color: var(--title-blue); font-size: 0.82rem; padding: 12px 3px; }
-        .break-cell-text { color: #94a3b8; font-size: 0.74rem; font-weight: 500; background-color: #ffffff; }
-        .lunch-cell-text { color: #64748b; font-size: 0.78rem; font-style: italic; font-weight: 600; background-color: #f8fafc; }
-        .saturday-row td.no-classes { background-color: #f8fafc; color: #64748b; font-size: 0.8rem; font-style: italic; padding: 12px; }
-
-        .cell-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 56px;
-            border-radius: 4px;
-            padding: 4px 2px;
-            box-sizing: border-box;
-            width: 100%;
-        }
-
-        .cell-title { font-size: 0.78rem; font-weight: 700; margin-bottom: 2px; text-align: center; line-height: 1.1; }
-        .cell-code { font-size: 0.62rem; font-weight: 500; opacity: 0.85; margin-bottom: 2px; }
-        .cell-info { font-size: 0.62rem; font-weight: 500; opacity: 0.9; }
-
-        /* Blueprint Cell Backgrounds */
-        .cell-minor { background-color: #ffe4e6; color: #9f1239; }
-        .cell-dt { background-color: #ffedd5; color: #c2410c; }
-        .cell-dt-lab { background-color: #ffedd5; color: #c2410c; border: 1.5px dashed #c2410c; }
-        .cell-se { background-color: #dcfce7; color: #15803d; }
-        .cell-se-lab { background-color: #dcfce7; color: #15803d; border: 1.5px dashed #15803d; }
-        .cell-cn { background-color: #dbeafe; color: #1d4ed8; }
-        .cell-cn-lab { background-color: #dbeafe; color: #1d4ed8; border: 1.5px dashed #1d4ed8; }
-        .cell-cloud { background-color: #f3e8ff; color: #6b21a8; }
-        .cell-elective { background-color: #fef9c3; color: #854d0e; }
-        .cell-cdcell { background-color: #f1f5f9; color: #334155; }
-
-        .bp-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-top: 0.5rem; font-size: 0.72rem; font-weight: 600; color: #475569; }
-        .legend-item { display: flex; align-items: center; gap: 0.45rem; }
-        .legend-color { width: 13px; height: 13px; border-radius: 3px; border: 1px solid rgba(0, 0, 0, 0.15); }
-
-        .bp-footer { display: flex; justify-content: center; font-size: 0.64rem; color: #64748b; font-weight: 600; margin-top: 0.5rem; padding-top: 8px; border-top: 1.5px solid var(--cell-maroon); }
-
-        /* Floating Action Download Bar for Mobile */
-        .bottom-action-bar {
-            position: fixed;
-            bottom: max(1rem, var(--safe-bottom));
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(100% - 2rem);
-            max-width: 560px;
-            z-index: 90;
-        }
-
-        .download-fab-btn {
-            width: 100%;
-            background: var(--accent-glow);
-            color: #ffffff;
-            border: none;
-            border-radius: 18px;
-            padding: 1.1rem 1.5rem;
-            font-size: 1.05rem;
-            font-weight: 800;
-            font-family: var(--font-primary);
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.65rem;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .download-fab-btn:active {
-            transform: scale(0.97);
-            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.25);
-        }
-
-        .download-fab-btn svg { width: 22px; height: 22px; }
 
         /* Light Inspection Modal Sheet for Subject Details & Account Profile */
         .modal-overlay {
@@ -1453,125 +1339,7 @@
             <!-- Populated Dynamically by App JS -->
         </main>
 
-        <!-- Landscape Blueprint View Container -->
-        <div class="blueprint-container" id="blueprint-view-container">
-            <div id="timetable-pdf-sheet">
-                
-                <!-- Blueprint Header Info -->
-                <div class="bp-header">
-                    <div class="bp-title">Pandit Deendayal Energy University — School of Technology</div>
-                    <div class="bp-subtitle">
-                        Division <span id="label-div">1</span> 
-                        <span class="divider">|</span> 
-                        Group <span id="label-group">J1</span>
-                    </div>
-                    <div class="bp-description">
-                        B.Tech Computer Science & Business Systems · Semester 5 · Odd Semester 2026 · w.e.f. July 20, 2026 · Elective: <span id="label-elective">Business Strategy</span>
-                    </div>
-                </div>
 
-                <!-- Timetable Grid -->
-                <table class="bp-table">
-                    <thead>
-                        <tr>
-                            <th>DAY</th>
-                            <th>
-                                <div class="time-range">08:00 to 08:55</div>
-                                <div class="time-sub">Minor</div>
-                            </th>
-                            <th>
-                                <div class="time-range">9.00 to 9. 55</div>
-                                <div class="time-sub"></div>
-                            </th>
-                            <th>
-                                <div class="time-range">10.00 to 10.55</div>
-                                <div class="time-sub"></div>
-                            </th>
-                            <th>
-                                <div class="time-range">10:55 to 11:10</div>
-                                <div class="time-sub">Break</div>
-                            </th>
-                            <th>
-                                <div class="time-range">11.10 to 12.05</div>
-                                <div class="time-sub"></div>
-                            </th>
-                            <th>
-                                <div class="time-range">12.10 to 1.05</div>
-                                <div class="time-sub"></div>
-                            </th>
-                            <th>
-                                <div class="time-range">1:10 to 2:05</div>
-                                <div class="time-sub">(Lunch on Wed/Fri)</div>
-                            </th>
-                            <th>
-                                <div class="time-range">2.10 to 3.05</div>
-                                <div class="time-sub"></div>
-                            </th>
-                            <th>
-                                <div class="time-range">3.10 to 4.05</div>
-                                <div class="time-sub"></div>
-                            </th>
-                            <th>
-                                <div class="time-range">4:05 to 4:15</div>
-                                <div class="time-sub">Break</div>
-                            </th>
-                            <th>
-                                <div class="time-range">4.15 to 5.10</div>
-                                <div class="time-sub"></div>
-                            </th>
-                            <th>
-                                <div class="time-range">5.15 to 6.10</div>
-                                <div class="time-sub"></div>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody id="timetable-body">
-                        <!-- Rendered Dynamically by App JS -->
-                    </tbody>
-                </table>
-
-                <!-- Color Legend -->
-                <div class="bp-legend">
-                    <div class="legend-item">
-                        <div class="legend-color" style="background-color: #dbeafe;"></div>
-                        Computer Networks
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background-color: #dcfce7;"></div>
-                        Software Engineering
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background-color: #f3e8ff;"></div>
-                        Cloud & Microservices
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background-color: #ffedd5;"></div>
-                        Design Thinking
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background-color: #fef9c3;"></div>
-                        <span id="legend-elective-name">Business Strategy</span> (Elective)
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background-color: #f1f5f9;"></div>
-                        CD Cell
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background-color: #ffe4e6;"></div>
-                        Minor
-                    </div>
-                    <div class="legend-item" style="margin-left: 0.5rem; color: #475569; font-weight: 500;">
-                        ★ = Laboratory session (<span id="legend-group-name">J1</span> group specific)
-                    </div>
-                </div>
-
-                <!-- Footer -->
-                <div class="bp-footer">
-                    Pandit Deendayal Energy University · B.Tech CSBS · Sem 5 · Div <span id="foot-div">1</span> · Group <span id="foot-group">J1</span>
-                </div>
-
-            </div>
-        </div>
 
     </div>
 
@@ -1966,13 +1734,9 @@
                 showLoginModal();
             }
 
-            adjustScale();
-            
             // Start live clock & current class engine
             updateLiveClockEngine();
             setInterval(updateLiveClockEngine, 30000); // refresh every 30s
-
-            window.addEventListener('resize', adjustScale);
 
             // Listen for Android PWA Install Event
             window.addEventListener('beforeinstallprompt', (e) => {
@@ -2108,10 +1872,6 @@
                 <button class="switch-account-btn" onclick="switchAccountAction()">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>
                     Switch Profile / Login Different Roll No
-                </button>
-                <button class="switch-account-btn download-pdf-btn" onclick="downloadTimetablePDF()" style="margin-top: 0.5rem; background: var(--accent-glow); color: white; border: none; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.25);">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="stroke: white;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    Download Custom Timetable PDF
                 </button>
             `;
 
@@ -2562,6 +2322,12 @@
                                 <span>Prof: <strong>${fullProfName}</strong></span>
                             </div>
                         </div>
+                        ${isCurrentlyActive ? `
+                        <div class="live-indicator-badge">
+                            <span class="live-pulse-dot"></span>
+                            <span>LIVE NOW</span>
+                        </div>
+                        ` : ''}
                     `;
 
                     container.appendChild(card);
@@ -2573,184 +2339,7 @@
             }
         }
 
-        // 2. Render Full A4 Blueprint Grid
-        function renderBlueprintGrid() {
-            const division = document.getElementById("div-select").value;
-            const group = document.getElementById("group-select").value;
-            const electiveKey = document.getElementById("elective-select").value;
-            const divKey = "div" + division;
-            const activeSchedule = schedules[divKey][group];
-            const activeElectiveName = electiveNames[electiveKey];
 
-            document.getElementById("label-div").innerText = division;
-            document.getElementById("label-group").innerText = group;
-            document.getElementById("label-elective").innerText = activeElectiveName;
-            document.getElementById("legend-elective-name").innerText = activeElectiveName;
-            document.getElementById("legend-group-name").innerText = group;
-            document.getElementById("foot-div").innerText = division;
-            document.getElementById("foot-group").innerText = group;
-
-            const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-            const timeSlots = [
-                "08:00 to 08:55", "9.00 to 9. 55", "10.00 to 10.55", "10:55 to 11:10",
-                "11.10 to 12.05", "12.10 to 1.05", "1:10 to 2:05", "2.10 to 3.05",
-                "3.10 to 4.05", "4:05 to 4:15", "4.15 to 5.10", "5.15 to 6.10"
-            ];
-
-            const tbody = document.getElementById("timetable-body");
-            tbody.innerHTML = "";
-
-            days.forEach(day => {
-                const tr = document.createElement("tr");
-                if (day === "Saturday") tr.className = "saturday-row";
-
-                const dayTd = document.createElement("td");
-                dayTd.className = "day-cell";
-                dayTd.innerText = day.toUpperCase();
-                tr.appendChild(dayTd);
-
-                if (day === "Saturday") {
-                    const satTd = document.createElement("td");
-                    satTd.colSpan = 12;
-                    satTd.className = "no-classes";
-                    satTd.innerText = "No Classes Scheduled";
-                    tr.appendChild(satTd);
-                    tbody.appendChild(tr);
-                    return;
-                }
-
-                for (let i = 0; i < timeSlots.length; i++) {
-                    const slot = timeSlots[i];
-                    const td = document.createElement("td");
-
-                    if (slot === "10:55 to 11:10" || slot === "4:05 to 4:15") {
-                        td.className = "break-cell-text";
-                        td.innerText = "—";
-                        tr.appendChild(td);
-                        continue;
-                    }
-
-                    if (isLunchSlot(division, day, slot)) {
-                        td.className = "lunch-cell-text";
-                        td.innerText = "Lunch";
-                        tr.appendChild(td);
-                        continue;
-                    }
-
-                    let cellData = activeSchedule[day] ? activeSchedule[day][slot] : null;
-
-                    if (cellData === "ELECTIVE") {
-                        const electiveSchedKey = `${day}_${slot}`;
-                        const electiveDetails = electiveSchedules[electiveKey][electiveSchedKey];
-                        cellData = {
-                            title: activeElectiveName,
-                            code: electiveInfo[electiveKey].code,
-                            room: electiveDetails ? electiveDetails.room : "—",
-                            prof: electiveDetails ? electiveDetails.prof : "—",
-                            type: "elective"
-                        };
-                    }
-
-                    if (cellData) {
-                        if (cellData.isLab) {
-                            td.colSpan = 2;
-                            i++;
-                        }
-
-                        const cellDiv = document.createElement("div");
-                        cellDiv.className = `cell-content cell-${cellData.type}`;
-                        
-                        const titleDiv = document.createElement("div");
-                        titleDiv.className = "cell-title";
-                        titleDiv.innerText = cellData.title;
-                        cellDiv.appendChild(titleDiv);
-
-                        if (cellData.code) {
-                            const codeDiv = document.createElement("div");
-                            codeDiv.className = "cell-code";
-                            codeDiv.innerText = cellData.code;
-                            cellDiv.appendChild(codeDiv);
-                        }
-
-                        if (cellData.room || cellData.prof) {
-                            const infoDiv = document.createElement("div");
-                            infoDiv.className = "cell-info";
-                            infoDiv.innerText = `${cellData.room || '—'} · ${cellData.prof || '—'}`;
-                            cellDiv.appendChild(infoDiv);
-                        }
-
-                        td.appendChild(cellDiv);
-                    } else {
-                        td.innerText = "—";
-                        td.style.color = "#94a3b8";
-                    }
-
-                    tr.appendChild(td);
-                }
-
-                tbody.appendChild(tr);
-            });
-        }
-
-        // Dynamically scale down the A4 landscape sheet when displayed on mobile screens
-        function adjustScale() {
-            const sheet = document.getElementById("timetable-pdf-sheet");
-            const container = document.querySelector(".blueprint-container");
-            if (!sheet || !container) return;
-
-            const containerWidth = container.offsetWidth - 24;
-            const targetWidth = 1122;
-            const targetHeight = 794;
-            
-            const scale = Math.min(1, containerWidth / targetWidth);
-            sheet.style.transform = `scale(${scale})`;
-            sheet.style.transformOrigin = "top left";
-            container.style.height = `${(targetHeight * scale) + 24}px`;
-        }
-
-        // Download High-Resolution A4 PDF (Works from both Mobile Cards & Blueprint views)
-        function downloadTimetablePDF() {
-            const container = document.getElementById("blueprint-view-container");
-            const element = document.getElementById("timetable-pdf-sheet");
-            
-            const isHidden = (window.getComputedStyle(container).display === "none");
-
-            if (isHidden) {
-                container.style.position = "absolute";
-                container.style.left = "-9999px";
-                container.style.top = "-9999px";
-                container.style.display = "block";
-            }
-
-            const originalTransform = element.style.transform;
-            element.style.transform = "none";
-
-            const division = document.getElementById("div-select").value;
-            const group = document.getElementById("group-select").value;
-            const electiveSelect = document.getElementById("elective-select");
-            const electiveName = electiveSelect.options[electiveSelect.selectedIndex].text.replace(/\s+/g, '');
-            const filename = `Timetable_Div${division}_${group}_${electiveName}.pdf`;
-
-            const opt = {
-                margin:       0,
-                filename:     filename,
-                image:        { type: 'jpeg', quality: 1.0 },
-                html2canvas:  { scale: 4, useCORS: true, logging: false, letterRendering: true, allowTaint: true },
-                jsPDF:        { unit: 'px', hotfixes: ["px_scaling"], format: [1122, 794], orientation: 'landscape' }
-            };
-
-            const cleanup = () => {
-                element.style.transform = originalTransform;
-                if (isHidden) {
-                    container.style.display = "none";
-                    container.style.position = "";
-                    container.style.left = "";
-                    container.style.top = "";
-                }
-            };
-
-            html2pdf().set(opt).from(element).save().then(cleanup).catch(cleanup);
-        }
 
         // Subject Details Inspection Sheet
         function openSubjectModal(data, fullTitle, fullProf, timeLabel, division, group) {
