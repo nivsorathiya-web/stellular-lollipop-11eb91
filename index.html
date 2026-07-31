@@ -23,8 +23,8 @@
 
     <!-- Embedded Web App Manifest for Android PWA Install -->
     <link rel="manifest" href="data:application/json;charset=utf-8,%7B%22name%22%3A%22Timetable%22%2C%22short_name%22%3A%22Timetable%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f8fafc%22%2C%22theme_color%22%3A%22%234f46e5%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27180%27%20height%3D%27180%27%20viewBox%3D%270%200%20180%20180%27%253E%253Cdefs%253E%253ClinearGradient%20id%3D%27bg%27%20x1%3D%270%25%27%20y1%3D%270%25%27%20x2%3D%27100%25%27%20y2%3D%27100%25%27%253E%253Cstop%20offset%3D%270%25%27%20stop-color%3D%27%25234f46e5%27%2F%253E%253Cstop%20offset%3D%27100%25%27%20stop-color%3D%27%25237c3aed%27%2F%253E%253C%2FlinearGradient%253E%253C%2Fdefs%253E%253Crect%20width%3D%27180%27%20height%3D%27180%27%20rx%3D%2740%27%20fill%3D%27url(%2523bg)%27%2F%253E%253Crect%20x%3D%2735%27%20y%3D%2745%27%20width%3D%27110%27%20height%3D%27100%27%20rx%3D%2716%27%20fill%3D%27%2523ffffff%27%20fill-opacity%3D%270.15%27%20stroke%3D%27%2523ffffff%27%20stroke-width%3D%274%27%2F%253E%253Cpath%20d%3D%27M60%2032v24M120%2032v24M35%2075h110%27%20stroke%3D%27%2523ffffff%27%20stroke-width%3D%276%27%20stroke-linecap%3D%27round%27%2F%253E%253Ccircle%20cx%3D%2770%27%20cy%3D%27105%27%20r%3D%278%27%20fill%3D%27%252338bdf8%27%2F%253E%253Ccircle%20cx%3D%27110%27%20cy%3D%27105%27%20r%3D%278%27%20fill%3D%27%25234ade80%27%2F%253E%253Ccircle%20cx%3D%2770%27%20cy%3D%27125%27%20r%3D%278%27%20fill%3D%27%2523fb923c%27%2F%253E%253Ccircle%20cx%3D%27110%27%20cy%3D%27125%27%20r%3D%278%27%20fill%3D%27%2523c084fc%27%2F%253E%253C%2Fsvg%3E%22%2C%22sizes%22%3A%22180x180%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
-    
-
+    <!-- Preload Saturday Stratton Oakmont Image for Instant Smooth Loading -->
+    <link rel="preload" as="image" href="f7012d0f3bcfe9c1a190a9a1850edc72.jpg">
 
     <style>
         /* Modern Premium Light Theme Design System */
@@ -497,6 +497,11 @@
             box-shadow: 0 12px 30px rgba(79, 70, 229, 0.35);
             position: relative;
             overflow: hidden;
+        }
+
+        @keyframes smoothSatFade {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .live-status-card::after {
@@ -1830,28 +1835,22 @@
             return first.charAt(0).toUpperCase() + first.slice(1).toLowerCase();
         }
 
-        // Instant Robust Splash Screen Dismissal Function
+        // Instant Blazing Fast Splash Screen Dismissal Function
         function dismissSplashScreen() {
             const splash = document.getElementById("splash-screen");
             if (splash && !splash.classList.contains("fade-out")) {
                 splash.classList.add("fade-out");
-                setTimeout(() => { splash.style.display = "none"; }, 600);
+                setTimeout(() => { splash.style.display = "none"; }, 250);
             }
         }
 
-        // Guarantee splash screen disappears within 0.8s even on slow / loose connections
-        document.addEventListener("DOMContentLoaded", () => setTimeout(dismissSplashScreen, 600));
-        setTimeout(dismissSplashScreen, 1000);
+        // Guarantee splash screen disappears instantly (<0.1s)
+        document.addEventListener("DOMContentLoaded", () => setTimeout(dismissSplashScreen, 50));
+        setTimeout(dismissSplashScreen, 200);
 
         // Initialize App on Load
         window.onload = function() {
             dismissSplashScreen();
-            // Dismiss splash screen intro after 1.4s
-            setTimeout(() => {
-                const splash = document.getElementById("splash-screen");
-                if (splash) splash.classList.add("fade-out");
-            }, 1400);
-
             populateDatalist();
             checkWebView();
             checkIOSInstall();
@@ -2171,6 +2170,17 @@
                 liveDate.innerText = now.toLocaleDateString('en-US', options);
             }
 
+            const greetingElem = document.getElementById("live-greeting");
+            if (greetingElem) {
+                const hrs = now.getHours();
+                let greetText = "GOOD MORNING";
+                if (hrs >= 12 && hrs < 17) greetText = "GOOD AFTERNOON";
+                else if (hrs >= 17 && hrs < 22) greetText = "GOOD EVENING";
+                else if (hrs >= 22 || hrs < 5) greetText = "GOOD NIGHT";
+                const studentFirstName = loggedInStudent ? getFirstName(loggedInStudent.name).toUpperCase() : "STUDENT";
+                greetingElem.innerText = `${greetText}, ${studentFirstName}!`;
+            }
+
             if (!headline || !subtext) return;
 
             const division = loggedInStudent ? loggedInStudent.div : 1;
@@ -2179,13 +2189,6 @@
             if (currentDayName === "Saturday" || currentDayName === "Sunday") {
                 headline.innerHTML = "🐺 Stratton Oakmont — Market Closed";
                 subtext.innerText = "No lectures scheduled today. Rest up & enjoy your weekend!";
-                if (nextContainer) nextContainer.style.display = "none";
-                return;
-            }
-
-            if (currentDayName !== currentDay) {
-                headline.innerHTML = `📅 Viewing ${currentDay}'s Timetable`;
-                subtext.innerText = `Today is ${currentDayName}. Select ${currentDayName} tab to view active live status.`;
                 if (nextContainer) nextContainer.style.display = "none";
                 return;
             }
@@ -2203,7 +2206,7 @@
                 { slot: "3.10 to 4.05", start: 910, end: 965, label: "3:10 PM – 4:05 PM" }
             ];
 
-            const daySched = schedules[`div${division}`] ? schedules[`div${division}`][group][currentDay] : null;
+            const daySched = schedules[`div${division}`] ? schedules[`div${division}`][group][currentDayName] : null;
 
             let nextClassMatch = null;
             let nextClassData = null;
@@ -2269,7 +2272,7 @@
                     return;
                 }
 
-                let cellData = activeSchedule[todayName] ? activeSchedule[todayName][activeMatch.slot] : null;
+                let cellData = daySched ? (daySched[activeMatch.slot] || daySched[activeMatch.slot.replace(/:/g, ".")] || daySched[activeMatch.slot.replace(/\./g, ":")]) : null;
 
                 if (cellData === "ELECTIVE") {
                     const electiveSchedKey = `${todayName}_${activeMatch.slot}`;
@@ -2320,7 +2323,7 @@
                 const saturdayName = loggedInStudent ? getFirstName(loggedInStudent.name) : "Jordan";
                 container.innerHTML = `
                     <div class="saturday-card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-radius: 24px; padding: 1.75rem; border: 1px solid rgba(251, 191, 36, 0.15); box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 25px rgba(251, 191, 36, 0.05); text-align: center; color: #f8fafc; overflow: hidden; gap: 1.25rem; margin-top: 0.5rem;">
-                        <img src="f7012d0f3bcfe9c1a190a9a1850edc72.jpg" style="width: 100%; max-width: 500px; border-radius: 16px; border: 2px solid rgba(251, 191, 36, 0.2); box-shadow: 0 8px 25px rgba(0,0,0,0.5);" alt="Market Closed">
+                        <img src="f7012d0f3bcfe9c1a190a9a1850edc72.jpg" loading="eager" decoding="async" style="width: 100%; max-width: 500px; aspect-ratio: 16/9; object-fit: cover; border-radius: 16px; border: 2px solid rgba(251, 191, 36, 0.2); box-shadow: 0 8px 25px rgba(0,0,0,0.5); transition: opacity 0.3s ease; animation: smoothSatFade 0.4s ease-out;" alt="Market Closed">
                         <div style="display: flex; flex-direction: column; gap: 0.6rem; padding: 0.25rem 0.2rem;">
                             <div style="font-family: var(--font-primary); font-size: 1.25rem; font-weight: 800; color: #fbbf24; letter-spacing: 0.03em; text-transform: uppercase; text-shadow: 0 0 10px rgba(251, 191, 36, 0.15);">🐺 Stratton Oakmont — Market Closed</div>
                             <div style="font-family: var(--font-secondary); font-size: 0.92rem; font-weight: 500; color: #94a3b8; line-height: 1.6; letter-spacing: 0.01em;">${saturdayName}, the trading floor is closed for the weekend. No classes are scheduled for Saturday and Sunday. Lectures will resume on Monday at 8:00 AM.</div>
