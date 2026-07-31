@@ -1115,6 +1115,113 @@
                 padding-top: 0.4rem;
             }
         }
+    
+        /* Pro Creator Query Floating Badge & Modal Styling */
+        .creator-query-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+            color: #ffffff;
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 0.5rem 0.85rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(253, 29, 29, 0.35);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+            max-width: 100%;
+        }
+        .creator-query-btn:hover, .creator-query-btn:active {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(253, 29, 29, 0.5);
+        }
+        .creator-note-box {
+            background: rgba(30, 41, 59, 0.75);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(253, 29, 29, 0.35);
+            border-radius: 18px;
+            padding: 1.15rem;
+            color: #e2e8f0;
+            font-size: 0.88rem;
+            line-height: 1.55;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+            box-sizing: border-box;
+            width: 100%;
+        }
+        .instagram-dm-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            width: 100%;
+            padding: 0.95rem;
+            background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+            color: #ffffff !important;
+            font-weight: 850;
+            font-size: 0.95rem;
+            border-radius: 16px;
+            text-decoration: none !important;
+            box-shadow: 0 6px 20px rgba(253, 29, 29, 0.4);
+            transition: all 0.25s ease;
+            box-sizing: border-box;
+        }
+        .instagram-dm-btn:hover, .instagram-dm-btn:active {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(253, 29, 29, 0.6);
+        }
+        @media (max-width: 480px) {
+            .header-top {
+                flex-wrap: wrap;
+                gap: 0.6rem;
+            }
+            .creator-query-btn {
+                font-size: 0.74rem;
+                padding: 0.42rem 0.75rem;
+                width: 100%;
+                margin-top: 0.2rem;
+            }
+        }
+        .creator-query-btn:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 6px 20px rgba(253, 29, 29, 0.5);
+        }
+        .creator-note-box {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1.5px solid rgba(253, 29, 29, 0.3);
+            border-radius: 16px;
+            padding: 1.1rem;
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            line-height: 1.55;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+        .instagram-dm-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            width: 100%;
+            padding: 0.9rem;
+            background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+            color: #ffffff !important;
+            font-weight: 850;
+            font-size: 0.95rem;
+            border-radius: 14px;
+            text-decoration: none !important;
+            box-shadow: 0 6px 20px rgba(253, 29, 29, 0.4);
+            transition: all 0.25s ease;
+        }
+        .instagram-dm-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(253, 29, 29, 0.6);
+        }
+
     </style>
 </head>
 <body>
@@ -1267,6 +1374,10 @@
                     </div>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
                 </div>
+                <button class="creator-query-btn" onclick="openCreatorQueryModal()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    <span>Got a Query? DM Me</span>
+                </button>
 
                 <button class="android-install-btn" id="btn-android-install" onclick="triggerAndroidPWAInstall()">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
@@ -1418,7 +1529,7 @@
             { roll: "24BCB050", name: "Supreeti Pal", div: "1", group: "J2", elective: "cs", email: "24BCB050@sot.pdpu.ac.in" },
             { roll: "24BCB051", name: "Vaghani shubham jigneshbhai", div: "1", group: "J2", elective: "cs", email: "24BCB051@sot.pdpu.ac.in" },
             { roll: "24BCB052", name: "Pravada Narayan Raval", div: "1", group: "J2", elective: "bs", email: "24BCB052@sot.pdpu.ac.in" },
-            { roll: "24BCB053", name: "Daksh Kotadia", div: "1", group: "J1", elective: "cs", email: "24BCB053@sot.pdpu.ac.in" },
+            { roll: "24BCB053", name: "Daksh Kotadia", div: "1", group: "J2", elective: "cs", email: "24BCB053@sot.pdpu.ac.in" },
             { roll: "24BCB054", name: "Bhagya Shah", div: "1", group: "J2", elective: "cs", email: "24BCB054@sot.pdpu.ac.in" },
             { roll: "24BCB055", name: "Kavya Shree", div: "1", group: "J2", elective: "cs", email: "24BCB055@sot.pdpu.ac.in" },
             { roll: "24BCB056", name: "Vekariya Rudra Sanjaybhai", div: "1", group: "J2", elective: "cs", email: "24BCB056@sot.pdpu.ac.in" },
@@ -1580,7 +1691,8 @@
                         "08:00 to 08:55": { title: "MINOR", type: "minor" },
                         "10.00 to 10.55": { title: "Cloud, Microservices", code: "24CSB301T", room: "E306", prof: "RITH-L", type: "cloud" },
                         "11.10 to 12.05": { title: "Software Engineering", code: "24CSB302T", room: "E309", prof: "PUGU-L", type: "se" },
-                        "12.10 to 1.05": { title: "CD Cell", code: "CDC", room: "E309", prof: "CDCT-L", type: "cdcell" },
+                        "12.10 to 1.05": { title: "Lunch Break", type: "lunch" },
+                        "1:10 to 2:05": { title: "Career Development Cell", code: "CDC", room: "E309", prof: "CDCT-L", type: "cdc" },
                         "2.10 to 3.05": { title: "Software Engineering Lab★", code: "24CSB302P", room: "F-202", prof: "PUGU-P", type: "se-lab", isLab: true }
                     }
                 },
@@ -1616,7 +1728,8 @@
                         "08:00 to 08:55": { title: "MINOR", type: "minor" },
                         "10.00 to 10.55": { title: "Cloud, Microservices", code: "24CSB301T", room: "E306", prof: "RITH-L", type: "cloud" },
                         "11.10 to 12.05": { title: "Software Engineering", code: "24CSB302T", room: "E309", prof: "PUGU-L", type: "se" },
-                        "12.10 to 1.05": { title: "CD Cell", code: "CDC", room: "E309", prof: "CDCT-L", type: "cdcell" },
+                        "12.10 to 1.05": { title: "Lunch Break", type: "lunch" },
+                        "1:10 to 2:05": { title: "Career Development Cell", code: "CDC", room: "E309", prof: "CDCT-L", type: "cdc" },
                         "2.10 to 3.05": { title: "CN Lab★", code: "24CS302P", room: "F-104", prof: "SJD-P", type: "cn-lab", isLab: true }
                     }
                 }
@@ -1717,8 +1830,22 @@
             return first.charAt(0).toUpperCase() + first.slice(1).toLowerCase();
         }
 
+        // Instant Robust Splash Screen Dismissal Function
+        function dismissSplashScreen() {
+            const splash = document.getElementById("splash-screen");
+            if (splash && !splash.classList.contains("fade-out")) {
+                splash.classList.add("fade-out");
+                setTimeout(() => { splash.style.display = "none"; }, 600);
+            }
+        }
+
+        // Guarantee splash screen disappears within 0.8s even on slow / loose connections
+        document.addEventListener("DOMContentLoaded", () => setTimeout(dismissSplashScreen, 600));
+        setTimeout(dismissSplashScreen, 1000);
+
         // Initialize App on Load
         window.onload = function() {
+            dismissSplashScreen();
             // Dismiss splash screen intro after 1.4s
             setTimeout(() => {
                 const splash = document.getElementById("splash-screen");
@@ -1999,16 +2126,16 @@
         }
 
         // Return if slot is lunch based on division, day, and time slot
-        function isLunchSlot(division, day, slot) {
-            if (division === "1") {
-                if (day === "Friday") return (slot === "1:10 to 2:05" || slot === "13:10 to 14:05");
-                return (slot === "12.10 to 1.05" || slot === "12:10 to 13:05");
-            } else {
-                if (day === "Tuesday" || day === "Wednesday" || day === "Friday") {
-                    return (slot === "1:10 to 2:05" || slot === "13:10 to 14:05");
+                function isLunchSlot(division, day, slot) {
+            const divKey = "div" + division;
+            const group = loggedInStudent ? (loggedInStudent.group || (division == 1 ? "J1" : "J4")) : (division == 1 ? "J1" : "J4");
+            if (schedules && schedules[divKey] && schedules[divKey][group] && schedules[divKey][group][day]) {
+                const cell = schedules[divKey][group][day][slot] || schedules[divKey][group][day][slot.replace(/:/g, ".")] || schedules[divKey][group][day][slot.replace(/\./g, ":")];
+                if (cell && typeof cell === 'object' && (cell.type === 'lunch' || cell.title === 'Lunch Break')) {
+                    return true;
                 }
-                return (slot === "12.10 to 1.05" || slot === "12:10 to 13:05");
             }
+            return false;
         }
 
         // Main Refresh Function
@@ -2021,92 +2148,75 @@
         function updateLiveClockEngine() {
             const now = new Date();
             const daysMap = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-            const todayName = daysMap[now.getDay()];
+            const currentDayName = daysMap[now.getDay()];
             
-            // Format Live Date & Time String
-            const options = { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' };
-            document.getElementById("live-date-str").innerText = now.toLocaleDateString('en-US', options);
-            
-            // Force 12-hour format with AM/PM explicitly without leading zeros for hours
-            document.getElementById("live-clock-str").innerText = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true });
-
-            // Generate dynamic time-of-day greeting (Good Morning, Afternoon, Evening, Night)
-            const hours = now.getHours();
-            let greetingStr = "Hello";
-            if (hours >= 5 && hours < 12) {
-                greetingStr = "Good Morning";
-            } else if (hours >= 12 && hours < 17) {
-                greetingStr = "Good Afternoon";
-            } else if (hours >= 17 && hours < 21) {
-                greetingStr = "Good Evening";
-            } else {
-                greetingStr = "Good Night";
-            }
-            const greetingName = loggedInStudent ? getFirstName(loggedInStudent.name) : "Student";
-            const greetingElem = document.getElementById("live-greeting");
-            if (greetingElem) {
-                greetingElem.innerText = `${greetingStr}, ${greetingName}!`;
-            }
-
-            const currentMinutes = now.getHours() * 60 + now.getMinutes();
-
+            const liveClock = document.getElementById("live-clock-str");
+            const liveDate = document.getElementById("live-date-str");
             const headline = document.getElementById("live-headline");
             const subtext = document.getElementById("live-subtext");
             const nextContainer = document.getElementById("live-next-container");
 
-            if (todayName === "Sunday" || todayName === "Saturday") {
-                headline.innerHTML = "☕ Weekend — No Classes Today";
-                subtext.innerText = "Enjoy your weekend break! Classes resume Monday 8:00 AM.";
+            if (liveClock) {
+                let hrs = now.getHours();
+                let mins = now.getMinutes();
+                let ampm = hrs >= 12 ? 'PM' : 'AM';
+                hrs = hrs % 12;
+                hrs = hrs ? hrs : 12;
+                mins = mins < 10 ? '0' + mins : mins;
+                liveClock.innerText = `${hrs}:${mins} ${ampm}`;
+            }
+
+            if (liveDate) {
+                const options = { weekday: 'short', month: 'short', day: 'numeric' };
+                liveDate.innerText = now.toLocaleDateString('en-US', options);
+            }
+
+            if (!headline || !subtext) return;
+
+            const division = loggedInStudent ? loggedInStudent.div : 1;
+            const group = loggedInStudent ? (loggedInStudent.group || 'J1') : 'J1';
+
+            if (currentDayName === "Saturday" || currentDayName === "Sunday") {
+                headline.innerHTML = "🐺 Stratton Oakmont — Market Closed";
+                subtext.innerText = "No lectures scheduled today. Rest up & enjoy your weekend!";
                 if (nextContainer) nextContainer.style.display = "none";
                 return;
             }
 
-            const division = document.getElementById("div-select").value;
-            const group = document.getElementById("group-select").value;
-            const electiveKey = document.getElementById("elective-select").value;
-            const divKey = "div" + division;
-            const activeSchedule = schedules[divKey][group];
-            const activeElectiveName = electiveNames[electiveKey];
+            if (currentDayName !== currentDay) {
+                headline.innerHTML = `📅 Viewing ${currentDay}'s Timetable`;
+                subtext.innerText = `Today is ${currentDayName}. Select ${currentDayName} tab to view active live status.`;
+                if (nextContainer) nextContainer.style.display = "none";
+                return;
+            }
 
-            // Define Time Slot Minute Boundaries
+            const currentMinutes = now.getHours() * 60 + now.getMinutes();
             const timeRanges = [
-                { start: 480, end: 535, slot: "08:00 to 08:55", label: "8:00 AM – 8:55 AM" },
-                { start: 540, end: 595, slot: "9.00 to 9. 55", label: "9:00 AM – 9:55 AM" },
-                { start: 600, end: 655, slot: "10.00 to 10.55", label: "10:00 AM – 10:55 AM" },
-                { start: 655, end: 670, slot: "10:55 to 11:10", isBreak: true, label: "10:55 AM – 11:10 AM" },
-                { start: 670, end: 725, slot: "11.10 to 12.05", label: "11:10 AM – 12:05 PM" },
-                { start: 730, end: 785, slot: "12.10 to 1.05", label: "12:10 PM – 1:05 PM" },
-                { start: 790, end: 845, slot: "1:10 to 2:05", label: "1:10 PM – 2:05 PM" },
-                { start: 850, end: 905, slot: "2.10 to 3.05", label: "2:10 PM – 3:05 PM" },
-                { start: 910, end: 965, slot: "3.10 to 4.05", label: "3:10 PM – 4:05 PM" },
-                { start: 965, end: 975, slot: "4:05 to 4:15", isBreak: true, label: "4:05 PM – 4:15 PM" },
-                { start: 975, end: 1030, slot: "4.15 to 5.10", label: "4:15 PM – 5:10 PM" },
-                { start: 1035, end: 1090, slot: "5.15 to 6.10", label: "5:15 PM – 6:10 PM" }
+                { slot: "08:00 to 08:55", start: 480, end: 540, label: "8:00 AM – 8:55 AM" },
+                { slot: "9.00 to 9. 55", start: 540, end: 595, label: "9:00 AM – 9:55 AM" },
+                { slot: "10.00 to 10.55", start: 600, end: 655, label: "10:00 AM – 10:55 AM" },
+                { slot: "10:55 to 11:10", start: 655, end: 670, label: "10:55 AM – 11:10 AM", breakType: "short" },
+                { slot: "11.10 to 12.05", start: 670, end: 725, label: "11:10 AM – 12:05 PM" },
+                { slot: "12.10 to 1.05", start: 730, end: 785, label: "12:10 PM – 1:05 PM" },
+                { slot: "1.10 to 2.05", start: 785, end: 845, label: "1:10 PM – 2:05 PM" },
+                { slot: "2.10 to 3.05", start: 850, end: 905, label: "2:10 PM – 3:05 PM" },
+                { slot: "3.10 to 4.05", start: 910, end: 965, label: "3:10 PM – 4:05 PM" }
             ];
 
-            // Find next class preview first to populate container
+            const daySched = schedules[`div${division}`] ? schedules[`div${division}`][group][currentDay] : null;
+
             let nextClassMatch = null;
             let nextClassData = null;
-            for (let range of timeRanges) {
-                if (range.start >= currentMinutes) {
-                    if (range.isBreak) continue;
-                    if (isLunchSlot(division, todayName, range.slot)) continue;
-                    
-                    let data = activeSchedule[todayName] ? activeSchedule[todayName][range.slot] : null;
-                    if (data) {
-                        if (data === "ELECTIVE") {
-                            const electiveSchedKey = `${todayName}_${range.slot}`;
-                            const electiveDetails = electiveSchedules[electiveKey][electiveSchedKey];
-                            data = {
-                                title: activeElectiveName,
-                                code: electiveInfo[electiveKey].code,
-                                room: electiveDetails ? electiveDetails.room : "—",
-                                prof: electiveDetails ? electiveDetails.prof : "—"
-                            };
+
+            if (daySched) {
+                for (let range of timeRanges) {
+                    if (range.start > currentMinutes && !range.breakType) {
+                        const cell = daySched[range.slot] || daySched[range.slot.replace(/:/g, ".")] || daySched[range.slot.replace(/\./g, ":")];
+                        if (cell && typeof cell === 'object' && cell.title !== 'Lunch Break') {
+                            nextClassMatch = range;
+                            nextClassData = cell;
+                            break;
                         }
-                        nextClassMatch = range;
-                        nextClassData = data;
-                        break;
                     }
                 }
             }
@@ -2386,6 +2496,60 @@
         function closeModal(event) {
             document.getElementById("detail-modal").classList.remove("active");
         }
+    
+        function openCreatorQueryModal() {
+            document.getElementById("creator-query-modal").classList.add("active");
+        }
+        function closeCreatorQueryModal(event) {
+            if (!event || event.target.id === "creator-query-modal" || event.target.closest('.sheet-close-btn')) {
+                document.getElementById("creator-query-modal").classList.remove("active");
+            }
+        }
+
     </script>
+
+    <!-- Pro Creator Query & Instagram DM Modal Sheet -->
+    <div class="modal-overlay" id="creator-query-modal" onclick="closeCreatorQueryModal(event)">
+        <div class="modal-sheet" onclick="event.stopPropagation()" style="background: #0f172a; color: #ffffff; border: 2px solid rgba(253, 29, 29, 0.4);">
+            <div class="sheet-drag-handle" style="background: rgba(255,255,255,0.3);"></div>
+            <div class="sheet-header" style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.85rem;">
+                <div style="display: flex; align-items: center; gap: 0.65rem;">
+                    <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1rem; color: #ffffff;">
+                        N
+                    </div>
+                    <div>
+                        <div class="sheet-title" style="color: #ffffff; font-size: 1.15rem; font-weight: 850;">💬 Developer & Batch Note</div>
+                        <div style="font-size: 0.75rem; color: #94a3b8; font-weight: 600;">Created by Niv Sorathiya for CSBS Batch</div>
+                    </div>
+                </div>
+                <button class="sheet-close-btn" onclick="closeCreatorQueryModal()" style="color: #94a3b8; background: rgba(255,255,255,0.1);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            
+            <div style="padding: 1.25rem 0 0.5rem 0;">
+                <div class="creator-note-box">
+                    <p style="margin: 0 0 0.75rem 0; font-weight: 600;">
+                        Hey CSBS Batchmates! 👋
+                    </p>
+                    <p style="margin: 0 0 0.75rem 0;">
+                        I just made this web app for fun so none of us have to open that annoying PDF timetable over and over again! 📱⚡
+                    </p>
+                    <p style="margin: 0 0 0.75rem 0;">
+                        I’m just a student like you guys, not a professional developer. If you spot any wrong slot, miss an update, or find a glitch, tap the button below and drop me a DM on Instagram.
+                    </p>
+                    <p style="margin: 0; font-weight: 700; color: #f59e0b;">
+                        Just drop a message and I'll get it sorted for us! 👊
+                    </p>
+                </div>
+
+                <a href="https://www.instagram.com/niv_sorathiya05?igsh=MTlqcDd5NXc4bXY1OQ%3D%3D&utm_source=qr" target="_blank" class="instagram-dm-btn">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    <span>📩 DM Me on Instagram (@niv_sorathiya05)</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
