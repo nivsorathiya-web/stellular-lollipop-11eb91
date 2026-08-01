@@ -140,6 +140,7 @@
         body,
         .timetable-card,
         .info-bar,
+        .user-profile-badge-bar,
         .mobile-card,
         .modal-sheet,
         .modal-content,
@@ -169,6 +170,24 @@
 
         body.dark-mode .info-item-value {
             color: var(--text-primary) !important;
+        }
+
+        /* ── User Profile Badge Bar (Division / Group / Elective) ── */
+        body.dark-mode .user-profile-badge-bar {
+            background: #141e33 !important;
+            border-color: #1e2f50 !important;
+        }
+
+        body.dark-mode .profile-badge-item:last-child {
+            border-top-color: #1e2f50 !important;
+        }
+
+        body.dark-mode .profile-badge-label {
+            color: #8ba3c7 !important;
+        }
+
+        body.dark-mode .profile-badge-value {
+            color: #f8fafc !important;
         }
 
         /* ── Day Chips — inactive ── */
