@@ -1336,18 +1336,45 @@
 
         <!-- Live Device Clock & Today's Status Banner Card -->
         <div class="live-status-card">
-            <div class="live-card-top" style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+            <div class="live-card-top" style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%; margin-bottom: 0.75rem;">
+                <!-- Left Side: Greeting & Date -->
                 <div style="display: flex; flex-direction: column; gap: 0.2rem; align-items: flex-start;">
-                    <div id="live-greeting" style="font-size: 0.82rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #a78bfa; text-shadow: 0 0 10px rgba(167, 139, 250, 0.25);">GOOD MORNING</div>
-                    <span class="live-date-text" id="live-date-str" style="font-size: 0.95rem;">Wednesday, Jul 22</span>
+                    <div id="live-greeting" style="font-size: 0.82rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #a78bfa; text-shadow: 0 0 10px rgba(167, 139, 250, 0.25);">GOOD AFTERNOON, NIVKUMAR!</div>
+                    <span class="live-date-text" id="live-date-str" style="font-size: 0.95rem; font-weight: 800; color: #ffffff;">Saturday, Aug 1</span>
                 </div>
-                <span class="live-clock-badge" id="live-clock-str">06:40 PM</span>
+
+                <!-- Right Side: Top-Right Stacked Clock & Weather Corner Unit (Matching Drawing) -->
+                <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 0.3rem; margin-left: auto;">
+                    <!-- Top Pill: Clock & Temp -->
+                    <div id="weather-pill-container" style="display: flex; align-items: center; gap: 0.45rem; padding: 0.28rem 0.65rem; border-radius: 9999px; background: rgba(255, 255, 255, 0.18); border: 1px solid rgba(255, 255, 255, 0.28); backdrop-filter: blur(8px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+                        <span id="live-clock-str" style="font-size: 0.85rem; font-weight: 850; color: #ffffff; letter-spacing: -0.01em;">06:40 PM</span>
+                        <span style="opacity: 0.35; font-size: 0.75rem; color: #ffffff;">•</span>
+                        <div style="display: inline-flex; align-items: center; gap: 0.25rem;">
+                            <span id="weather-icon" style="font-size: 0.9rem;">🌧️</span>
+                            <span id="weather-temp" style="font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 850; color: #ffffff;">28°C</span>
+                        </div>
+                    </div>
+                    <!-- Bottom White Guidance Bubble Pill -->
+                    <div id="weather-guidance-pill" style="padding: 0.18rem 0.55rem; border-radius: 9999px; background: #ffffff; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12); display: inline-flex; align-items: center;">
+                        <span id="weather-guidance" style="font-size: 0.68rem; font-weight: 900; color: #0284c7; text-transform: uppercase; letter-spacing: 0.03em;">RAIN ALERT!</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Live Class Progress Tube Bar (Cyan-Mint Gradient) -->
+            <div id="live-progress-container" style="display: none; width: 100%; margin-top: 0.75rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+                    <span style="font-size: 0.75rem; font-weight: 800; color: #a78bfa; text-transform: uppercase; letter-spacing: 0.05em;">⏳ LECTURE PROGRESS</span>
+                    <span id="live-progress-text" style="font-size: 0.78rem; font-weight: 850; color: #ffffff;">0% Complete</span>
+                </div>
+                <div style="width: 100%; height: 8px; border-radius: 9999px; background: rgba(255, 255, 255, 0.18); overflow: hidden; position: relative;">
+                    <div id="live-progress-fill" style="width: 0%; height: 100%; border-radius: 9999px; background: linear-gradient(90deg, #38bdf8, #34d399); box-shadow: 0 0 10px rgba(56, 189, 248, 0.5); transition: width 0.4s ease;"></div>
+                </div>
             </div>
             <div class="live-current-headline" id="live-headline">
-                🟢 Today's Schedule Active
+                🐺 Stratton Oakmont — Market Closed
             </div>
             <div class="live-current-sub" id="live-subtext">
-                Checking current timetable for your division & group...
+                No lectures scheduled today. Rest up & enjoy your weekend!
             </div>
             <!-- Next Class Container (Not highlighted, clean contrast design) -->
             <div id="live-next-container" style="margin-top: 0.6rem; padding-top: 0.6rem; border-top: 1px solid rgba(255, 255, 255, 0.2); display: none; flex-direction: column; gap: 0.2rem;">
@@ -2144,6 +2171,109 @@
         }
 
         // Live Clock & Current Active Class Smart Engine
+        
+        // Real-Time 1-Minute PDPU Campus Weather Engine
+        async function fetchCampusWeather() {
+            try {
+                const cTemp = localStorage.getItem("pdpu_w_temp");
+                const cGuide = localStorage.getItem("pdpu_w_guide");
+                const cIcon = localStorage.getItem("pdpu_w_icon");
+                if (cTemp && cGuide && cIcon) {
+                    const tE = document.getElementById("weather-temp");
+                    const gE = document.getElementById("weather-guidance");
+                    const iE = document.getElementById("weather-icon");
+                    if (tE && gE && iE) {
+                        tE.innerText = cTemp;
+                        gE.innerText = cGuide;
+                        iE.innerText = cIcon;
+                    }
+                }
+            } catch (e) {}
+
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 2500);
+
+            try {
+                const url = "https://api.open-meteo.com/v1/forecast?latitude=23.1558&longitude=72.6669&current=temperature_2m,precipitation,rain,showers,weather_code&timezone=Asia%2FKolkata";
+                const res = await fetch(url, { signal: controller.signal });
+                clearTimeout(timeoutId);
+                if (!res.ok) return;
+                const data = await res.json();
+                if (!data || !data.current) return;
+
+                const temp = Math.round(data.current.temperature_2m);
+                const code = data.current.weather_code;
+                const precip = data.current.precipitation || 0;
+                const rain = data.current.rain || 0;
+                const showers = data.current.showers || 0;
+
+                const tempElem = document.getElementById("weather-temp");
+                const iconElem = document.getElementById("weather-icon");
+                const guideElem = document.getElementById("weather-guidance");
+                if (!tempElem || !iconElem || !guideElem) return;
+
+                let tempStr = `${temp}°C`;
+                let iconStr = "🌤️";
+                let guideStr = "PLEASANT";
+                let textColor = "#059669";
+
+                const isHeavy = (code >= 95 || precip >= 0.5 || rain >= 0.5 || showers >= 0.5);
+                const isLight = ((code >= 51 && code <= 67) || (code >= 80 && code <= 82) || precip > 0 || rain > 0 || showers > 0);
+
+                if (isHeavy) {
+                    iconStr = "⛈️";
+                    guideStr = "HEAVY RAIN!";
+                    textColor = "#0284c7";
+                } else if (isLight) {
+                    iconStr = "🌧️";
+                    guideStr = "RAIN ALERT!";
+                    textColor = "#0284c7";
+                } else if (code === 45 || code === 48) {
+                    iconStr = "🌫️";
+                    guideStr = "MORNING FOG";
+                    textColor = "#475569";
+                } else if (code === 3) {
+                    iconStr = "☁️";
+                    guideStr = "OVERCAST";
+                    textColor = "#475569";
+                } else {
+                    if (code === 0) iconStr = "☀️";
+                    else iconStr = "🌤️";
+
+                    if (temp >= 38) {
+                        guideStr = "HIGH HEAT!";
+                        textColor = "#ea580c";
+                    } else if (temp >= 32) {
+                        guideStr = "SUNNY SKY";
+                        textColor = "#d97706";
+                    } else if (temp >= 22) {
+                        guideStr = "PLEASANT";
+                        textColor = "#059669";
+                    } else if (temp >= 16) {
+                        guideStr = "COOL BREEZE";
+                        textColor = "#2563eb";
+                    } else {
+                        guideStr = "COLD MORNING!";
+                        textColor = "#4f46e5";
+                    }
+                }
+
+                tempElem.innerText = tempStr;
+                iconElem.innerText = iconStr;
+                guideElem.innerText = guideStr;
+                guideElem.style.color = textColor;
+
+                try {
+                    localStorage.setItem("pdpu_w_temp", tempStr);
+                    localStorage.setItem("pdpu_w_guide", guideStr);
+                    localStorage.setItem("pdpu_w_icon", iconStr);
+                } catch(e) {}
+            } catch (err) {}
+        }
+
+        fetchCampusWeather();
+        setInterval(fetchCampusWeather, 60000);
+
         function updateLiveClockEngine() {
             const now = new Date();
             const daysMap = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -2163,6 +2293,25 @@
                 hrs = hrs ? hrs : 12;
                 mins = mins < 10 ? '0' + mins : mins;
                 liveClock.innerText = `${hrs}:${mins} ${ampm}`;
+
+            // Live Progress Tube Bar Updater
+            const progContainer = document.getElementById("live-progress-container");
+            const progFill = document.getElementById("live-progress-fill");
+            const progText = document.getElementById("live-progress-text");
+            if (progContainer && progFill && progText) {
+                if (activeMatch && activeMatch.start && activeMatch.end) {
+                    const elapsed = currentMinutes - activeMatch.start;
+                    const totalDuration = activeMatch.end - activeMatch.start;
+                    const remainingMins = Math.max(0, activeMatch.end - currentMinutes);
+                    let pct = Math.min(100, Math.max(0, Math.round((elapsed / totalDuration) * 100)));
+                    progContainer.style.display = "block";
+                    progFill.style.width = pct + "%";
+                    progText.innerText = `${pct}% Complete (${remainingMins}m left)`;
+                } else {
+                    progContainer.style.display = "none";
+                }
+            }
+        
             }
 
             if (liveDate) {
@@ -2177,8 +2326,16 @@
                 if (hrs >= 12 && hrs < 17) greetText = "GOOD AFTERNOON";
                 else if (hrs >= 17 && hrs < 22) greetText = "GOOD EVENING";
                 else if (hrs >= 22 || hrs < 5) greetText = "GOOD NIGHT";
-                const studentFirstName = loggedInStudent ? getFirstName(loggedInStudent.name).toUpperCase() : "STUDENT";
-                greetingElem.innerText = `${greetText}, ${studentFirstName}!`;
+
+                let firstName = "NIVKUMAR";
+                if (window.currentStudent && window.currentStudent.name) {
+                    firstName = window.currentStudent.name.split(" ")[0].toUpperCase();
+                } else {
+                    const storedName = localStorage.getItem("csbs_student_name");
+                    if (storedName) firstName = storedName.split(" ")[0].toUpperCase();
+                }
+                
+                greetingElem.innerText = `${greetText}, ${firstName}!`;
             }
 
             if (!headline || !subtext) return;
