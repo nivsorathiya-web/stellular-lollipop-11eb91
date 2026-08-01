@@ -98,9 +98,9 @@
             --border-color: #1e2f50;
             --border-highlight: rgba(139, 92, 246, 0.4);
 
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --text-tertiary: #64748b;
+            --text-primary: #ffffff;
+            --text-secondary: #cbd5e1;
+            --text-tertiary: #94a3b8;
 
             --accent-primary: #818cf8;
             --accent-glow: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
@@ -172,33 +172,38 @@
             color: var(--text-primary) !important;
         }
 
-        /* ── User Profile Badge Bar (Division / Group / Elective) ── */
+        /* ── User Profile Badge Bar (Division / Group / Elective) — ULTRA PREMIUM BRIGHT TEXT ── */
         body.dark-mode .user-profile-badge-bar {
-            background: #141e33 !important;
-            border-color: #1e2f50 !important;
+            background: #111a2e !important;
+            border: 1.5px solid rgba(99, 102, 241, 0.35) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        body.dark-mode .profile-badge-item .badge-label {
+            color: #a5b4fc !important;
+            font-weight: 700 !important;
+        }
+
+        body.dark-mode .profile-badge-item strong {
+            color: #ffffff !important;
+            font-weight: 850 !important;
+            letter-spacing: -0.01em !important;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) !important;
         }
 
         body.dark-mode .profile-badge-item:last-child {
-            border-top-color: #1e2f50 !important;
-        }
-
-        body.dark-mode .profile-badge-label {
-            color: #8ba3c7 !important;
-        }
-
-        body.dark-mode .profile-badge-value {
-            color: #f8fafc !important;
+            border-top-color: rgba(99, 102, 241, 0.3) !important;
         }
 
         /* ── Day Chips — inactive ── */
         body.dark-mode .day-chip {
             background: #141e33 !important;
             border: 1.5px solid #1e2f50 !important;
-            color: #8ba3c7 !important;
+            color: #cbd5e1 !important;
         }
 
         body.dark-mode .day-chip .day-sub {
-            color: #4e6b8a !important;
+            color: #94a3b8 !important;
         }
 
         /* ── Day Chip — ACTIVE (glowing violet) ── */
@@ -210,7 +215,7 @@
         }
 
         body.dark-mode .day-chip.active .day-sub {
-            color: rgba(255,255,255,0.85) !important;
+            color: rgba(255,255,255,0.9) !important;
         }
 
         /* ── TODAY badge pill ── */
@@ -233,15 +238,15 @@
         }
 
         body.dark-mode .card-title {
-            color: #f8fafc !important;
+            color: #ffffff !important;
         }
 
         body.dark-mode .card-time {
-            color: #8ba3c7 !important;
+            color: #cbd5e1 !important;
         }
 
         body.dark-mode .card-time svg {
-            stroke: #8ba3c7 !important;
+            stroke: #cbd5e1 !important;
         }
 
         /* ── Meta pills (Room / Prof) ── */
@@ -251,15 +256,15 @@
         }
 
         body.dark-mode .meta-pill span {
-            color: #8ba3c7 !important;
+            color: #cbd5e1 !important;
         }
 
         body.dark-mode .meta-pill strong {
-            color: #f8fafc !important;
+            color: #ffffff !important;
         }
 
         body.dark-mode .meta-pill svg {
-            color: #4e6b8a !important;
+            color: #94a3b8 !important;
         }
 
         /* ── Lab session badge ── */
@@ -272,7 +277,7 @@
         /* ── Short Break / Lunch badge ── */
         body.dark-mode .card-badge {
             background: #1e2f50 !important;
-            color: #8ba3c7 !important;
+            color: #cbd5e1 !important;
         }
 
         /* ── Header profile chip ── */
@@ -282,11 +287,11 @@
         }
 
         body.dark-mode .profile-chip-name {
-            color: #f8fafc !important;
+            color: #ffffff !important;
         }
 
         body.dark-mode .profile-chip-roll {
-            color: #8ba3c7 !important;
+            color: #cbd5e1 !important;
         }
 
         /* ── Bottom sheet / modal-sheet / modal-content ── */
@@ -305,7 +310,7 @@
         body.dark-mode .sheet-title,
         body.dark-mode .modal-title,
         body.dark-mode #modal-title {
-            color: #f8fafc !important;
+            color: #ffffff !important;
         }
 
         body.dark-mode .sheet-code,
@@ -326,7 +331,7 @@
         }
 
         body.dark-mode .detail-value {
-            color: #f8fafc !important;
+            color: #ffffff !important;
         }
 
         /* ── Sheet drag handle ── */
@@ -339,7 +344,7 @@
         body.dark-mode .modal-close-btn,
         body.dark-mode .sheet-close-btn {
             background: #1e293b !important;
-            color: #94a3b8 !important;
+            color: #cbd5e1 !important;
             border-color: #334155 !important;
         }
 
@@ -350,7 +355,7 @@
         }
 
         body.dark-mode .dark-toggle-title {
-            color: #f8fafc !important;
+            color: #ffffff !important;
         }
 
         /* ── Switch Profile button ── */
