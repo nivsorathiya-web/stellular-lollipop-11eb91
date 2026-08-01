@@ -3,6 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <!-- ⚡ Instant Zero-Flicker Dark Mode Head Script -->
+    <script>
+        (function() {
+            try {
+                if (localStorage.getItem("csbs_dark_mode") === "1") {
+                    document.documentElement.classList.add("dark-mode");
+                }
+            } catch (e) {}
+        })();
+    </script>
+
     <title>Timetable</title>
     
     <!-- Google Fonts -->
@@ -87,7 +98,28 @@
         }
 
 
-        /* ═══════════════════════════════════════════════
+        
+        /* ── Zero-Flash Dark Mode & Dark Splash Screen ── */
+        html.dark-mode,
+        html.dark-mode body,
+        body.dark-mode {
+            background-color: #080d1a !important;
+            color: #ffffff !important;
+        }
+
+        html.dark-mode #splash-screen,
+        body.dark-mode #splash-screen {
+            background: linear-gradient(135deg, #080d1a 0%, #0f1629 100%) !important;
+        }
+
+        html.dark-mode #splash-screen div,
+        body.dark-mode #splash-screen div,
+        html.dark-mode #splash-screen span,
+        body.dark-mode #splash-screen span {
+            color: #ffffff !important;
+        }
+
+/* ═══════════════════════════════════════════════
            🌙 PREMIUM DARK MODE — Deep Space Theme
         ═══════════════════════════════════════════════ */
         body.dark-mode {
@@ -3162,9 +3194,11 @@
 
         function applyDarkMode(isDark) {
             if (isDark) {
+                document.documentElement.classList.add("dark-mode");
                 document.body.classList.add("dark-mode");
                 localStorage.setItem("csbs_dark_mode", "1");
             } else {
+                document.documentElement.classList.remove("dark-mode");
                 document.body.classList.remove("dark-mode");
                 localStorage.setItem("csbs_dark_mode", "0");
             }
@@ -3180,7 +3214,8 @@
         (function() {
             const saved = localStorage.getItem("csbs_dark_mode");
             if (saved === "1") {
-                document.body.classList.add("dark-mode");
+                document.documentElement.classList.add("dark-mode");
+                if (document.body) document.body.classList.add("dark-mode");
             }
         })();
 
