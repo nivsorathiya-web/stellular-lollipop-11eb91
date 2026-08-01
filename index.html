@@ -1355,7 +1355,7 @@
                 <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 0.3rem; margin-left: auto;">
                     <!-- Top Pill: Clock & Temp -->
                     <div id="weather-pill-container" style="display: flex; align-items: center; gap: 0.45rem; padding: 0.28rem 0.65rem; border-radius: 9999px; background: rgba(255, 255, 255, 0.18); border: 1px solid rgba(255, 255, 255, 0.28); backdrop-filter: blur(8px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
-                        <span id="live-clock-str" style="font-size: 0.85rem; font-weight: 850; color: #ffffff; letter-spacing: -0.01em;">06:40 PM</span>
+                        <span id="live-clock-str" style="font-size: 0.85rem; font-weight: 850; color: #ffffff; letter-spacing: -0.01em;">--:-- --</span>
                         <span style="opacity: 0.35; font-size: 0.75rem; color: #ffffff;">•</span>
                         <div style="display: inline-flex; align-items: center; gap: 0.35rem;">
                             <span id="weather-icon" style="font-size: 1.05rem;">🌧️</span>
@@ -2353,15 +2353,26 @@
                     studentObj = window.currentStudent;
                 }
 
-                if (studentObj && studentObj.name) {
-                    firstName = studentObj.name.trim().split(" ")[0].toUpperCase();
-                } else {
-                    const savedName = localStorage.getItem("csbs_student_name");
-                    if (savedName) firstName = savedName.trim().split(" ")[0].toUpperCase();
-                }
+                let currentProfileName = "NIVKUMAR";
+                try {
+                    const sel = document.getElementById("student-select");
+                    if (sel && sel.options[sel.selectedIndex]) {
+                        const optText = sel.options[sel.selectedIndex].text;
+                        if (optText && !optText.includes("Select")) {
+                            currentProfileName = optText.split("(")[0].trim().split(" ")[0].toUpperCase();
+                        }
+                    }
+                    if (!currentProfileName || currentProfileName === "SELECT") {
+                        const sObj = localStorage.getItem("csbs_student");
+                        if (sObj) {
+                            const parsed = JSON.parse(sObj);
+                            if (parsed && parsed.name) currentProfileName = parsed.name.trim().split(" ")[0].toUpperCase();
+                        }
+                    }
+                } catch(e) {}
 
-                if (firstName) {
-                    greetingElem.innerText = `${greetText}, ${firstName}!`;
+                if (currentProfileName && currentProfileName !== "SELECT") {
+                    greetingElem.innerText = `${greetText}, ${currentProfileName}!`;
                 } else {
                     greetingElem.innerText = `${greetText}!`;
                 }
