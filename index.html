@@ -145,6 +145,9 @@
         .modal-sheet,
         .modal-content,
         .bottom-sheet,
+        .login-card,
+        .login-select-input,
+        .student-preview-card,
         .day-chip,
         .meta-pill,
         .detail-card,
@@ -172,7 +175,7 @@
             color: var(--text-primary) !important;
         }
 
-        /* ── User Profile Badge Bar (Division / Group / Elective) — ULTRA PREMIUM BRIGHT TEXT ── */
+        /* ── User Profile Badge Bar (Division / Group / Elective) ── */
         body.dark-mode .user-profile-badge-bar {
             background: #111a2e !important;
             border: 1.5px solid rgba(99, 102, 241, 0.35) !important;
@@ -193,6 +196,75 @@
 
         body.dark-mode .profile-badge-item:last-child {
             border-top-color: rgba(99, 102, 241, 0.3) !important;
+        }
+
+        /* ── Login Console Modal (Student Profile Switcher) ── */
+        body.dark-mode #login-modal {
+            background: rgba(0, 0, 0, 0.85) !important;
+        }
+
+        body.dark-mode .login-card {
+            background: #0f172a !important;
+            border: 1.5px solid #1e2f50 !important;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75) !important;
+        }
+
+        body.dark-mode .login-title {
+            color: #ffffff !important;
+        }
+
+        body.dark-mode .login-sub {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-mode .login-input-label {
+            color: #a5b4fc !important;
+            font-weight: 700 !important;
+        }
+
+        body.dark-mode .login-select-input {
+            background: #1e293b !important;
+            border-color: #334155 !important;
+            color: #ffffff !important;
+            font-weight: 800 !important;
+        }
+
+        body.dark-mode .login-select-input::placeholder {
+            color: #64748b !important;
+        }
+
+        body.dark-mode .login-select-input:focus {
+            background: #1e293b !important;
+            border-color: #818cf8 !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.25) !important;
+        }
+
+        body.dark-mode .student-preview-card {
+            background: #141e33 !important;
+            border: 1px solid #1e2f50 !important;
+        }
+
+        body.dark-mode .preview-name {
+            color: #ffffff !important;
+            font-weight: 850 !important;
+        }
+
+        body.dark-mode .preview-tag {
+            background: #1e293b !important;
+            border: 1px solid #334155 !important;
+            color: #a5b4fc !important;
+            font-weight: 700 !important;
+        }
+
+        body.dark-mode .preview-email {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-mode .login-confirm-btn {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+            color: #ffffff !important;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.45) !important;
         }
 
         /* ── Day Chips — inactive ── */
