@@ -121,12 +121,20 @@
             align-items: center;
             justify-content: center;
             gap: 1.25rem;
-            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s;
+            animation: splashAutoDismiss 0.5s ease-out 0.4s forwards;
+            pointer-events: none;
+        }
+
+        @keyframes splashAutoDismiss {
+            0% { opacity: 1; visibility: visible; }
+            80% { opacity: 0; visibility: visible; }
+            100% { opacity: 0; visibility: hidden; display: none !important; z-index: -10; }
         }
 
         #splash-screen.fade-out {
             opacity: 0;
             visibility: hidden;
+            display: none !important;
             pointer-events: none;
         }
 
