@@ -2827,15 +2827,18 @@
 
             const currentMinutes = now.getHours() * 60 + now.getMinutes();
             const timeRanges = [
-                { slot: "08:00 to 08:55", start: 480, end: 540, label: "8:00 AM – 8:55 AM" },
+                { slot: "08:00 to 08:55", start: 480, end: 535, label: "8:00 AM – 8:55 AM" },
                 { slot: "9.00 to 9. 55", start: 540, end: 595, label: "9:00 AM – 9:55 AM" },
                 { slot: "10.00 to 10.55", start: 600, end: 655, label: "10:00 AM – 10:55 AM" },
                 { slot: "10:55 to 11:10", start: 655, end: 670, label: "10:55 AM – 11:10 AM", breakType: "short" },
                 { slot: "11.10 to 12.05", start: 670, end: 725, label: "11:10 AM – 12:05 PM" },
                 { slot: "12.10 to 1.05", start: 730, end: 785, label: "12:10 PM – 1:05 PM" },
-                { slot: "1.10 to 2.05", start: 785, end: 845, label: "1:10 PM – 2:05 PM" },
+                { slot: "1:10 to 2:05", start: 790, end: 845, label: "1:10 PM – 2:05 PM" },
                 { slot: "2.10 to 3.05", start: 850, end: 905, label: "2:10 PM – 3:05 PM" },
-                { slot: "3.10 to 4.05", start: 910, end: 965, label: "3:10 PM – 4:05 PM" }
+                { slot: "3.10 to 4.05", start: 910, end: 965, label: "3:10 PM – 4:05 PM" },
+                { slot: "4:05 to 4:15", start: 965, end: 975, label: "4:05 PM – 4:15 PM", breakType: "short" },
+                { slot: "4.15 to 5.10", start: 975, end: 1030, label: "4:15 PM – 5:10 PM" },
+                { slot: "5.15 to 6.10", start: 1035, end: 1090, label: "5:15 PM – 6:10 PM" }
             ];
 
             const daySched = schedules[`div${division}`] ? schedules[`div${division}`][group][currentDayName] : null;
@@ -2930,10 +2933,10 @@
 
                 if (cellData === "ELECTIVE") {
                     const electiveSchedKey = `${todayName}_${activeMatch.slot}`;
-                    const electiveDetails = electiveSchedules[electiveKey][electiveSchedKey];
+                    const electiveDetails = (electiveSchedules[electiveKey] && electiveSchedules[electiveKey][electiveSchedKey]) ? electiveSchedules[electiveKey][electiveSchedKey] : null;
                     cellData = {
                         title: activeElectiveName,
-                        code: electiveInfo[electiveKey].code,
+                        code: (electiveInfo[electiveKey] ? electiveInfo[electiveKey].code : "—"),
                         room: electiveDetails ? electiveDetails.room : "—",
                         prof: electiveDetails ? electiveDetails.prof : "—"
                     };
