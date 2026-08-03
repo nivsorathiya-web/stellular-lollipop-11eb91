@@ -2815,6 +2815,8 @@
 
             const division = loggedInStudent ? loggedInStudent.div : 1;
             const group = loggedInStudent ? (loggedInStudent.group || 'J1') : 'J1';
+            const electiveKey = document.getElementById("elective-select") ? document.getElementById("elective-select").value : "BS";
+            const activeElectiveName = electiveNames ? electiveNames[electiveKey] : "";
 
             if (currentDayName === "Saturday" || currentDayName === "Sunday") {
                 headline.innerHTML = "🐺 Stratton Oakmont — Market Closed";
@@ -2890,7 +2892,7 @@
             }
 
             if (activeMatch) {
-                if (activeMatch.isBreak) {
+                if (activeMatch.isBreak || activeMatch.breakType) {
                     headline.innerHTML = "☕ Short Break Right Now";
                     subtext.innerText = `Classes resume shortly at ${activeMatch.end === 670 ? '11:10 AM' : '4:15 PM'}.`;
                     return;
