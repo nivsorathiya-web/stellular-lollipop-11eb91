@@ -2631,6 +2631,13 @@
 
         // Return if slot is lunch based on division, day, and time slot
                 function isLunchSlot(division, day, slot) {
+            if (day === "Saturday" || day === "Sunday") return false;
+            if (division == 1 && (slot === "12.10 to 1.05" || slot === "12:10 to 1:05" || slot === "12:10-13:05")) {
+                return true;
+            }
+            if (division == 2 && (slot === "1.10 to 2.05" || slot === "1:10 to 2:05" || slot === "13:10-14:05")) {
+                return true;
+            }
             const divKey = "div" + division;
             const group = loggedInStudent ? (loggedInStudent.group || (division == 1 ? "J1" : "J4")) : (division == 1 ? "J1" : "J4");
             if (schedules && schedules[divKey] && schedules[divKey][group] && schedules[divKey][group][day]) {
