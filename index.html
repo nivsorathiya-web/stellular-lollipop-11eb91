@@ -1689,6 +1689,658 @@
             box-shadow: 0 8px 25px rgba(253, 29, 29, 0.6);
         }
 
+        /* ══════════════════════════════════════════════════════════════
+           ⚡ Mid-Semester Examination Banner Bar & Rich Modal System
+           ══════════════════════════════════════════════════════════════ */
+        .midsem-banner-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8faff 100%);
+            border: 1.5px solid rgba(99, 102, 241, 0.28);
+            border-radius: 20px;
+            padding: 0.95rem 1.15rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.85rem;
+            box-shadow: 0 10px 25px -4px rgba(79, 70, 229, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .midsem-banner-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background: linear-gradient(180deg, #4f46e5, #7c3aed);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .midsem-banner-card:active {
+            transform: scale(0.985);
+            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.18);
+        }
+
+        .midsem-banner-left {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            min-width: 0;
+            flex: 1;
+        }
+
+        .midsem-icon-bubble {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.32);
+        }
+
+        .midsem-banner-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+            min-width: 0;
+        }
+
+        .midsem-badge-row {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.1rem;
+        }
+
+        .midsem-pill-tag {
+            font-size: 0.62rem;
+            font-weight: 850;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.15rem 0.5rem;
+            border-radius: 9999px;
+            background: rgba(79, 70, 229, 0.1);
+            color: #4f46e5;
+        }
+
+        .midsem-countdown-pill {
+            font-size: 0.62rem;
+            font-weight: 850;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.15rem 0.5rem;
+            border-radius: 9999px;
+            background: rgba(245, 158, 11, 0.15);
+            color: #d97706;
+        }
+
+        .midsem-title {
+            font-family: var(--font-primary);
+            font-size: 0.98rem;
+            font-weight: 800;
+            color: #0f172a;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .midsem-sub {
+            font-family: var(--font-secondary);
+            font-size: 0.73rem;
+            color: #64748b;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .midsem-banner-right {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .midsem-open-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.2rem;
+            padding: 0.45rem 0.8rem;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+            color: #ffffff;
+            font-size: 0.76rem;
+            font-weight: 800;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.28);
+            pointer-events: none;
+        }
+
+        /* Modal Sheet Specifics */
+        .midsem-modal-sheet {
+            max-height: 88vh;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            padding: 1.35rem 1.35rem calc(1.35rem + var(--safe-bottom));
+            overflow: hidden;
+        }
+
+        .midsem-scroll-body {
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-right: 0.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        /* Student Card in Modal */
+        .midsem-student-card {
+            background: linear-gradient(135deg, #eef2ff 0%, #f5f3ff 100%);
+            border: 1.5px solid #c7d2fe;
+            border-radius: 18px;
+            padding: 1rem 1.15rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .midsem-student-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .midsem-student-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: #ffffff;
+            font-weight: 850;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
+        }
+
+        .midsem-student-meta {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .midsem-student-name {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #1e1b4b;
+        }
+
+        .midsem-student-sub {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #6366f1;
+        }
+
+        .midsem-student-badge {
+            background: #4f46e5;
+            color: #ffffff;
+            font-size: 0.68rem;
+            font-weight: 850;
+            padding: 0.25rem 0.65rem;
+            border-radius: 9999px;
+            box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+            white-space: nowrap;
+        }
+
+        .midsem-elective-callout {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid #c7d2fe;
+            border-radius: 12px;
+            padding: 0.6rem 0.85rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .midsem-elective-label {
+            font-size: 0.62rem;
+            font-weight: 850;
+            color: #4f46e5;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .midsem-elective-val {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        /* Quick Stats Grid */
+        .midsem-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+
+        .midsem-stat-item {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 0.65rem 0.4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .midsem-stat-num {
+            font-family: var(--font-primary);
+            font-size: 1.15rem;
+            font-weight: 900;
+            color: var(--accent-primary);
+            line-height: 1.1;
+        }
+
+        .midsem-stat-label {
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-top: 0.15rem;
+        }
+
+        /* Section Header */
+        .midsem-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.72rem;
+            font-weight: 850;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .midsem-section-badge {
+            background: rgba(79, 70, 229, 0.08);
+            color: var(--accent-primary);
+            padding: 0.15rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.62rem;
+            font-weight: 800;
+        }
+
+        /* Exam Schedule Cards */
+        .midsem-schedule-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .midsem-exam-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .midsem-exam-card:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .midsem-exam-side-accent {
+            width: 5px;
+            flex-shrink: 0;
+        }
+
+        .midsem-exam-side-accent.morning {
+            background: linear-gradient(180deg, #f59e0b, #ea580c);
+        }
+
+        .midsem-exam-side-accent.evening {
+            background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+        }
+
+        .midsem-exam-side-accent.elective {
+            background: linear-gradient(180deg, #8b5cf6, #6366f1);
+        }
+
+        .midsem-exam-content {
+            padding: 0.9rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            width: 100%;
+        }
+
+        .midsem-exam-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .midsem-exam-date {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        .midsem-slot-tag {
+            font-size: 0.58rem;
+            font-weight: 850;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.15rem 0.5rem;
+            border-radius: 9999px;
+        }
+
+        .midsem-slot-tag.morning {
+            background: #fffbeb;
+            color: #b45309;
+            border: 1px solid #fde68a;
+        }
+
+        .midsem-slot-tag.evening {
+            background: #eff6ff;
+            color: #1d4ed8;
+            border: 1px solid #bfdbfe;
+        }
+
+        .midsem-slot-tag.elective {
+            background: #f5f3ff;
+            color: #6d28d9;
+            border: 1px solid #ddd6fe;
+        }
+
+        .midsem-exam-title {
+            font-family: var(--font-primary);
+            font-size: 1.02rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.25;
+        }
+
+        .midsem-exam-meta-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .midsem-code-pill {
+            font-size: 0.7rem;
+            font-weight: 800;
+            background: var(--bg-body);
+            color: var(--accent-primary);
+            padding: 0.18rem 0.5rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            font-family: monospace;
+        }
+
+        .midsem-time-pill {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        /* Elective specific options inside Paper 3 */
+        .midsem-elective-notice {
+            font-size: 0.7rem;
+            color: var(--text-tertiary);
+            margin-top: 0.2rem;
+            line-height: 1.35;
+        }
+
+        .midsem-elective-options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+            margin-top: 0.35rem;
+        }
+
+        .midsem-opt-item {
+            background: var(--bg-body);
+            border: 1.5px solid var(--border-color);
+            border-radius: 12px;
+            padding: 0.6rem 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .midsem-opt-item.selected-elective {
+            background: #eff6ff;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        }
+
+        .midsem-opt-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            flex-shrink: 0;
+        }
+
+        .midsem-opt-item.selected-elective .midsem-opt-indicator {
+            background: #3b82f6;
+            box-shadow: 0 0 8px #3b82f6;
+        }
+
+        .midsem-opt-info {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .midsem-opt-name {
+            font-size: 0.82rem;
+            font-weight: 750;
+            color: #0f172a;
+        }
+
+        .midsem-opt-code {
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: #64748b;
+        }
+
+        .midsem-opt-badge {
+            background: #2563eb;
+            color: #ffffff;
+            font-size: 0.6rem;
+            font-weight: 850;
+            padding: 0.2rem 0.55rem;
+            border-radius: 9999px;
+            white-space: nowrap;
+            display: none;
+        }
+
+        /* Rules & Instructions Card */
+        .midsem-instructions-card {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1rem 1.1rem;
+        }
+
+        .midsem-rules-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .midsem-rules-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            line-height: 1.45;
+        }
+
+        .midsem-rules-list li strong {
+            color: var(--text-primary);
+        }
+
+        .rule-bullet {
+            font-size: 0.95rem;
+            flex-shrink: 0;
+            margin-top: -1px;
+        }
+
+        /* ── Dark Mode Overrides for Mid Sem System ── */
+        body.dark-mode .midsem-banner-card {
+            background: linear-gradient(135deg, #131c31 0%, #1e293b 100%) !important;
+            border-color: rgba(129, 140, 248, 0.35) !important;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        body.dark-mode .midsem-title {
+            color: #ffffff !important;
+        }
+
+        body.dark-mode .midsem-sub {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-mode .midsem-pill-tag {
+            background: rgba(129, 140, 248, 0.2) !important;
+            color: #a5b4fc !important;
+        }
+
+        body.dark-mode .midsem-student-card {
+            background: linear-gradient(135deg, #1e1b4b 0%, #1e293b 100%) !important;
+            border-color: #3730a3 !important;
+        }
+
+        body.dark-mode .midsem-student-name {
+            color: #ffffff !important;
+        }
+
+        body.dark-mode .midsem-student-sub {
+            color: #a5b4fc !important;
+        }
+
+        body.dark-mode .midsem-elective-callout {
+            background: rgba(15, 23, 42, 0.7) !important;
+            border-color: #3730a3 !important;
+        }
+
+        body.dark-mode .midsem-elective-label {
+            color: #818cf8 !important;
+        }
+
+        body.dark-mode .midsem-elective-val {
+            color: #ffffff !important;
+        }
+
+        body.dark-mode .midsem-stat-item {
+            background: #1e293b !important;
+            border-color: #334155 !important;
+        }
+
+        body.dark-mode .midsem-stat-num {
+            color: #818cf8 !important;
+        }
+
+        body.dark-mode .midsem-stat-label {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-mode .midsem-section-header {
+            color: #cbd5e1 !important;
+            border-color: #334155 !important;
+        }
+
+        body.dark-mode .midsem-exam-card {
+            background: #1e293b !important;
+            border-color: #334155 !important;
+        }
+
+        body.dark-mode .midsem-exam-date {
+            color: #ffffff !important;
+        }
+
+        body.dark-mode .midsem-exam-title {
+            color: #ffffff !important;
+        }
+
+        body.dark-mode .midsem-time-pill {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-mode .midsem-code-pill {
+            background: #0f172a !important;
+            border-color: #334155 !important;
+            color: #818cf8 !important;
+        }
+
+        body.dark-mode .midsem-opt-item {
+            background: #0f172a !important;
+            border-color: #334155 !important;
+        }
+
+        body.dark-mode .midsem-opt-item.selected-elective {
+            background: rgba(59, 130, 246, 0.15) !important;
+            border-color: #3b82f6 !important;
+        }
+
+        body.dark-mode .midsem-opt-name {
+            color: #ffffff !important;
+        }
+
+        body.dark-mode .midsem-opt-code {
+            color: #94a3b8 !important;
+        }
+
+        body.dark-mode .midsem-instructions-card {
+            background: #1e293b !important;
+            border-color: #334155 !important;
+        }
+
+        body.dark-mode .midsem-rules-list li {
+            color: #cbd5e1 !important;
+        }
+
+        body.dark-mode .midsem-rules-list li strong {
+            color: #ffffff !important;
+        }
+
     </style>
 </head>
 <body>
@@ -1852,6 +2504,37 @@
             </div>
         </div>
 
+        <!-- Mid-Semester Examination Notification & Action Banner -->
+        <div class="midsem-banner-card" id="midsem-banner-bar" onclick="openMidSemModal()">
+            <div class="midsem-banner-left">
+                <div class="midsem-icon-bubble">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                </div>
+                <div class="midsem-banner-text">
+                    <div class="midsem-badge-row">
+                        <span class="midsem-pill-tag">⚡ MID SEM EXAM 2026</span>
+                        <span class="midsem-countdown-pill" id="midsem-countdown-tag">Starts Sep 21</span>
+                    </div>
+                    <div class="midsem-title">Mid Sem Timetable & Schedule</div>
+                    <div class="midsem-sub">5 Subjects • Sep 21 – 23 • Tap for dates, slots & rules</div>
+                </div>
+            </div>
+            <div class="midsem-banner-right">
+                <button class="midsem-open-btn" aria-label="Open Timetable">
+                    <span>View</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
         <!-- App Top Header -->
         <header class="app-header">
             <div class="header-top">
@@ -1972,6 +2655,231 @@
             
             <div class="sheet-details-grid" id="modal-details-grid">
                 <!-- Dynamically populated for subject inspection or profile sheet -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Mid-Semester Examination Detailed Modal Sheet -->
+    <div class="modal-overlay" id="midsem-modal" onclick="closeMidSemModal(event)">
+        <div class="modal-sheet midsem-modal-sheet" onclick="event.stopPropagation()">
+            <div class="sheet-drag-handle"></div>
+            
+            <div class="sheet-header" style="align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.85rem; margin-bottom: 0.2rem;">
+                <div style="display: flex; align-items: center; gap: 0.65rem;">
+                    <div class="midsem-icon-bubble" style="width: 38px; height: 38px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="sheet-title" style="font-size: 1.15rem;">Mid Sem Exam Timetable</div>
+                        <div class="sheet-code" style="font-size: 0.76rem; color: var(--accent-primary);">PDEU • B.Tech CSBS · Semester 5</div>
+                    </div>
+                </div>
+                <button class="sheet-close-btn" onclick="closeMidSemModal()" aria-label="Close">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+
+            <div class="midsem-scroll-body">
+                <!-- Personalized Student & Countdown Card -->
+                <div class="midsem-student-card" id="midsem-student-card">
+                    <div class="midsem-student-header">
+                        <div class="midsem-student-avatar" id="midsem-student-avatar">N</div>
+                        <div class="midsem-student-meta">
+                            <div class="midsem-student-name" id="midsem-student-name">Student</div>
+                            <div class="midsem-student-sub" id="midsem-student-sub">CSBS • Sem 5</div>
+                        </div>
+                        <div class="midsem-student-badge" id="midsem-modal-countdown">Starts Sep 21</div>
+                    </div>
+                    <div class="midsem-elective-callout" id="midsem-elective-callout">
+                        <div class="midsem-elective-label">🎯 YOUR ENROLLED ELECTIVE (TUE, 22 SEP):</div>
+                        <div class="midsem-elective-val" id="midsem-elective-val">Business Strategy (24CSB332T)</div>
+                    </div>
+                </div>
+
+                <!-- Exam High-level Quick Stats -->
+                <div class="midsem-stats-grid">
+                    <div class="midsem-stat-item">
+                        <span class="midsem-stat-num">5</span>
+                        <span class="midsem-stat-label">Total Papers</span>
+                    </div>
+                    <div class="midsem-stat-item">
+                        <span class="midsem-stat-num">3</span>
+                        <span class="midsem-stat-label">Exam Days</span>
+                    </div>
+                    <div class="midsem-stat-item">
+                        <span class="midsem-stat-num">90m</span>
+                        <span class="midsem-stat-label">Per Session</span>
+                    </div>
+                    <div class="midsem-stat-item">
+                        <span class="midsem-stat-num">2</span>
+                        <span class="midsem-stat-label">Daily Slots</span>
+                    </div>
+                </div>
+
+                <!-- Section Header: Exam Timetable Schedule -->
+                <div class="midsem-section-header">
+                    <span>📅 SCHEDULE & SUBJECTS</span>
+                    <span class="midsem-section-badge">SEP 21 – SEP 23, 2026</span>
+                </div>
+
+                <!-- Exam Schedule Cards Container -->
+                <div class="midsem-schedule-list">
+
+                    <!-- Day 1 - Paper 1 -->
+                    <div class="midsem-exam-card">
+                        <div class="midsem-exam-side-accent morning"></div>
+                        <div class="midsem-exam-content">
+                            <div class="midsem-exam-top">
+                                <span class="midsem-exam-date">🗓️ Mon, 21 Sep 2026</span>
+                                <span class="midsem-slot-tag morning">🌅 MORNING (SLOT 1)</span>
+                            </div>
+                            <div class="midsem-exam-title">Design Thinking</div>
+                            <div class="midsem-exam-meta-row">
+                                <span class="midsem-code-pill">24CSB306T</span>
+                                <span class="midsem-time-pill">⏰ 10:00 AM – 11:30 AM (90 mins)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 1 - Paper 2 -->
+                    <div class="midsem-exam-card">
+                        <div class="midsem-exam-side-accent evening"></div>
+                        <div class="midsem-exam-content">
+                            <div class="midsem-exam-top">
+                                <span class="midsem-exam-date">🗓️ Mon, 21 Sep 2026</span>
+                                <span class="midsem-slot-tag evening">🌇 EVENING (SLOT 2)</span>
+                            </div>
+                            <div class="midsem-exam-title">Computer Networks</div>
+                            <div class="midsem-exam-meta-row">
+                                <span class="midsem-code-pill">24CS302T</span>
+                                <span class="midsem-time-pill">⏰ 04:00 PM – 05:30 PM (90 mins)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 2 - Paper 3 (ELECTIVE) -->
+                    <div class="midsem-exam-card elective-slot-card">
+                        <div class="midsem-exam-side-accent elective"></div>
+                        <div class="midsem-exam-content">
+                            <div class="midsem-exam-top">
+                                <span class="midsem-exam-date">🗓️ Tue, 22 Sep 2026</span>
+                                <span class="midsem-slot-tag elective">⭐ ELECTIVE SLOT (SLOT 1)</span>
+                            </div>
+                            <div class="midsem-exam-title">Department Elective Course</div>
+                            <div class="midsem-exam-meta-row">
+                                <span class="midsem-code-pill">3 Parallel Papers</span>
+                                <span class="midsem-time-pill">⏰ 10:00 AM – 11:30 AM (90 mins)</span>
+                            </div>
+                            <div class="midsem-elective-notice">
+                                ℹ️ <em>All three papers run at this time. Attend the one you are enrolled in:</em>
+                            </div>
+                            <!-- Elective Options -->
+                            <div class="midsem-elective-options-list">
+                                <div class="midsem-opt-item" id="midsem-opt-bs" onclick="selectMidSemElectivePreview('bs')">
+                                    <div class="midsem-opt-indicator"></div>
+                                    <div class="midsem-opt-info">
+                                        <div class="midsem-opt-name">Business Strategy</div>
+                                        <div class="midsem-opt-code">Course Code: 24CSB332T</div>
+                                    </div>
+                                    <span class="midsem-opt-badge" id="badge-opt-bs">Your Elective</span>
+                                </div>
+                                <div class="midsem-opt-item" id="midsem-opt-cd" onclick="selectMidSemElectivePreview('cd')">
+                                    <div class="midsem-opt-indicator"></div>
+                                    <div class="midsem-opt-info">
+                                        <div class="midsem-opt-name">Compiler Design + Lab (LEX & YACC)</div>
+                                        <div class="midsem-opt-code">Course Code: 24CSB333T</div>
+                                    </div>
+                                    <span class="midsem-opt-badge" id="badge-opt-cd">Your Elective</span>
+                                </div>
+                                <div class="midsem-opt-item" id="midsem-opt-cs" onclick="selectMidSemElectivePreview('cs')">
+                                    <div class="midsem-opt-indicator"></div>
+                                    <div class="midsem-opt-info">
+                                        <div class="midsem-opt-name">Conversational Systems</div>
+                                        <div class="midsem-opt-code">Course Code: 24CSB331T</div>
+                                    </div>
+                                    <span class="midsem-opt-badge" id="badge-opt-cs">Your Elective</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 2 - Paper 4 -->
+                    <div class="midsem-exam-card">
+                        <div class="midsem-exam-side-accent evening"></div>
+                        <div class="midsem-exam-content">
+                            <div class="midsem-exam-top">
+                                <span class="midsem-exam-date">🗓️ Tue, 22 Sep 2026</span>
+                                <span class="midsem-slot-tag evening">🌇 EVENING (SLOT 2)</span>
+                            </div>
+                            <div class="midsem-exam-title">Cloud, Microservices and Application</div>
+                            <div class="midsem-exam-meta-row">
+                                <span class="midsem-code-pill">24CSB301T</span>
+                                <span class="midsem-time-pill">⏰ 04:00 PM – 05:30 PM (90 mins)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 3 - Paper 5 -->
+                    <div class="midsem-exam-card">
+                        <div class="midsem-exam-side-accent morning"></div>
+                        <div class="midsem-exam-content">
+                            <div class="midsem-exam-top">
+                                <span class="midsem-exam-date">🗓️ Wed, 23 Sep 2026</span>
+                                <span class="midsem-slot-tag morning">🌅 MORNING (SLOT 1)</span>
+                            </div>
+                            <div class="midsem-exam-title">Software Engineering</div>
+                            <div class="midsem-exam-meta-row">
+                                <span class="midsem-code-pill">24CSB302T</span>
+                                <span class="midsem-time-pill">⏰ 10:00 AM – 11:30 AM (90 mins)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Section Header: Instructions & Rules -->
+                <div class="midsem-section-header">
+                    <span>⚠️ IMPORTANT GUIDELINES & RULES</span>
+                    <span class="midsem-section-badge">PDEU NOTICE</span>
+                </div>
+
+                <div class="midsem-instructions-card">
+                    <ul class="midsem-rules-list">
+                        <li>
+                            <span class="rule-bullet">⏰</span>
+                            <div><strong>Reporting Time:</strong> Reach the examination hall at least 15–20 minutes before the scheduled start time.</div>
+                        </li>
+                        <li>
+                            <span class="rule-bullet">🪪</span>
+                            <div><strong>ID & Admit Card:</strong> Carry your student ID card and Admit Card / Hall Ticket as required by PDEU.</div>
+                        </li>
+                        <li>
+                            <span class="rule-bullet">🎯</span>
+                            <div><strong>Elective Confirmation:</strong> For the 22.09.2026 (10:00 AM) slot, verify your enrolled paper (Business Strategy, Compiler Design, or Conversational Systems) with the department.</div>
+                        </li>
+                        <li>
+                            <span class="rule-bullet">📵</span>
+                            <div><strong>Electronic Devices:</strong> Mobile phones, smartwatches, and unauthorized electronics must be switched off or deposited before entering.</div>
+                        </li>
+                        <li>
+                            <span class="rule-bullet">✏️</span>
+                            <div><strong>Stationery:</strong> Bring your own pens, pencils, eraser, and permissible calculators. Sharing stationery during exam is not permitted.</div>
+                        </li>
+                        <li>
+                            <span class="rule-bullet">📍</span>
+                            <div><strong>Seating Plan:</strong> Check the seating arrangement / room allocation board closer to exam dates (released separately by examination cell).</div>
+                        </li>
+                        <li>
+                            <span class="rule-bullet">⚠️</span>
+                            <div><strong>Official Notice:</strong> Timetable is tentative as per official PDEU notice. For clashes or questions, contact department coordinator or exam cell immediately.</div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -2368,6 +3276,7 @@
             updateLiveClockEngine();
             updateLiveClockEngine(); // call immediately on load
         setInterval(updateLiveClockEngine, 1000); // refresh every 1s for real-time accuracy
+            updateMidSemStudentDetails();
 
             // Listen for Android PWA Install Event
             window.addEventListener('beforeinstallprompt', (e) => {
@@ -2459,6 +3368,7 @@
             document.getElementById("header-avatar").innerText = firstName.charAt(0);
 
             updateAppUI();
+            updateMidSemStudentDetails();
 
             // First-time welcome celebration animation overlay
             if (isFirstTimeLogin) {
@@ -3189,7 +4099,115 @@
             }
         }
 
-    
+        // ═══════════════════════════════════════════════
+        // ⚡ MID-SEMESTER EXAMINATION MODAL & LOGIC
+        // ═══════════════════════════════════════════════
+        function openMidSemModal() {
+            updateMidSemStudentDetails();
+            const modal = document.getElementById("midsem-modal");
+            if (modal) {
+                modal.classList.add("active");
+                document.body.style.overflow = "hidden";
+            }
+        }
+
+        function closeMidSemModal(event) {
+            if (!event || event.target.id === "midsem-modal" || (event.target.closest && event.target.closest('.sheet-close-btn'))) {
+                const modal = document.getElementById("midsem-modal");
+                if (modal) {
+                    modal.classList.remove("active");
+                    document.body.style.overflow = "";
+                }
+            }
+        }
+
+        function updateMidSemStudentDetails() {
+            // Live countdown calculation to 21 September 2026 10:00 AM
+            const now = new Date();
+            const examStart = new Date(2026, 8, 21, 10, 0, 0); // Sep 21, 2026 (0-indexed month)
+            const diffMs = examStart - now;
+            const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+
+            let countdownText = "Starts Sep 21";
+            if (diffDays > 1) {
+                countdownText = `${diffDays} Days Left`;
+            } else if (diffDays === 1) {
+                countdownText = "Starts Tomorrow!";
+            } else if (diffDays === 0) {
+                countdownText = "Exams Ongoing Today!";
+            } else if (diffDays < 0 && diffDays >= -3) {
+                countdownText = "Exams In Progress";
+            } else if (diffDays < -3) {
+                countdownText = "Sep 2026 Finished";
+            }
+
+            const tagEl = document.getElementById("midsem-countdown-tag");
+            if (tagEl) tagEl.innerText = countdownText;
+
+            const modalCountdownEl = document.getElementById("midsem-modal-countdown");
+            if (modalCountdownEl) modalCountdownEl.innerText = countdownText;
+
+            // Student Information Personalization
+            const student = loggedInStudent;
+            if (student) {
+                const fName = getFirstName(student.name);
+                const avatarEl = document.getElementById("midsem-student-avatar");
+                if (avatarEl) avatarEl.innerText = fName.charAt(0);
+
+                const nameEl = document.getElementById("midsem-student-name");
+                if (nameEl) nameEl.innerText = `${fName} (${student.name})`;
+
+                const subEl = document.getElementById("midsem-student-sub");
+                if (subEl) subEl.innerText = `${student.roll} • Div ${student.div} • Group ${student.group}`;
+
+                const electiveCode = student.elective || "bs";
+                const electiveObj = electiveInfo[electiveCode] || { code: "24CSB332T", name: "Business Strategy" };
+
+                const electiveValEl = document.getElementById("midsem-elective-val");
+                if (electiveValEl) electiveValEl.innerText = `${electiveObj.name} (${electiveObj.code})`;
+
+                // Highlight user's enrolled elective
+                ["bs", "cd", "cs"].forEach(code => {
+                    const itemEl = document.getElementById(`midsem-opt-${code}`);
+                    const badgeEl = document.getElementById(`badge-opt-${code}`);
+                    if (itemEl && badgeEl) {
+                        if (code === electiveCode) {
+                            itemEl.classList.add("selected-elective");
+                            badgeEl.style.display = "inline-flex";
+                            badgeEl.innerText = "✓ Your Enrolled Paper";
+                        } else {
+                            itemEl.classList.remove("selected-elective");
+                            badgeEl.style.display = "none";
+                        }
+                    }
+                });
+            }
+        }
+
+        function selectMidSemElectivePreview(code) {
+            ["bs", "cd", "cs"].forEach(c => {
+                const itemEl = document.getElementById(`midsem-opt-${c}`);
+                const badgeEl = document.getElementById(`badge-opt-${c}`);
+                if (itemEl && badgeEl) {
+                    if (c === code) {
+                        itemEl.classList.add("selected-elective");
+                        badgeEl.style.display = "inline-flex";
+                        const isEnrolled = loggedInStudent && loggedInStudent.elective === c;
+                        badgeEl.innerText = isEnrolled ? "✓ Your Enrolled Paper" : "Viewing Paper";
+                    } else {
+                        itemEl.classList.remove("selected-elective");
+                        badgeEl.style.display = "none";
+                    }
+                }
+            });
+        }
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                closeMidSemModal();
+            }
+        });
+
         // ═══════════════════════════════════════════════
         // ☀️🌙 PREMIUM SUN / MOON DARK MODE ENGINE
         // ═══════════════════════════════════════════════
