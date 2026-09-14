@@ -1,0 +1,23 @@
+{
+  "name": "csbs-timetable",
+  "version": "1.0.0",
+  "description": "CSBS Timetable Portal with Vercel Web Analytics",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nivsorathiya-web/stellular-lollipop-11eb91.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nivsorathiya-web/stellular-lollipop-11eb91/issues"
+  },
+  "homepage": "https://github.com/nivsorathiya-web/stellular-lollipop-11eb91#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
